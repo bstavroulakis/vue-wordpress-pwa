@@ -29,31 +29,31 @@ if ('serviceWorker' in navigator) {
     var serviceWorker;
 
     if(swRegistration.installing){
-      console.log('Resolved at installing:  ', swRegistration);
+      //console.log('Resolved at installing:  ', swRegistration);
       serviceWorker = swRegistration.installing;
     } else if (swRegistration.waiting){
-      console.log('Resolved at installed/waiting: ', swRegistration);
+      //console.log('Resolved at installed/waiting: ', swRegistration);
       serviceWorker = swRegistration.waiting; 
     } else if (swRegistration.active){
-      console.log('Resolved at activated: ', swRegistration);
+      //console.log('Resolved at activated: ', swRegistration);
       serviceWorker = swRegistration.active; 
       GLOBALRegisterSWEvents();
     }
 
     if (serviceWorker) {
       serviceWorker.addEventListener('statechange', function (e) {
-          console.log(e.target.state);
+          //console.log(e.target.state);
       });
     }
 
     swRegistration.addEventListener('updatefound', function(e){
       swRegistration.installing.addEventListener('statechange', function (e) {
-          console.log("New service worker state: ", e.target.state);
+          //console.log("New service worker state: ", e.target.state);
           if(e.target.state == 'activated'){
             GLOBALRegisterSWEvents();
           }
       });
-      console.log("New service worker found!", swRegistration)
+      //console.log("New service worker found!", swRegistration)
     });
 
     //Check for an update every hour

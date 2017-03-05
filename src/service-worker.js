@@ -33,12 +33,15 @@ self.addEventListener('fetch', function(event) {
   var fileName = requestPath.substring(requestPath.lastIndexOf('/')+1);
   
   if(stringContains(requestUrl.href, config.paths.api)){
+    //console.log("network only");
     event.respondWith(fetch(event.request));
+  }else if(config.assets.indexOf(requestPath) > -1){
+    //console.log("cache first:", requestUrl.href);
+    event.respondWith(cacheFirstStrategy(event.request));
   }else if(stringContains(requestUrl.href, config.paths.remote) ||
            stringContains(requestUrl.href, currentDomain)){
+             //console.log("network first:", requestUrl.href, " current",currentDomain, "requestPath:", requestPath);
     event.respondWith(networkFirstStrategy(event.request));
-  }else if(stringContains(requestUrl.href, config.paths.assetCache)){
-    event.respondWith(cacheFirstStrategy(event.request));
   }else{
     event.respondWith(fetch(event.request));
   }
