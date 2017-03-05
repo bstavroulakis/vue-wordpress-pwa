@@ -10,12 +10,12 @@
       <div v-bind:class="{ 'nav-right nav-menu': true, 'is-active': isMenuActive }">
           <template v-for="(item, index) in blogMenu" v-if="item.type_label === 'Page'">
             <span v-on:click="closeMenu">
-              <router-link class="is-tab nav-item" v-bind:to="'/page' + item.url">{{item.title}}</router-link>
+              <router-link class="is-tab nav-item" v-bind:to="'/page' + relativePath(item.url)">{{item.title}}</router-link>
             </span>
           </template>
           <template v-else>
             <span v-on:click="closeMenu">
-              <router-link  class="is-tab nav-item" v-bind:to="item.url">{{item.title}}</router-link>
+              <router-link  class="is-tab nav-item" v-bind:to="relativePath(item.url)">{{item.title}}</router-link>
             </span>
           </template>
 
@@ -53,6 +53,11 @@ export default {
     },
     closeMenu(){
       this.isMenuActive = false;
+    },
+    relativePath(url){
+      url = url.replace('/https:/', '');
+      var domain = url.split('/')[0];
+      return url.replace(domain,'');
     }
   },
   created(){
