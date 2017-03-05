@@ -1,0 +1,70 @@
+<template>
+  
+  <div>
+
+    <div class="columns category-posts">
+      <div class="column is-one-third" v-for="(item, index) in posts">
+        <vwp-post-card :post="item" :category="category"></vwp-post-card>
+      </div>
+    </div>
+    <div v-if="!hidePagination">
+      <div class="columns"><div class="column"></div></div>
+      <vwp-paging v-if="totalPages > 0" :totalPages="totalPages" :path="'/category/' + category.slug"></vwp-paging>
+    </div>
+  
+  </div>
+  
+</template>
+
+<script>
+import wordpressService from '../app.service.js'
+import vwpPostCard from './vwpPostCard.vue'
+import vwpPaging from './vwpPaging.vue'
+import { mapGetters } from 'vuex'
+export default {
+  name: 'vwp-subcategory',
+  components: { vwpPostCard, vwpPaging },
+  props: ['category', 'hidePagination'],
+  computed: {
+    ...mapGetters([
+      'blogPagingPage'
+    ])
+  },
+  data: () => {
+    return {
+      posts: [],
+      totalPages: 0
+    }
+  },
+  watch: {
+    blogPagingPage : function(newPageNum){
+      if(!newPageNum){
+        newPageNum = 1;
+      }
+      this.refreshPages(newPageNum, this.category.id);
+    },
+    category: function(newCategory){
+      if(newCategory && newCategory.id){
+        this.refreshPages(1, newCategory.id);
+      }
+    }
+  },
+  methods:{
+    refreshPages: function (newPageNum, categoryId){
+      if(!newPageNum){
+        newPageNum = 1;
+      }
+      newPageNum = parseInt(newPageNum);
+      this.posts = [];
+      this.totalPages = 0;
+      wordpressService.getPosts(this, categoryId, newPageNum, 6).then((result) => {
+        this.posts = result.posts;
+        this.totalPages = result.totalPages;
+      })
+    }
+  },
+  created (){
+    this.refreshPages(this.blogPagingPage, this.category.id);
+  }
+}
+</script>
