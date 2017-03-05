@@ -83,9 +83,7 @@ function stringContains(str, search){
 self.addEventListener('message', function(event){
   if(event.data.action == 'setCurrentDomain'){
     currentDomain = event.data.data;
-    console.log('Set current domain to: ', currentDomain);
   }else if(event.data.action == 'cachePage'){
-    console.log('Will cache page', event.data.data);
     fetch(event.data.data).then(function(networkResponse){
       caches.open(config.cacheNames.assetCache).then(function(cache) {
         cache.put(event.data.data, networkResponse);

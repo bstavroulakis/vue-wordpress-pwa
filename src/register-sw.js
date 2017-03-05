@@ -1,6 +1,29 @@
+
+var GLOBALRegisterSWEvents = function(){
+  navigator.serviceWorker.controller.postMessage(
+      {
+          action:'setCurrentDomain', 
+          data:window.location.protocol + "//" + window.location.host + "/"
+      }
+  );
+  navigator.serviceWorker.controller.postMessage(
+      {
+          action:'cachePage', 
+          data:window.location.protocol + "//" + window.location.host + window.location.pathname
+      }
+  );
+
+  navigator.serviceWorker.controller.postMessage(
+      {
+          action:'cachePage', 
+          data:window.location.protocol + "//" + window.location.host + "/"
+      }
+  )
+}
+
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker
-  .register("./service-worker.js", {scope:''})
+  .register("/service-worker.js", {scope:''})
   .then(function(swRegistration) { 
     
     var serviceWorker;
@@ -14,6 +37,7 @@ if ('serviceWorker' in navigator) {
     } else if (swRegistration.active){
       console.log('Resolved at activated: ', swRegistration);
       serviceWorker = swRegistration.active; 
+      GLOBALRegisterSWEvents();
     }
 
     if (serviceWorker) {
@@ -26,19 +50,7 @@ if ('serviceWorker' in navigator) {
       swRegistration.installing.addEventListener('statechange', function (e) {
           console.log("New service worker state: ", e.target.state);
           if(e.target.state == 'activated'){
-            navigator.serviceWorker.controller.postMessage(
-                {
-                    action:'setCurrentDomain', 
-                    data:window.location.protocol + "//" + window.location.host + "/"
-                }
-            );
-
-            navigator.serviceWorker.controller.postMessage(
-                {
-                    action:'cachePage', 
-                    data:window.location.protocol + "//" + window.location.host + window.location.pathname
-                }
-            )
+            GLOBALRegisterSWEvents();
           }
       });
       console.log("New service worker found!", swRegistration)
@@ -58,4 +70,4 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.addEventListener('controllerchange', function(e){
     console.log("Controller Changed!");
   });
-} 
+}
