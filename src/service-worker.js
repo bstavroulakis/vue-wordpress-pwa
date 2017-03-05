@@ -32,15 +32,12 @@ self.addEventListener('fetch', function(event) {
   var requestPath = requestUrl.pathname;
   var fileName = requestPath.substring(requestPath.lastIndexOf('/')+1);
   
-  if(stringContains(requestUrl.href, config.paths.api) 
-    || fileName == "sw.js" 
-    || fileName == "index.html"
-    || requestPath == "/"){
+  if(stringContains(requestUrl.href, config.paths.api)){
     event.respondWith(fetch(event.request));
   }else if(stringContains(requestUrl.href, config.paths.remote) ||
            stringContains(requestUrl.href, currentDomain)){
     event.respondWith(networkFirstStrategy(event.request));
-  }else if(requestPath == config.paths.assetCache){
+  }else if(stringContains(requestUrl.href, config.paths.assetCache)){
     event.respondWith(cacheFirstStrategy(event.request));
   }else{
     event.respondWith(fetch(event.request));
