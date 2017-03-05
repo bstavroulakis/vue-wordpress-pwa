@@ -25,23 +25,11 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /(src\\assets\\manifest\.json)$/,
+        test: /(src\\assets\\manifest\.json|src\\index-appCache\.html)$/,
         loader: `file-loader?name=assets/[name]_[hash].[ext]!extract-loader!html-loader?interpolate`
       },
       {
-        test: /(src\\sw\.js)$/,
-        loader: `file-loader?name=[name]_[hash].[ext]!extract-loader!html-loader?interpolate`
-      },
-      {
-        test: /(src\\index-appCache\.html)$/,
-        loader: `file-loader?name=[name]_[hash].[ext]!extract-loader!html-loader?interpolate`
-      },
-      {
-        test: /(src\\assets\\local\.appcache)$/,
-        loader: `file-loader?name=[name]_[hash].[ext]`
-      },
-      {
-        test: /(sw_config\.js)$/,
+        test: /(register-sw\.js|src\\assets\\local\.appcache)$/,
         loader: `file-loader?name=[name]_[hash].[ext]`
       },
       {

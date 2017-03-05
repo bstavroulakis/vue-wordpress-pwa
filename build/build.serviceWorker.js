@@ -66,8 +66,27 @@ const generateSwConfigFile = () => {
   });
 }
 
+const copyServiceWorker = () => {
+  return new Promise((resolve, reject) => {
+    fs.readFile(path.resolve(__dirname,'../src/service-worker.js'), "utf-8", function(err, data){
+      fs.writeFile(path.resolve(__dirname,'../' + distFolder + `service-worker_${self.assetCacheHash}.js`), data, 'utf8', function(){
+        resolve();
+      });
+    });
+  });
+}
+
+const fixRegisterPath = () => {
+  getHashedFile(/register\-sw\_.*?\.js$/).then((localCacheFile) => {
+    fs.readFile(path.resolve(__dirname,'../' + distFolder + localCacheFile), "utf-8", function(err, data){
+      data = data.replace('service-worker.js', `service-worker_${self.assetCacheHash}.js`);
+      fs.writeFile(path.resolve(__dirname,'../' + distFolder + localCacheFile), data, 'utf8');
+    });
+  });
+}
+
 const serviceWorker = () => {
-  getHashedFile(/sw\_.*?\.js$/).then((localCacheFile) => {
+  getHashedFile(/service-worker\_.*?\.js$/).then((localCacheFile) => {
     generateSwConfigFile().then((swConfigFilename) => {
       fs.readFile(path.resolve(__dirname,'../' + distFolder + localCacheFile), "utf-8", function(err, data){
         data = data.replace('sw_config.js', swConfigFilename).replace("{{assetCacheHash}}", self.assetCacheHash);
@@ -96,7 +115,10 @@ const removeManifestHead = () => {
 }
 
 const exec = () => {
-  generateAssetHash().then(() => {
+  generateAssetHash()
+  .then(() => {return copyServiceWorker()})
+  .then(() => {
+    fixRegisterPath();
     serviceWorker();
     appCache();
     removeManifestHead();

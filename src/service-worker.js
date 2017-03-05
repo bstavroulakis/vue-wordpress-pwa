@@ -3,6 +3,7 @@
 self.importScripts('/sw_config.js');
 
 var expectedCaches = [config.cacheNames.assetCache, config.cacheNames.remoteCache]
+var currentDomain = "";
 
 self.addEventListener('install', function(event) {
   self.skipWaiting();
@@ -36,7 +37,8 @@ self.addEventListener('fetch', function(event) {
     || fileName == "index.html"
     || requestPath == "/"){
     event.respondWith(fetch(event.request));
-  }else if(stringContains(requestUrl.href, config.paths.remote)){
+  }else if(stringContains(requestUrl.href, config.paths.remote) ||
+           stringContains(requestUrl.href, currentDomain)){
     event.respondWith(networkFirstStrategy(event.request));
   }else if(requestPath == config.paths.assetCache){
     event.respondWith(cacheFirstStrategy(event.request));
@@ -77,5 +79,19 @@ function getCacheName(request){
 function stringContains(str, search){
   return str.indexOf(search) !== -1
 }
+
+self.addEventListener('message', function(event){
+  if(event.data.action == 'setCurrentDomain'){
+    currentDomain = event.data.data;
+    console.log('Set current domain to: ', currentDomain);
+  }else if(event.data.action == 'cachePage'){
+    console.log('Will cache page', event.data.data);
+    fetch(event.data.data).then(function(networkResponse){
+      caches.open(config.cacheNames.assetCache).then(function(cache) {
+        cache.put(event.data.data, networkResponse);
+      })
+    });
+  }
+});
 
 //"{{assetCacheHash}}"

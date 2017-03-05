@@ -2,7 +2,11 @@ CACHE MANIFEST
 # {{assetCacheHash}}
 
 CACHE:
-/ /index.html
+/
+/category/blog/
+/category/learning-paths/
+/category/newsletter/
+/page/about-bill/
 {{cachedFiles}}
 
 NETWORK:

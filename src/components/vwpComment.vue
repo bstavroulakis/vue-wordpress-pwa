@@ -9,16 +9,18 @@ export default {
     require.ensure(['../components/disqus.js'], () => {
       require('../components/disqus.js')
       setTimeout(() => {
-        if(DISQUS){
-          DISQUS.reset({
-            reload: true,
-            config: function () {  
-              this.page.identifier = window.location.pathname;  
-              this.page.url = window.location;
-            }
-          });
-        }
-      },0)
+        try{
+          if(DISQUS != null && DISQUS != undefined){
+            DISQUS.reset({
+              reload: true,
+              config: function () {  
+                this.page.identifier = window.location.pathname;  
+                this.page.url = window.location;
+              }
+            });
+          }
+        }catch(ex){}
+      },100);
     });
   }
 }
