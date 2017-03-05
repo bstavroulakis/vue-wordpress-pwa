@@ -26,7 +26,7 @@ module.exports = {
     rules: [
       {
         test: /(src\\assets\\manifest\.json)$/,
-        loader: `file-loader?name=[name]_[hash].[ext]!extract-loader!html-loader?interpolate`
+        loader: `file-loader?name=assets/[name]_[hash].[ext]!extract-loader!html-loader?interpolate`
       },
       {
         test: /(src\\sw\.js)$/,
