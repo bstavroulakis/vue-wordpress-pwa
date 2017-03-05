@@ -1,6 +1,6 @@
 "use strict";
 
-importScripts('./sw_config.js');
+importScripts('/sw_config.js');
 
 var expectedCaches = [config.cacheNames.assetCache, config.cacheNames.remoteCache]
 
