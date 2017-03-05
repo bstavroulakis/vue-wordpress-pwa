@@ -1,8 +1,7 @@
-import Config from '../app.config.js'
-
 let pathHelper = {
   getRelativePath : (url) => {
-     return ('/' + url.replace(Config.wpDomain,"")).replace('//','/');
+    var parts = url.replace('://','').split('/');
+    return (parts.length > 2) ? parts[1] : parts[0];
   }
 }
 
