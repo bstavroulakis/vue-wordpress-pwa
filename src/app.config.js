@@ -7,7 +7,7 @@ const Config = {
 	appThemeColor: '#287ab1',
 	appBgColor: '#ffffff',
 	appIcon: 'assets/app-icon.png',
-	wpDomain : 'https://www.fullstackweekly.com/',
+	wpDomain : 'https://api.fullstackweekly.com/',
 	loadDbName: 'vwpLocal',
 	analyticsPath: '//www.google-analytics.com/analytics.js'
 }
