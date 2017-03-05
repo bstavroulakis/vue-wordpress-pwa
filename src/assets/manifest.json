@@ -11,7 +11,7 @@
   ],
   "name": "${require('../app.config.js').appTitle}",
   "orientation": "portrait",
-  "short_name": "${require('../app.config.js').appTitle}",
+  "short_name": "${require('../app.config.js').appTitleShort}",
   "start_url": "/",
   "theme_color": "${require('../app.config.js').appThemeColor}"
 }
