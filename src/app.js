@@ -6,12 +6,8 @@ import router from './components/router'
 import store from './store'
 import ensurePolyfills from './utils/ensurePolyfills'
 
-Vue.use(require('vue-resource'));
-
 Vue.config.devtools = false
-
 const { state } = store
-
 sync(store, router)
 
 /*Vue.http.interceptors.push(function(request, next) {
@@ -19,8 +15,9 @@ sync(store, router)
 })*/
 
 ensurePolyfills(() => {
-  require.ensure(['./theme/Index.vue'], function(){
+  require.ensure(['./theme/Index.vue','vue-resource'], function(){
     let App  = require('./theme/Index.vue')
+    Vue.use(require('vue-resource'));
     let vue = new Vue({
       el: '#app',
       router,

@@ -22,7 +22,11 @@
   <body>
     <div id="app">
       <div style="background-color:#F0F0F0;height:100%;position:absolute;width:100%;top:0;bottom:0;height:100%;"></div>
-      <div style="background-color:#ffffff;box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1);height:56px;position:absolute;width:100%"></div>
+      <div style="background-color:#ffffff;box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1);height:64px;position:absolute;width:100%">
+        <div style="padding:8px 0 0 0;margin:0 auto;text-align:center;">
+        <img style="height:48px;" src="<%= require('./assets/logo-horizontal.png') %>" alt="<%= htmlWebpackPlugin.options.title %>" />
+        </div>
+      </div>
     </div>
     <% if(htmlWebpackPlugin.options.processEnv && htmlWebpackPlugin.options.processEnv == 'production'){ %>
     <script>

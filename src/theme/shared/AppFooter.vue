@@ -9,28 +9,28 @@
         </p>
         <p>
           <div>
-            <a class="left margin_right" target="_blank" href="https://www.facebook.com/bstavroulakis">
+            <a class="left margin_right" alt="Facebook"  rel="noopener" target="_blank" href="https://www.facebook.com/bstavroulakis">
               <img style="height:40px;" :src="wpDomain + 'wp-content/uploads/2017/02/fbBtn.png'" />
             </a>
-            <a class="left margin_right" target="_blank" href="https://plus.google.com/u/0/+BillStavroulakis">
+            <a class="left margin_right" alt="Google Plus"  rel="noopener" target="_blank" href="https://plus.google.com/u/0/+BillStavroulakis">
               <img style="height:40px;" :src="wpDomain + 'wp-content/uploads/2017/02/gPlusBtn.png'" />
             </a>
-            <a class="left margin_right" target="_blank" href="https://www.linkedin.com/in/bstavroulakis">
+            <a class="left margin_right" alt="LinkedIn"  rel="noopener" target="_blank" href="https://www.linkedin.com/in/bstavroulakis">
               <img style="height:40px;" :src="wpDomain + 'wp-content/uploads/2017/02/linBtn.png'" />
             </a>
-            <a class="left " target="_blank" href="https://github.com/bstavroulakis">
+            <a class="left "  rel="noopener" alt="Github" target="_blank" href="https://github.com/bstavroulakis">
               <img style="height:40px;" :src="wpDomain + 'wp-content/uploads/2017/02/githubBtn.png'" />
             </a>
-            <a class="left" target="_blank" href="https://stackoverflow.com/users/501402/billaraw">
+            <a class="left"  rel="noopener" alt="Stack Overflow" target="_blank" href="https://stackoverflow.com/users/501402/billaraw">
               <img class="margin_right" style="height:40px;" :src="wpDomain + 'wp-content/uploads/2017/02/stackoverflow.png'" />
             </a>
-            <a class="left margin_right" target="_blank" href="https://twitter.com/bstavroulakis">
+            <a class="left margin_right" alt="Twitter" rel="noopener" target="_blank" href="https://twitter.com/bstavroulakis">
               <img style="height:40px;" :src="wpDomain + 'wp-content/uploads/2017/02/twitteBtn.png'" />
             </a>
-            <a class="left margin_right" target="_blank" href="https://www.youtube.com/user/bstavroulakis">
+            <a class="left margin_right"  alt="Youtube" rel="noopener" target="_blank" href="https://www.youtube.com/user/bstavroulakis">
               <img style="height:40px;" :src="wpDomain + 'wp-content/uploads/2017/02/youtubeBtn.png'" />
             </a>
-            <a class="left " href="mailto:bstavroulakis@gmail.com" >
+            <a class="left" rel="noopener" alt="Mail" href="mailto:bstavroulakis@gmail.com" >
               <img style="height:40px;" :src="wpDomain + 'wp-content/uploads/2017/02/emailBtn.png'" />
             </a>
             <div class="clearfix"></div>
