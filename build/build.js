@@ -21,10 +21,12 @@ const run = (task) => {
 
 const webpackBuild = () => exec('cross-env NODE_ENV=production webpack --progress --hide-modules')
 const webConfig = () => fs.copySync(path.resolve(__dirname,'../web.config'), path.resolve(__dirname,'../dist/web.config'));
+//const copyPolyfills = () => fs.copySync(path.resolve(__dirname,'../src/utils/polyfills.min.js'), path.resolve(__dirname,'../dist/utils/polyfills.min.js'));
 
 tasks.set('webpackBuild', webpackBuild);
 tasks.set('serviceWorker', sw.exec);
 tasks.set('webConfig', webConfig);
+//tasks.set('copyPolyfills', copyPolyfills);
 tasks.set('build', () =>
   run('webpackBuild')
   .then(() => Promise.all([run('serviceWorker')]))

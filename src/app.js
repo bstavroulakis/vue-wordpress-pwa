@@ -4,7 +4,7 @@ import Vue from 'vue'
 import { sync } from 'vuex-router-sync'
 import router from './components/router'
 import store from './store'
-import ensurePolyfills from './utils/ensurePolyfills'
+//import ensurePolyfills from './utils/ensurePolyfills'
 import App from './theme/Index.vue'
 import resource from 'vue-resource'
 
@@ -17,7 +17,7 @@ Vue.use(resource);
   next();
 })*/
 
-ensurePolyfills(() => {
+//ensurePolyfills(() => {
     let vue = new Vue({
       el: '#app',
       router,
@@ -25,4 +25,4 @@ ensurePolyfills(() => {
       template: '<App/>',
       components: { App }
     })
-});
+//});

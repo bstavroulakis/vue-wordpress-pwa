@@ -9,6 +9,6 @@ export default (callback) => {
   if (isGoodBrowser) {
     callback()
   } else {
-    loadScript('./utils/polyfills.min.js', callback)
+    loadScript('/utils/polyfills.min.js', callback)
   }
 }
