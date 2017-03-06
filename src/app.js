@@ -16,8 +16,8 @@ sync(store, router)
 
 ensurePolyfills(() => {
   require.ensure(['./theme/Index.vue','vue-resource'], function(){
-    let App  = require('./theme/Index.vue')
     Vue.use(require('vue-resource'));
+    let App  = require('./theme/Index.vue')
     let vue = new Vue({
       el: '#app',
       router,
