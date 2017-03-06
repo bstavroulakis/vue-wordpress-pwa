@@ -4,7 +4,7 @@
     <section class="main-section section">
       <div class="container content">
         <router-view>
-          <img src="../assets/loading.gif" />
+          <img alt="loading" src="../assets/loading.gif" />
         </router-view>
       </div>
     </section>
