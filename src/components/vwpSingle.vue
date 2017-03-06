@@ -40,6 +40,13 @@ export default {
 <style lang="scss">
   @import '../theme/_variables';
   #vwp-single{ 
+    pre {
+      white-space: pre-wrap;
+      white-space: -moz-pre-wrap;
+      white-space: -pre-wrap;
+      white-space: -o-pre-wrap;
+      word-wrap: break-word;
+      }
     .single-content{
       background-color: $white;
       padding:20px;
