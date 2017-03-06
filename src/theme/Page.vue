@@ -1,5 +1,8 @@
 <template>
   <div id="vwp-single">
+    <div class="vwp-loading" v-if="loading">
+        <img alt="loading" src="../assets/loading.gif" />
+    </div>
     <div v-if="single.content">
       <h1 v-html="single.title.rendered"></h1>
       <div class="single-content card" v-html="single.content.rendered"></div>
@@ -15,7 +18,8 @@ export default {
   data: () => {
     return { 
       slug: "",
-      single: {}
+      single: {},
+      loading: true
     }
   },
   computed: {
@@ -24,13 +28,15 @@ export default {
     ])
   },
   created () {
+    var self = this;
     this.slug = this.routeParamId;
     require.ensure('../app.service.js', () => {
       let wordpressService = require('../app.service.js')
-      wordpressService.default.getPage(this, null, this.slug).then((page) => {
+      wordpressService.default.getPage(self, null, self.slug).then((page) => {
         if(page.length > 0){
-          this.single = page[0];
+          self.single = page[0];
         }
+        self.loading = false;
       })
     })
   }
