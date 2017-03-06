@@ -3,7 +3,7 @@
     <app-newsletter id="vwp-category-app-newsletter"></app-newsletter>
     <div>
       <p>Full Stack Weekly is free weekly newsletter for full stack developers. Every Thursday. I do not share your email and keep it safe! No spam, promise!</p>
-      <p>My name is <a href="https://twitter.com/bstavroulakis">Bill</a> and I'm in the eternal pursuit of finding the next shiny thing. I love to read articles and learn new technologies. This newsletter is all of the links and material that raise my eyebrow each week as a full stack developer.</p>
+      <p>This newsletter is all of the links and material that raise my eyebrow each week as a full stack developer.</p>
     </div>
     <div class="columns"></div><div class="column"></div></div>
     <div class="columns">
