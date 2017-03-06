@@ -33,7 +33,7 @@ let wordpressService = {
     if(!id && slug){
       path = Config.wpDomain + `wp-json/wp/v2/categories/?slug=${slug}&fields=id,name,slug,parent,link`;
     }else if(!id && !slug){return Promise.resolve("");}
-    return this.cacheRequest(context, path, 5 * 60)
+    return this.cacheRequest(context, path, 15 * 60)
       .then(response => Promise.resolve(response.body))
       .catch(error => Promise.reject(error));
   },
@@ -44,13 +44,13 @@ let wordpressService = {
   },
   getPostsFromCategories(context, categoryIds, per_page){
     let path = Config.wpDomain + `wp-json/wp/v2/posts?categories=${categoryIds}&per_page=${per_page}&fields=id,slug,date,better_featured_image,excerpt`;
-    return this.cacheRequest(context, path, 5 * 60)
+    return this.cacheRequest(context, path, 15 * 60)
       .then(response => Promise.resolve(response.body))
       .catch(error => Promise.reject(error));
   },
   getPosts(context, categoryId, page, per_page, order='desc'){
     let path = Config.wpDomain + `wp-json/wp/v2/posts?categories=${categoryId}&page=${page}&order=${order}&per_page=${per_page}&fields=id,title,slug,date,better_featured_image,excerpt`;
-    return this.cacheRequest(context, path, 5 * 60)
+    return this.cacheRequest(context, path, 15 * 60)
       .then(response => Promise.resolve({posts:response.body, totalPages:response.headers.map['x-wp-totalpages'][0]}))
       .catch(error => Promise.reject(error));
   },
