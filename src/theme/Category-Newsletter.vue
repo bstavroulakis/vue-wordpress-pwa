@@ -14,7 +14,7 @@
                 <router-link :to="'/category/' + item.slug + '/'">{{item.name}}</router-link>
             </h2>
             <div class="columns"><div class="column"></div></div>
-            <vwpSubcategory class="columns category-posts" hidePagination="hidePagination" :category="item"></vwpSubcategory>
+            <vwp-subcategory class="columns category-posts" hidePagination="hidePagination" :category="item"></vwp-subcategory>
             <div class="columns"><div class="column"></div></div>
           </div>
         </div>
@@ -30,11 +30,12 @@
 import { twttr } from '../components/twitter.js'
 import { mapGetters } from 'vuex'
 import wordpressService from '../app.service.js'
-import vwpSubcategory from '../components/vwpSubcategory.vue'
-import AppNewsletter from './shared/AppNewsletter.vue'
 export default {
   name: 'ThemeCategoryNewsletter',
-  components: { vwpSubcategory, AppNewsletter },
+  components: { 
+    'vwp-subcategory': require('../components/vwpSubcategory.vue'), 
+    'app-newsletter': require('./shared/AppNewsletter.vue') 
+  },
   data: () => {
     return { 
       categoryId: 0,

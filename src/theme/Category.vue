@@ -25,11 +25,12 @@
 <script>
 import { mapGetters } from 'vuex'
 import wordpressService from '../app.service.js'
-import vwpSubcategory from '../components/vwpSubcategory.vue'
-import AppNewsletter from './shared/AppNewsletter.vue'
 export default {
   name: 'ThemeCategory',
-  components: { vwpSubcategory, AppNewsletter },
+    components: { 
+    'vwp-subcategory': require('../components/vwpSubcategory.vue'), 
+    'app-newsletter': require('./shared/AppNewsletter.vue') 
+  },
   data: () => {
     return { 
       category: {},

@@ -27,13 +27,14 @@
 <script>
 import { mapGetters } from 'vuex'
 import wordpressService from '../app.service'
-let VwpSingle = require('../components/vwpSingle.vue')
-let VwpComment = require('../components/vwpComment.vue')
 let router = require('../components/router')
 
 export default {
   name: 'ThemeSingleLearningPaths',
-  components: { VwpSingle, VwpComment },
+  components: { 
+    'vwp-single': require('../components/vwpSingle.vue'), 
+    'vwp-comment': require('../components/vwpComment.vue')
+  },
   data: () => {
     return { 
       posts: [],

@@ -10,11 +10,12 @@
 
 <script>
 import { mapGetters } from 'vuex'
-let VwpSingle = require('../components/vwpSingle.vue')
-let VwpComment = require('../components/vwpComment.vue')
 export default {
   name: 'SingleComponent',
-  components: { VwpSingle, VwpComment },
+  components: { 
+    'vwp-single': require('../components/vwpSingle.vue'), 
+    'vwp-comment': require('../components/vwpComment.vue')
+  },
   data: () => {
     return { 
       slug: "",

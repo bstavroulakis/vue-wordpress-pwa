@@ -15,14 +15,15 @@
 </template>
 
 <script>
-import VwpNotification from '../components/vwpNotification.vue'
-import GaAnalytics from '../components/gaAnalytics.vue'
-let AppHeader = require('./shared/AppHeader.vue');
-let AppFooter = require('./shared/AppFooter.vue');
 
 export default {
   name: 'app',
-  components: { AppHeader, AppFooter, VwpNotification, GaAnalytics }
+  components: { 
+    'app-header': require('./shared/AppHeader.vue'),
+    'app-footer': require('./shared/AppFooter.vue'),
+    'vwp-notification': require('../components/vwpNotification.vue'),
+    'ga-analytics': require('../components/gaAnalytics.vue')
+  }
 }
 </script>
 
