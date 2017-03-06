@@ -2,7 +2,7 @@
   
   <div id="vwp-subcategory">
     <div class="vwp-loading" v-if="loading">
-        <img src="../assets/loading.gif" />
+        <img alt="loading" src="../assets/loading.gif" />
     </div>
     <div class="columns category-posts">
       <div class="column is-one-third" v-for="(item, index) in posts">

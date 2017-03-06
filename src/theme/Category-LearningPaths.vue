@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="vwp-loading" v-if="loading">
-        <img src="../assets/loading.gif" />
+        <img alt="loading" src="../assets/loading.gif" />
     </div>
     <h1>Learning Paths</h1>
     <div>What would you like to learn today?</div>

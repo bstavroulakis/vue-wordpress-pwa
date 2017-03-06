@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="vwp-loading" v-if="loading">
-        <img src="../assets/loading.gif" />
+        <img alt="loading" src="../assets/loading.gif" />
     </div>
     <vwp-single :single="single"></vwp-single>
     <vwp-comment></vwp-comment>

@@ -8,7 +8,7 @@
     </div>
     <div class="columns"><div class="column">
       <div class="vwp-loading" v-if="loading">
-          <img src="../assets/loading.gif" />
+          <img alt="loading" src="../assets/loading.gif" />
       </div>
     </div></div>
     <div class="columns">
