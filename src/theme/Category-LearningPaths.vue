@@ -4,7 +4,7 @@
     <div>What would you like to learn today?</div>
     <div class="columns"><div class="column"></div></div>
     <div class="columns">
-      <div class="column is-one-third" v-for="(learningPath, index) in subCategories">
+      <div class="column category-learning-path is-one-third" v-for="(learningPath, index) in subCategories">
         <div class="card">
           <div class="card-image">
             <figure class="image" v-if="learningPath.better_featured_image">
@@ -50,3 +50,15 @@ export default {
   }
 }
 </script>
+
+<style>
+.category-learning-path .card{
+    height:100%;
+    padding-bottom:50px;
+}
+.category-learning-path .card-footer{
+  bottom:0;
+  position:absolute;
+  width:100%;
+}
+</style>

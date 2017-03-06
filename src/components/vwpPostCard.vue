@@ -1,5 +1,5 @@
 <template>
-    <div id="vwp-post-card" class="card">
+    <div id="vwp-post-card" class="card is-fullheight">
       <div class="card-image">
         <figure class="image" v-if="post.better_featured_image && post.better_featured_image.media_details.sizes.medium">
           <img v-bind:src="post.better_featured_image.media_details.sizes.medium.source_url" v-bind:alt="post.better_featured_image.description">
@@ -34,6 +34,7 @@ export default {
   @import '../theme/_variables';
   #vwp-post-card{
     padding-bottom: 40px;
+    height:100%;
     .post-title a{
       font-size: $size-4;
       color: $primary;
