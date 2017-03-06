@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <% if(htmlWebpackPlugin.options.processEnv && htmlWebpackPlugin.options.processEnv == 'production'){ %>
-    <script src="<%= require('./register-sw.js') %>"></script>
+    <script src="<%= require('./register-sw.js') %>" defer async></script>
     <% } %>
     <title><%= htmlWebpackPlugin.options.title %></title>
     <meta charset="utf-8">
