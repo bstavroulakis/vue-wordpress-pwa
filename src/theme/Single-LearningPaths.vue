@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div class="vwp-loading" v-if="loading">
+        <img src="../assets/loading.gif" />
+    </div>
     <div class="columns">
       <div class="column is-one-quarter">
       <aside class="menu">
@@ -36,7 +39,8 @@ export default {
       posts: [],
       page: 1,
       single: {},
-      categoryId:0
+      categoryId:0,
+      loading: true
     }
   },
   computed: {
@@ -60,10 +64,12 @@ export default {
         if(!this.routeParams.post){
           router.default.replace(this.posts[0].slug);
         }
+        this.loading = true;
       })
     },
     updatePost: function(postId){
       this.single = {};
+      this.loading = true;
       wordpressService.getPost(this, null, postId).then((post) => {
         let self = this;
         if(post && post.length > 0){
@@ -74,6 +80,7 @@ export default {
               }
           });
           this.updateMenu(categoryId);
+          this.loading = true;
         }
       });
     }
@@ -82,6 +89,7 @@ export default {
     if(!this.routeParams.post){
       wordpressService.getCategory(this, null, this.routeParams.category).then((data) => {
         this.updateMenu(data[0].id);
+        this.loading = false;
       })
     }else {
       this.updatePost(this.routeParams.post);

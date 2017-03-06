@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div class="vwp-loading" v-if="loading">
+        <img src="../assets/loading.gif" />
+    </div>
     <vwp-single :single="single"></vwp-single>
     <vwp-comment></vwp-comment>
   </div>
@@ -15,7 +18,8 @@ export default {
   data: () => {
     return { 
       slug: "",
-      single: {}
+      single: {},
+      loading: true
     }
   },
   computed: {
@@ -32,6 +36,7 @@ export default {
       wordpressService.getPost(self, null, self.slug).then((post) => {
         if(post.length != 0){
           self.single = post[0];
+          self.loading = false;
         }
       })
     });

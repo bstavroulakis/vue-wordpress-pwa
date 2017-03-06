@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div class="vwp-loading" v-if="loading">
+        <img src="../assets/loading.gif" />
+    </div>
     <h1>Learning Paths</h1>
     <div>What would you like to learn today?</div>
     <div class="columns"><div class="column"></div></div>
@@ -35,7 +38,8 @@ export default {
   name: 'ThemeCategoryLearningPaths',
   data: () => {
     return { 
-      subCategories: []
+      subCategories: [],
+      loading: true
     }
   },
   computed: {
@@ -45,7 +49,8 @@ export default {
   },
   created(){
     wordpressService.getCategoryChildren(this, this.routeMetaId).then((categories) => {
-          this.subCategories = categories;
+      this.subCategories = categories;
+      this.loading = false;
     })
   }
 }

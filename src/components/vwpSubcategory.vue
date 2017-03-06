@@ -1,7 +1,9 @@
 <template>
   
   <div>
-
+    <div class="vwp-loading" v-if="loading">
+        <img src="../assets/loading.gif" />
+    </div>
     <div class="columns category-posts">
       <div class="column is-one-third" v-for="(item, index) in posts">
         <vwp-post-card :post="item" :category="category"></vwp-post-card>
@@ -33,7 +35,8 @@ export default {
   data: () => {
     return {
       posts: [],
-      totalPages: 0
+      totalPages: 0,
+      loading: true
     }
   },
   watch: {
@@ -60,6 +63,7 @@ export default {
       wordpressService.getPosts(this, categoryId, newPageNum, 6).then((result) => {
         this.posts = result.posts;
         this.totalPages = result.totalPages;
+        this.loading = false;
       })
     }
   },

@@ -6,7 +6,11 @@
       Over here you can find all of the interesting things I find on my way.
       </p>
     </div>
-    <div class="columns"><div class="column"></div></div>
+    <div class="columns"><div class="column">
+      <div class="vwp-loading" v-if="loading">
+          <img src="../assets/loading.gif" />
+      </div>
+    </div></div>
     <div class="columns">
       <div class="column" v-if="category.name">
         <h2>
@@ -28,7 +32,8 @@ export default {
   components: { vwpSubcategory, AppNewsletter },
   data: () => {
     return { 
-      category: {}
+      category: {},
+      loading: true
     }
   },
   computed: {
@@ -47,6 +52,7 @@ export default {
       wordpressService.getCategory(this, null, categorySlug).then((category) => {
         if(category && category.length > 0){
           this.category = category[0];
+          this.loading = false;
         }
       })
     }

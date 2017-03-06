@@ -3,7 +3,9 @@
     <app-header></app-header>
     <section class="main-section section">
       <div class="container content">
-        <router-view></router-view>
+        <router-view>
+          <img src="../assets/loading.gif" />
+        </router-view>
       </div>
     </section>
     <app-footer></app-footer>
@@ -34,5 +36,8 @@ export default {
   }
   #app > .main-section.section{
     min-height: 530px;
+  }
+  .vwp-loading{
+    text-align: center;
   }
 </style>
