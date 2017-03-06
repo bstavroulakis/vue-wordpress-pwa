@@ -55,7 +55,7 @@ export default {
       this.isMenuActive = false;
     },
     relativePath(url){
-      url = url.replace('/https:/', '');
+      url = url.replace('https://', '');
       var domain = url.split('/')[0];
       return url.replace(domain,'');
     }
