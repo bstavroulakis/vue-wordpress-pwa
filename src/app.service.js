@@ -51,7 +51,11 @@ let wordpressService = {
   getPosts(context, categoryId, page, per_page, order='desc'){
     let path = Config.wpDomain + `wp-json/wp/v2/posts?categories=${categoryId}&page=${page}&order=${order}&per_page=${per_page}&fields=id,title,slug,date,better_featured_image,excerpt`;
     return this.cacheRequest(context, path, 15 * 60)
-      .then(response => {var responseData = {posts:response.body, totalPages:response.headers.map['X-WP-TotalPages'][0]}; return Promise.resolve(responseData)})
+      .then(response => {
+        var totalPages = (response.headers.map.hasOwnProperty('X-WP-TotalPages')) ? response.headers.map['X-WP-TotalPages'][0] : 0;
+        totalPages = (response.headers.map.hasOwnProperty('x-wp-totalpages')) ? response.headers.map['x-wp-totalpages'][0] : 0;
+        var responseData = {posts:response.body, totalPages:totalPages}; return Promise.resolve(responseData)
+      })
       .catch(error => Promise.reject(error));
   },
   getPost(context, postId, postSlug){
