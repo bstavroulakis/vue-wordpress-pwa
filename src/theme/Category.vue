@@ -14,7 +14,7 @@
     <div class="columns">
       <div class="column" v-if="category.name">
         <h2>
-            {{category.name}}
+            {{category.name}}.
         </h2>
         <vwpSubcategory v-if="category" :category="category"></vwpSubcategory>
       </div>
