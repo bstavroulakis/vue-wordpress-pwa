@@ -33,7 +33,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import wordpressService from '../app.service.js'
+let wordpressService;
 export default {
   name: 'ThemeCategoryLearningPaths',
   data: () => {
@@ -48,10 +48,14 @@ export default {
     ])
   },
   created(){
-    wordpressService.getCategoryChildren(this, this.routeMetaId).then((categories) => {
-      this.subCategories = categories;
-      this.loading = false;
-    })
+    var self = this;
+      require.ensure('../app.service.js', function(){
+        wordpressService = require('../app.service.js').default;
+        wordpressService.getCategoryChildren(self, self.routeMetaId).then((categories) => {
+          self.subCategories = categories;
+          self.loading = false;
+        })
+      });
   }
 }
 </script>

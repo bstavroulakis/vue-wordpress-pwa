@@ -29,7 +29,7 @@
 <script>
 import { twttr } from '../components/twitter.js'
 import { mapGetters } from 'vuex'
-import wordpressService from '../app.service.js'
+let wordpressService;
 export default {
   name: 'ThemeCategoryNewsletter',
   components: { 
@@ -80,15 +80,19 @@ export default {
 
   },
   created () {
-    if(this.routeMetaId){
-      this.categoryId = this.routeMetaId;
-      this.loadSubcategories();
-    }else{
-      wordpressService.getCategory(this, null, this.routeParamId).then((category) => {
-        this.categoryId = category[0].id;
-        this.loadSubcategories();
-      })
-    };
+    var self = this;
+    require.ensure('../app.service.js', function(){
+      wordpressService = require('../app.service.js').default;
+      if(self.routeMetaId){
+        self.categoryId = self.routeMetaId;
+        self.loadSubcategories();
+      }else{
+        wordpressService.getCategory(self, null, self.routeParamId).then((category) => {
+          self.categoryId = category[0].id;
+          self.loadSubcategories();
+        })
+      };
+    })
   }
 }
 </script>

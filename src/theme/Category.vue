@@ -24,7 +24,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import wordpressService from '../app.service.js'
+let wordpressService;
 export default {
   name: 'ThemeCategory',
     components: { 
@@ -50,12 +50,16 @@ export default {
   },
   methods: {
     updateCategory: function(categorySlug){
-      wordpressService.getCategory(this, null, categorySlug).then((category) => {
-        if(category && category.length > 0){
-          this.category = category[0];
-          this.loading = false;
-        }
-      })
+      var self = this;
+      require.ensure('../app.service.js', function(){
+        wordpressService = require('../app.service.js').default;
+        wordpressService.getCategory(self, null, categorySlug).then((category) => {
+          if(category && category.length > 0){
+            self.category = category[0];
+            self.loading = false;
+          }
+        })
+      });
     }
   },
   created () {

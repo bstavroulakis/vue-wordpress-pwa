@@ -12,7 +12,6 @@
 </template> 
 
 <script>
-import wordpressService from '../app.service.js'
 import { mapGetters } from 'vuex'
 export default {
   props: ['totalPages', 'path'],
