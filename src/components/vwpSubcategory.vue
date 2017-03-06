@@ -1,6 +1,6 @@
 <template>
   
-  <div>
+  <div id="vwp-subcategory">
     <div class="vwp-loading" v-if="loading">
         <img src="../assets/loading.gif" />
     </div>
@@ -60,7 +60,8 @@ export default {
       newPageNum = parseInt(newPageNum);
       this.posts = [];
       this.totalPages = 0;
-      wordpressService.getPosts(this, categoryId, newPageNum, 6).then((result) => {
+      wordpressService.getPosts(this, categoryId, newPageNum, 6)
+      .then((result) => {
         this.posts = result.posts;
         this.totalPages = result.totalPages;
         this.loading = false;
