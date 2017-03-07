@@ -26,14 +26,14 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import wordpressService from '../app.service'
-let VwpSingle = require('../components/vwpSingle.vue')
-let VwpComment = require('../components/vwpComment.vue')
-let router = require('../components/router')
+let wordpressService;
 
 export default {
   name: 'ThemeSingleLearningPaths',
-  components: { VwpSingle, VwpComment },
+  components: { 
+    'vwp-single': require('../components/vwpSingle.vue'), 
+    'vwp-comment': require('../components/vwpComment.vue')
+  },
   data: () => {
     return { 
       posts: [],
@@ -62,7 +62,10 @@ export default {
       wordpressService.getPosts(this, categoryId, this.page , 50, 'asc').then((data) => {
         this.posts = data.posts;
         if(!this.routeParams.post){
-          router.default.replace(this.posts[0].slug);
+          require.ensure('../app.service.js', () => {
+            let router = require('../components/router');
+            router.default.replace(this.posts[0].slug);
+          });
         }
       })
     },
@@ -85,13 +88,16 @@ export default {
     }
   },
   created(){
-    if(!this.routeParams.post){
-      wordpressService.getCategory(this, null, this.routeParams.category).then((data) => {
-        this.updateMenu(data[0].id);
-      })
-    }else {
-      this.updatePost(this.routeParams.post);
-    }
+    require.ensure('../app.service.js', () => {
+      wordpressService = require('../app.service.js').default;
+      if(!this.routeParams.post){
+        wordpressService.getCategory(this, null, this.routeParams.category).then((data) => {
+          this.updateMenu(data[0].id);
+        })
+      }else {
+        this.updatePost(this.routeParams.post);
+      }
+    });
   }
 }
 </script>

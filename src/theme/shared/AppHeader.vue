@@ -20,7 +20,7 @@
           </template>
 
         <span class="nav-item">
-          <a class="button" target="_blank" href="https://twitter.com/bstavroulakis">
+          <a class="button" target="_blank" rel="noopener" href="https://twitter.com/bstavroulakis">
             <span class="icon">
               <i class="icon-twitter"></i>
             </span>

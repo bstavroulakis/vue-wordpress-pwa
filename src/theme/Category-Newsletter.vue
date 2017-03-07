@@ -14,7 +14,7 @@
                 <router-link :to="'/category/' + item.slug + '/'">{{item.name}}</router-link>
             </h2>
             <div class="columns"><div class="column"></div></div>
-            <vwpSubcategory class="columns category-posts" hidePagination="hidePagination" :category="item"></vwpSubcategory>
+            <vwp-subcategory class="columns category-posts" hidePagination="hidePagination" :category="item"></vwp-subcategory>
             <div class="columns"><div class="column"></div></div>
           </div>
         </div>
@@ -29,12 +29,13 @@
 <script>
 import { twttr } from '../components/twitter.js'
 import { mapGetters } from 'vuex'
-import wordpressService from '../app.service.js'
-import vwpSubcategory from '../components/vwpSubcategory.vue'
-import AppNewsletter from './shared/AppNewsletter.vue'
+let wordpressService;
 export default {
   name: 'ThemeCategoryNewsletter',
-  components: { vwpSubcategory, AppNewsletter },
+  components: { 
+    'vwp-subcategory': require('../components/vwpSubcategory.vue'), 
+    'app-newsletter': require('./shared/AppNewsletter.vue') 
+  },
   data: () => {
     return { 
       categoryId: 0,
@@ -79,15 +80,19 @@ export default {
 
   },
   created () {
-    if(this.routeMetaId){
-      this.categoryId = this.routeMetaId;
-      this.loadSubcategories();
-    }else{
-      wordpressService.getCategory(this, null, this.routeParamId).then((category) => {
-        this.categoryId = category[0].id;
-        this.loadSubcategories();
-      })
-    };
+    var self = this;
+    require.ensure('../app.service.js', function(){
+      wordpressService = require('../app.service.js').default;
+      if(self.routeMetaId){
+        self.categoryId = self.routeMetaId;
+        self.loadSubcategories();
+      }else{
+        wordpressService.getCategory(self, null, self.routeParamId).then((category) => {
+          self.categoryId = category[0].id;
+          self.loadSubcategories();
+        })
+      };
+    })
   }
 }
 </script>

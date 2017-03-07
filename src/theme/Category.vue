@@ -2,7 +2,7 @@
   <section id="ThemeCategory">
     <div class="columns personal-card card"  v-if="routeParamId == 'blog'">
       <p class="column personal-img"><img src="https://api.fullstackweekly.com/wp-content/uploads/2016/11/200x200.jpg" alt="Bill Stavroulakis" width="100"></p>
-      <p class="column is-three-quarters personal-desc">Hi, I’m <a href="https://twitter.com/bstavroulakis" target="_blank">Bill Stavroulakis</a>, many years ago my journey started on this thing called Web Development.<br/><br/>
+      <p class="column is-three-quarters personal-desc">Hi, I’m <a href="https://twitter.com/bstavroulakis" rel="noopener" target="_blank">Bill Stavroulakis</a>, many years ago my journey started on this thing called Web Development.<br/><br/>
       Over here you can find all of the interesting things I find on my way.
       </p>
     </div>
@@ -24,12 +24,13 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import wordpressService from '../app.service.js'
-import vwpSubcategory from '../components/vwpSubcategory.vue'
-import AppNewsletter from './shared/AppNewsletter.vue'
+let wordpressService;
 export default {
   name: 'ThemeCategory',
-  components: { vwpSubcategory, AppNewsletter },
+    components: { 
+    'vwp-subcategory': require('../components/vwpSubcategory.vue'), 
+    'app-newsletter': require('./shared/AppNewsletter.vue') 
+  },
   data: () => {
     return { 
       category: {},
@@ -49,12 +50,16 @@ export default {
   },
   methods: {
     updateCategory: function(categorySlug){
-      wordpressService.getCategory(this, null, categorySlug).then((category) => {
-        if(category && category.length > 0){
-          this.category = category[0];
-          this.loading = false;
-        }
-      })
+      var self = this;
+      require.ensure('../app.service.js', function(){
+        wordpressService = require('../app.service.js').default;
+        wordpressService.getCategory(self, null, categorySlug).then((category) => {
+          if(category && category.length > 0){
+            self.category = category[0];
+            self.loading = false;
+          }
+        })
+      });
     }
   },
   created () {

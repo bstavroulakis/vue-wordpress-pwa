@@ -19,13 +19,14 @@
 </template>
 
 <script>
-import wordpressService from '../app.service.js'
-import vwpPostCard from './vwpPostCard.vue'
-import vwpPaging from './vwpPaging.vue'
+let wordpressService;
 import { mapGetters } from 'vuex'
 export default {
   name: 'vwp-subcategory',
-  components: { vwpPostCard, vwpPaging },
+  components: { 
+    'vwp-post-card': require('./vwpPostCard.vue'), 
+    'vwp-paging': require('./vwpPaging.vue')
+  },
   props: ['category', 'hidePagination'],
   computed: {
     ...mapGetters([
@@ -69,7 +70,10 @@ export default {
     }
   },
   created (){
-    this.refreshPages(this.blogPagingPage, this.category.id);
+    require.ensure('../app.service.js', () => {
+      wordpressService = require('../app.service.js').default;
+      this.refreshPages(this.blogPagingPage, this.category.id);
+    });
   }
 }
 </script>
