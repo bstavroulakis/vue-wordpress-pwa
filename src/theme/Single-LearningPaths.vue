@@ -1,6 +1,31 @@
 <template>
   <div>
     <div class="columns">
+      <div class="column is-three-quarters">
+        <div class="vwp-loading" v-if="loading">
+            <img alt="loading" src="../assets/loading.gif" />
+        </div>
+
+        <div v-if="getPrev(single.id)" class="is-pulled-left">
+          <router-link :to="'./' + getPrev(single.id)" class="button">
+            <span class="icon">
+              <i class="icon-left-big"></i>
+            </span>
+            <span>Previous</span>
+          </router-link>
+        </div>
+        <div v-if="getNext(single.id)" class="is-pulled-right">
+         <router-link :to="'./' + getNext(single.id)" class="button">
+          <span class="icon">
+            <i class="icon-right-big"></i>
+          </span>
+          <span>Next</span>
+        </router-link>
+        </div>
+        <div class="is-clearfix"></div>
+        
+        <vwp-single :single="single"></vwp-single>
+      </div>
       <div class="column is-one-quarter">
       <aside class="menu">
         <p class="menu-label">
@@ -12,12 +37,6 @@
           </li>
         </ul>
       </aside>
-      </div>
-      <div class="column is-three-quarters">
-        <div class="vwp-loading" v-if="loading">
-            <img alt="loading" src="../assets/loading.gif" />
-        </div>
-        <vwp-single :single="single"></vwp-single>
       </div>
     </div>
     <vwp-comment></vwp-comment>
@@ -57,6 +76,23 @@ export default {
     }
   },
   methods: {
+    getPrev: function(){
+      var self = this;
+      for(var i = 0; i < self.posts.length; i++){
+        if(i > 0 && self.posts[i].id == self.single.id){
+          return self.posts[i-1].slug;
+        }
+      }
+    },
+    getNext: function(){
+      var self = this;
+      var postLength = self.posts.length;
+      for(var i = 0; i < postLength; i++){
+        if(i < postLength - 1 && self.posts[i].id == self.single.id){
+          return self.posts[i+1].slug;
+        }
+      }
+    },
     updateMenu: function(categoryId){
       if(this.categoryId == categoryId){return;}
       wordpressService.getPosts(this, categoryId, this.page , 50, 'asc').then((data) => {

@@ -6,7 +6,7 @@
         <span class="icon">
           <i class="icon-left-big"></i>
         </span>
-        <span>Back</span>
+        <span>{{single.pure_taxonomies.categories[0].name}}</span>
       </router-link>
 
       <h1 v-html="single.title.rendered"></h1>
