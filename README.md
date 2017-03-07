@@ -45,7 +45,7 @@ First, install the WordPress plugins to enhance its REST API
 - WP REST API Menus
 - WP-CORS
 
-Then, clone the repo
+Then, clone the repo or create a fork
 
 ```bash
 $ git clone https://github.com/bstavroulakis/vue-wordpress-pwa.git
