@@ -2,6 +2,8 @@
 
 > A fast SPA using Vue.js, the Wordpress REST API and Progressive Web Apps
 
+Live version: [https://www.fullstackweekly.com/](https://www.fullstackweekly.com/)
+
 ![alt tag](https://api.fullstackweekly.com/wp-content/uploads/2017/03/vue-wordpress-pwa.png)
 
 This is the code for the FullStackWeekly website. You can use it as a starter pack for your wordpress site as well.
