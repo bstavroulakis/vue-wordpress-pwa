@@ -70,6 +70,7 @@ src/assets
 Finally, to run the project for development with hot reload:
 
 ```bash
+$ npm install
 $ npm run dev
 ```
 
