@@ -6,7 +6,7 @@ Live version: [https://www.fullstackweekly.com/](https://www.fullstackweekly.com
 
 ![alt tag](https://api.fullstackweekly.com/wp-content/uploads/2017/03/vue-wordpress-pwa.png)
 
-This is the code for the FullStackWeekly website. You can use it as a starter pack for your wordpress site as well.
+This is the code for the [https://www.fullstackweekly.com/](FullStackWeekly) website. You can use it as a starter pack for your Wordpress site as well.
 
 Since Wordpress can expose a REST API, this project uses Vue.js, Vue-router, Vuex, Vue-resource & Progressive Web App techniques to create an offline-first web client.
 
