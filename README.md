@@ -8,7 +8,7 @@ Live version: [https://www.fullstackweekly.com/](https://www.fullstackweekly.com
 
 This is the code for the FullStackWeekly website. You can use it as a starter pack for your wordpress site as well.
 
-Since wordpress can expose a REST API, this project uses Vue.js, Vue-router, Vuex, Vue-resource & Progressive Web App techniques to create an offline-first web client.
+Since Wordpress can expose a REST API, this project uses Vue.js, Vue-router, Vuex, Vue-resource & Progressive Web App techniques to create an offline-first web client.
 
 You can also fork the project and host it on Azure App Services with continuous integration using the deploy.cmd file (included)
 
@@ -35,7 +35,7 @@ Make sure that [Node v7](https://nodejs.org/en/download/releases/) is installed.
 
 ### Instructions
 
-First, install the wordpress plugins to enhance its REST API
+First, install the Wordpress plugins to enhance its REST API
 
 - Wordpress plugins used:
 - Better REST API Featured Images
