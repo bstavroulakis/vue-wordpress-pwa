@@ -10,7 +10,7 @@
     </section>
     <app-footer></app-footer>
     <vwp-notification></vwp-notification>
-    <ga-analytics data-ud="UA-31484897-2"></ga-analytics>
+    <ga-analytics ua="UA-31484897-2"></ga-analytics>
   </div>
 </template>
 
