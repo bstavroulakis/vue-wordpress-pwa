@@ -6,7 +6,7 @@
     </div>
     <div class="columns category-posts">
       <div class="column is-one-third" v-for="(item, index) in posts">
-        <vwp-post-card :post="item" :category="category"></vwp-post-card>
+        <vwp-post-card :post="item" :newFlag="newFlag" :category="category"></vwp-post-card>
       </div>
     </div>
     <div v-if="!hidePagination">
@@ -27,7 +27,7 @@ export default {
     'vwp-post-card': require('./vwpPostCard.vue'), 
     'vwp-paging': require('./vwpPaging.vue')
   },
-  props: ['category', 'hidePagination'],
+  props: ['category', 'hidePagination', 'newFlag'],
   computed: {
     ...mapGetters([
       'blogPagingPage'

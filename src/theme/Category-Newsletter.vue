@@ -14,7 +14,7 @@
                 <router-link :to="'/category/' + item.slug + '/'">{{item.name}}</router-link>
             </h2>
             <div class="columns"><div class="column"></div></div>
-            <vwp-subcategory class="columns category-posts" hidePagination="hidePagination" :category="item"></vwp-subcategory>
+            <vwp-subcategory class="columns category-posts" hidePagination="hidePagination" newFlag="true" :category="item"></vwp-subcategory>
             <div class="columns"><div class="column"></div></div>
           </div>
         </div>
