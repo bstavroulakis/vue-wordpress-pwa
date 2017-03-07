@@ -1,14 +1,14 @@
 # [vue-wordpress-pwa](https://www.fullstackweekly.com/category/blog)
 
-> A fast SPA using Vue.js, the Wordpress REST API and Progressive Web Apps
+> A fast SPA using Vue.js, the WordPress REST API and Progressive Web Apps
 
 Live version: [https://www.fullstackweekly.com/](https://www.fullstackweekly.com/)
 
 ![alt tag](https://api.fullstackweekly.com/wp-content/uploads/2017/03/vue-wordpress-pwa.png)
 
-This is the code for the [FullStackWeekly](https://www.fullstackweekly.com/) website. You can use it as a starter pack for your Wordpress site as well.
+This is the code for the [FullStackWeekly](https://www.fullstackweekly.com/) website. You can use it as a starter pack for your WordPress site as well.
 
-Since Wordpress can expose a REST API, this project uses Vue.js, Vue-router, Vuex, Vue-resource & Progressive Web App techniques to create an offline-first web client.
+Since WordPress can expose a REST API, this project uses Vue.js, Vue-router, Vuex, Vue-resource & Progressive Web App techniques to create an offline-first web client.
 
 You can also fork the project and host it on Azure App Services with continuous integration using the deploy.cmd file (included)
 
@@ -35,9 +35,8 @@ Make sure that [Node v7](https://nodejs.org/en/download/releases/) is installed.
 
 ### Instructions
 
-First, install the Wordpress plugins to enhance its REST API
+First, install the WordPress plugins to enhance its REST API
 
-- Wordpress plugins used:
 - Better REST API Featured Images
 - Category Order
 - REST API Enabler
