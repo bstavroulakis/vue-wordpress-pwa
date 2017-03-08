@@ -25,7 +25,7 @@ const generateAssetHash = () => {
 const getAllAssets = () => {
   return new Promise((resolve, reject) => {
     var assetFiles = [];
-    recursive(path.resolve(__dirname,'../' + distFolder), (err, files) => {
+    recursive(dirPath, (err, files) => {
       files.forEach(file => {
         assetFiles.push(getUrlPath(file));
       })
@@ -56,7 +56,7 @@ const getUrlPath = (str) => {
 const generateSwConfigFile = () => {
   return new Promise((resolve, reject) => {
     var swConfigFilename = 'sw_config_' + self.assetCacheHash + '.js';
-    fs.outputFile( path.resolve(__dirname,'../' + distFolder + swConfigFilename), 'var config = ' +  JSON.stringify({
+    fs.outputFile( (dirPath + "/" + swConfigFilename), 'var config = ' +  JSON.stringify({
       assets: self.assetFiles,
       paths:{api:config.wpDomain + 'wp-json', remote:config.wpDomain},
       cacheNames:{assetCache:`vwpCacheAsset-${self.assetCacheHash}`, remoteCache:`vwpCacheRemote-${self.assetCacheHash}`}
@@ -69,7 +69,7 @@ const generateSwConfigFile = () => {
 const copyServiceWorker = () => {
   return new Promise((resolve, reject) => {
     fs.readFile(path.resolve(__dirname,'../src/service-worker.js'), "utf-8", function(err, data){
-      fs.writeFile(path.resolve(__dirname,'../' + distFolder + 'service-worker.js'), data, 'utf8', function(){
+      fs.writeFile((dirPath + '/service-worker.js'), data, 'utf8', function(){
         resolve();
       });
     });
@@ -78,35 +78,35 @@ const copyServiceWorker = () => {
 
 const serviceWorker = () => {
   generateSwConfigFile().then((swConfigFilename) => {
-    fs.readFile(path.resolve(__dirname,'../' + distFolder + 'service-worker.js'), "utf-8", function(err, data){
+    fs.readFile((dirPath + '/service-worker.js'), "utf-8", function(err, data){
       data = data.replace('sw_config.js', swConfigFilename).replace("{{assetCacheHash}}", self.assetCacheHash);
-      fs.writeFile(path.resolve(__dirname,'../' + distFolder + 'service-worker.js'), data, 'utf8');
+      fs.writeFile((dirPath + '/service-worker.js'), data, 'utf8');
     });
   })
 }
 
 const appCache = () => {
   getHashedFile(/local_.*?\.appcache$/).then((localCacheFile) => {
-    fs.readFile(path.resolve(__dirname,'../' + distFolder + localCacheFile), "utf-8", function(err, data){
+    fs.readFile((dirPath + "/" +localCacheFile), "utf-8", function(err, data){
       data = data.replace("{{cachedFiles}}", self.assetFiles.join('\n')).replace("{{assetCacheHash}}", self.assetCacheHash);
-      fs.writeFile(path.resolve(__dirname,'../' + distFolder + localCacheFile), data, 'utf8');
+      fs.writeFile((dirPath + "/" + localCacheFile), data, 'utf8');
     });
   });
 }
 
 const removeManifestHead = () => {
   getHashedFile(/local_.*?\.appcache$/).then((localCacheFile) => {
-    fs.readFile(path.resolve(__dirname,'../' + distFolder + 'index.html'), "utf-8", function(err, data){
+    fs.readFile((dirPath + '/index.html'), "utf-8", function(err, data){
       data = data.replace(` manifest="${localCacheFile}"`, '');
-      fs.writeFile(path.resolve(__dirname,'../' + distFolder + 'index.html'), data, 'utf8');
+      fs.writeFile((dirPath + '/index.html'), data, 'utf8');
     });
   });
 }
 
 const exec = () => {
   generateAssetHash()
+  .then(() => copyServiceWorker())
   .then(() => {
-    copyServiceWorker()
     serviceWorker();
     appCache();
     removeManifestHead();
