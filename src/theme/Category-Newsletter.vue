@@ -6,28 +6,20 @@
       <p>This newsletter is all of the links and material that raise my eyebrow each week as a full stack developer.</p>
     </div>
     <div class="columns"></div><div class="column"></div></div>
-    <div class="columns">
-      <div class="column is-three-quarters">
-        <div class="columns" v-for="(item, index) in subCategories">
-          <div class="column">
-            <h2>
-                <router-link :to="'/category/' + item.slug + '/'">{{item.name}}</router-link>
-            </h2>
-            <div class="columns"><div class="column"></div></div>
-            <vwp-subcategory class="columns category-posts" hidePagination="hidePagination" newFlag="true" :category="item"></vwp-subcategory>
-            <div class="columns"><div class="column"></div></div>
-          </div>
-        </div>
-      </div>
+    <div class="columns" v-for="(item, index) in subCategories">
       <div class="column">
-        <div id="category-newsletter-twitter-feed"></div>
+        <h2>
+            <router-link :to="'/category/' + item.slug + '/'">{{item.name}}</router-link>
+        </h2>
+        <div class="columns"><div class="column"></div></div>
+        <vwp-subcategory class="columns category-posts" hidePagination="hidePagination" newFlag="true" :category="item"></vwp-subcategory>
+        <div class="columns"><div class="column"></div></div>
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import { twttr } from '../components/twitter.js'
 import { mapGetters } from 'vuex'
 let wordpressService;
 export default {
@@ -47,19 +39,6 @@ export default {
       wordpressService.getCategoryChildren(this, this.categoryId).then((categories) => {
           this.subCategories = categories;
         })
-    },
-    loadTwitter(){
-      window.twttr.widgets.createTimeline(
-      {
-        sourceType: 'profile',
-        screenName: 'fullstacknews'
-      },
-      document.getElementById('category-newsletter-twitter-feed'),
-      {
-        chrome: 'nofooter',
-        linkColor: '#287ab1',
-        showReplies: true
-      })
     }
   },
   computed: {
@@ -67,17 +46,6 @@ export default {
       'routeParamId',
       'routeMetaId'
     ])
-  },
-  mounted(){
-    let self = this;
-    require.ensure('../components/twitter.js', () => {
-      window.twttr.ready(
-        function (twttr) {
-          self.loadTwitter();
-        }
-      );
-    })
-
   },
   created () {
     var self = this;
