@@ -1,6 +1,6 @@
 # [vue-wordpress-pwa](https://www.fullstackweekly.com/category/blog)
 
-> A fast SPA using Vue.js, the WordPress REST API and Progressive Web Apps
+> An offline-first SPA using Vue.js, the WordPress REST API and Progressive Web Apps
 
 Live version: [https://www.fullstackweekly.com/](https://www.fullstackweekly.com/)
 
