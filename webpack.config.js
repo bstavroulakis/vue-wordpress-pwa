@@ -82,7 +82,7 @@ module.exports = {
   },
   devtool: '#eval-source-map',
   plugins:[
-    new ExtractTextPlugin("style_[hash].css"),
+    new ExtractTextPlugin("assets/style_[hash].css"),
     new HtmlWebpackPlugin({
       title: Config.appTitle,
       appThemeColor: Config.appThemeColor,
