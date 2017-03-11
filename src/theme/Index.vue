@@ -41,4 +41,10 @@ export default {
   .vwp-loading{
     text-align: center;
   }
+  .fake-card{
+    min-height: 300px;
+  }
+  .is-fullwidth{
+    width: 100%;
+  }
 </style>

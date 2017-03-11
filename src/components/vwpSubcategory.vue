@@ -1,8 +1,13 @@
 <template>
   
   <div id="vwp-subcategory">
-    <div class="vwp-loading" v-if="loading">
-        <img alt="loading" src="../assets/loading.gif" />
+    <div class="columns category-posts is-fullwidth" v-if="loading">
+      <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
+      <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
+      <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
+      <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
+      <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
+      <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
     </div>
     <div class="columns category-posts">
       <div class="column is-one-third" v-for="(item, index) in posts">

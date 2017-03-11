@@ -12,11 +12,22 @@
         <div class="is-clearfix"></div>
       </div>
     </div>
-    <div class="columns"><div class="column">
-      <div class="vwp-loading" v-if="loading">
-          <img alt="loading" src="../assets/loading.gif" />
+    <div class="columns" v-if="loading">
+      <div class="column">
+        <h2>
+            Loading...
+        </h2>
+        <div class="columns category-posts">
+          <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
+          <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
+          <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
+          <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
+          <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
+          <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
+        </div>
       </div>
-    </div></div>
+    </div>
+
     <div class="columns">
       <div class="column" v-if="category.name">
         <h2>
