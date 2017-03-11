@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 const Config = require('./src/app.config.js');
+const ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 module.exports = {
   entry: {
@@ -37,8 +38,14 @@ module.exports = {
         loader: 'vue-loader',
         options: {
           loaders: {
-            'scss': 'vue-style-loader!css-loader!sass-loader',
-            'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
+            css: ExtractTextPlugin.extract({
+              loader: 'css-loader',
+              fallbackLoader: 'vue-style-loader' // <- this is a dep of vue-loader, so no need to explicitly install if using npm3
+            }),
+            'scss': ExtractTextPlugin.extract({
+              use: 'css-loader!sass-loader',
+              fallback: 'vue-style-loader' // <- this is a dep of vue-loader, so no need to explicitly install if using npm3
+            })
           }
         }
       },
@@ -75,6 +82,7 @@ module.exports = {
   },
   devtool: '#eval-source-map',
   plugins:[
+    new ExtractTextPlugin("style_[hash].css"),
     new HtmlWebpackPlugin({
       title: Config.appTitle,
       appThemeColor: Config.appThemeColor,
