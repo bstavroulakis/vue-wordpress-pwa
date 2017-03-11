@@ -1,7 +1,7 @@
 <template>
     <nav id="app-header" class="nav has-shadow">
     <div class="container">
-      <router-link to="/category/blog/" class="nav-item"><img src="../../assets/logo-horizontal.png" id="vwp-logo" v-bind:alt="siteName" /></router-link>
+      <router-link to="/category/blog/" class="nav-item"><img alt="FSW" src="../../assets/logo-horizontal.png" id="vwp-logo" v-bind:alt="siteName" /></router-link>
 
       <span class="nav-toggle" v-on:click="toggleMenu">
         <span></span>
