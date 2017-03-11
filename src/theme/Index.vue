@@ -44,6 +44,9 @@ export default {
   .fake-card{
     min-height: 300px;
   }
+  .fake-single-content {
+    min-height: 500px;
+  }
   .is-fullwidth{
     width: 100%;
   }

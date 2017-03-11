@@ -2,7 +2,7 @@
   <div id="vwp-single">
     <div v-if="loading">
       <h1>Loading Page...</h1>
-      <div class="single-content card"></div>
+      <div class="single-content card fake-single-content"></div>
     </div>
     <div v-if="single.content">
       <h1 v-html="single.title.rendered"></h1>
@@ -50,6 +50,5 @@ export default {
     padding:20px;
     display:inline-block;
     width:100%;
-    min-height:500px;
   }
 </style>

@@ -1,9 +1,10 @@
 <template>
   <div>
-    <div class="vwp-loading" v-if="loading">
-        <img alt="loading" src="../assets/loading.gif" />
+    <div v-if="loading">
+        <h1>Loading...</h1>
+        <div class="single-content card fake-single-content"></div>
     </div>
-    <vwp-single :single="single"></vwp-single>
+    <vwp-single  v-if="!loading" :single="single"></vwp-single>
     <vwp-comment></vwp-comment>
   </div>
 </template>
@@ -37,8 +38,8 @@ export default {
       wordpressService.getPost(self, null, self.slug).then((post) => {
         if(post.length != 0){
           self.single = post[0];
-          self.loading = false;
         }
+        self.loading = false;
       })
     });
   }
