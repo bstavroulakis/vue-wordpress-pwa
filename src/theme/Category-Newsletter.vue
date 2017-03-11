@@ -7,12 +7,12 @@
     </div>
     <div class="columns"></div><div class="column"></div></div>
     <div class="columns" v-for="(item, index) in subCategories">
-      <div class="column">
+      <div class="column is-fullwidth">
         <h2>
             <router-link :to="'/category/' + item.slug + '/'">{{item.name}}</router-link>
         </h2>
         <div class="columns"><div class="column"></div></div>
-        <vwp-subcategory class="columns category-posts" hidePagination="hidePagination" newFlag="true" :category="item"></vwp-subcategory>
+        <vwp-subcategory class="columns category-posts is-fullwidth" hidePagination="hidePagination" newFlag="true" :category="item"></vwp-subcategory>
         <div class="columns"><div class="column"></div></div>
       </div>
     </div>
@@ -67,7 +67,7 @@ export default {
 
 <style lang="scss">
   #vwp-category-app-newsletter{
-        border-bottom: 1px solid #cfcfcf;
+    border-bottom: 1px solid #cfcfcf;
     margin-bottom: 30px;
      .hero-body{
       padding-top: 0;

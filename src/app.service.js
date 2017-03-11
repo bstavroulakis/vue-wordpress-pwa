@@ -53,7 +53,9 @@ let wordpressService = {
     return this.cacheRequest(context, path, 15 * 60)
       .then(response => {
         var totalPages = (response.headers.map.hasOwnProperty('X-WP-TotalPages')) ? response.headers.map['X-WP-TotalPages'][0] : 0;
-        totalPages = (response.headers.map.hasOwnProperty('x-wp-totalpages')) ? response.headers.map['x-wp-totalpages'][0] : 0;
+        if(totalPages == 0){
+          totalPages = (response.headers.map.hasOwnProperty('x-wp-totalpages')) ? response.headers.map['x-wp-totalpages'][0] : 0;
+        }
         var responseData = {posts:response.body, totalPages:totalPages}; return Promise.resolve(responseData)
       })
       .catch(error => Promise.reject(error));

@@ -1,11 +1,13 @@
 <template>
   <div>
-    <div class="vwp-loading" v-if="loading">
-        <img alt="loading" src="../assets/loading.gif" />
-    </div>
     <h1>Learning Paths</h1>
     <div>What would you like to learn today?</div>
     <div class="columns"><div class="column"></div></div>
+    <div class="columns category-posts" v-if="loading">
+      <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
+      <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
+      <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
+    </div>
     <div class="columns">
       <div class="column category-learning-path is-one-third" v-for="(learningPath, index) in subCategories">
         <div class="card">
