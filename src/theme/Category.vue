@@ -62,12 +62,14 @@ export default {
   },
   watch: {
     routeParamId : function(newCategorySlug){
+      this.loading = true;
       this.updateCategory(newCategorySlug);
     }
   },
   methods: {
     updateCategory: function(categorySlug){
       var self = this;
+      self.loading = true;
       require.ensure('../app.service.js', function(){
         wordpressService = require('../app.service.js').default;
         wordpressService.getCategory(self, null, categorySlug).then((category) => {
