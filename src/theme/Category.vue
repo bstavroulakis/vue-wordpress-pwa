@@ -28,7 +28,7 @@
       </div>
     </div>
 
-    <div class="columns">
+    <div class="columns" v-if="!loading">
       <div class="column" v-if="category.name">
         <h2>
             {{category.name}}
@@ -41,7 +41,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-let wordpressService;
+import wordpressService from '../app.service.js';
 export default {
   name: 'ThemeCategory',
     components: { 
@@ -62,7 +62,6 @@ export default {
   },
   watch: {
     routeParamId : function(newCategorySlug){
-      this.loading = true;
       this.updateCategory(newCategorySlug);
     }
   },
@@ -70,15 +69,12 @@ export default {
     updateCategory: function(categorySlug){
       var self = this;
       self.loading = true;
-      require.ensure('../app.service.js', function(){
-        wordpressService = require('../app.service.js').default;
-        wordpressService.getCategory(self, null, categorySlug).then((category) => {
-          if(category && category.length > 0){
-            self.category = category[0];
-            self.loading = false;
-          }
-        })
-      });
+      wordpressService.getCategory(self, null, categorySlug).then((category) => {
+        if(category && category.length > 0){
+          self.category = category[0];
+        }
+        self.loading = false;
+      })
     }
   },
   created () {
