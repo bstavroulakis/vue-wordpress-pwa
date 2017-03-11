@@ -59,11 +59,6 @@ let router = new Router({
       component: componentPages.SingleComponent
     },
     {
-      path:'/',
-      name:'Home',
-      redirect: '/category/blog'
-    },
-    {
       path:'*',
       name:'404',
       component: componentPages.NotFoundComponent
