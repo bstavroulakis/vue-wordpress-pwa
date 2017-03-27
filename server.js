@@ -47,8 +47,8 @@ function createRenderer (bundle) {
 }
 
 if (isProd) {
-  app.use('/', express.static(resolve('./')))
-  app.use(favicon(path.resolve(__dirname, './favicon.ico')))
+  app.use('/', express.static(resolve('./dist')))
+  app.use(favicon(path.resolve(__dirname, './dist/favicon.ico')))
 } else {
   app.use('/dist', express.static(resolve('./dist'))) 
   app.use(favicon(path.resolve(__dirname, 'src/assets/favicon.ico')))

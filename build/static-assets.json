@@ -1,8 +1,5 @@
 {
   "../src/assets/robots.txt": "../dist/robots.txt",
-  "../index.html": "../dist/index.html",
-  "../server.js": "../dist/server.js",
   "../src/assets/favicon.ico": "../dist/favicon.ico",
-  "../src/assets/app-icon.png": "../dist/assets/app-icon.png",
-  "../web.config": "../dist/web.config"
+  "../src/assets/app-icon.png": "../dist/assets/app-icon.png"
 }
