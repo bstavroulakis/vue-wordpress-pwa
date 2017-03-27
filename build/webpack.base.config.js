@@ -5,11 +5,11 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 vueConfig.loaders = {
   css: ExtractTextPlugin.extract({
-    loader: 'css-loader',
+    use: 'css-loader',
     fallback: 'vue-style-loader'
   }),
   'scss': ExtractTextPlugin.extract({
-    loader: 'css-loader!sass-loader',
+    use: 'css-loader!sass-loader',
     fallback: 'vue-style-loader'
   })
 }
