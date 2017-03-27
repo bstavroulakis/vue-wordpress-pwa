@@ -27,21 +27,22 @@
 <script>
 export default {
   name: 'vwp-post-card',
-  props: ['post','category','newFlag'],
-  methods:{
-    isNew: function(postDateStr){
-      let postDate = new Date(postDateStr);
-      postDate.setDate(postDate.getDate() + 6);
-      //If new flag is set and it is posted in the last 6 days
-      return (this.newFlag && postDate.getTime() - (new Date().getTime()) > 0);
+  props: ['post', 'category', 'newFlag'],
+  methods: {
+    isNew: function (postDateStr) {
+      let postDate = new Date(postDateStr)
+      postDate.setDate(postDate.getDate() + 6)
+      // If new flag is set and it is posted in the last 6 days
+      return (this.newFlag && postDate.getTime() - (new Date().getTime()) > 0)
     }
   }
 }
 </script>
 
 <style lang="scss">
-  @import '../theme/_variables';
+  @import '../_variables';
   #vwp-post-card{
+    min-height: 350px;
     padding-bottom: 40px;
     height:100%;
     &.new{

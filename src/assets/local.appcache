@@ -3,10 +3,6 @@ CACHE MANIFEST
 
 CACHE:
 /
-/category/blog/
-/category/learning-paths/
-/category/newsletter/
-/page/about-bill/
 {{cachedFiles}}
 
 NETWORK:
@@ -14,4 +10,4 @@ NETWORK:
 
 FALLBACK:
 # Offline site here
-# / /
+/ /index.html

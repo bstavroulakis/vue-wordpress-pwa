@@ -1,10 +1,10 @@
 <template>
   <div id="vwp-single">
-    <div v-if="loading">
+    <div v-if="!single || (single && !single.content)">
       <h1>Loading Page...</h1>
       <div class="single-content card fake-single-content"></div>
     </div>
-    <div v-if="single.content">
+    <div v-if="single && single.content">
       <h1 v-html="single.title.rendered"></h1>
       <div class="single-content card" v-html="single.content.rendered"></div>
     </div>
@@ -13,33 +13,37 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
+const fetchInitialData = (store) => {
+  store.state.page.single = {}
+  return store.dispatch(`page/getPage`, store.state.route.params.id)
+}
 export default {
-  name: 'PageComponent',
-  data: () => {
-    return { 
-      slug: "",
-      single: {},
-      loading: true
-    }
-  },
   computed: {
     ...mapGetters([
       'routeParamId'
+    ]),
+    ...mapGetters('page', [
+      'single'
     ])
   },
-  created () {
-    var self = this;
-    this.slug = this.routeParamId;
-    require.ensure('../app.service.js', () => {
-      let wordpressService = require('../app.service.js')
-      wordpressService.default.getPage(self, null, self.slug).then((page) => {
-        if(page.length > 0){
-          self.single = page[0];
-        }
-        self.loading = false;
-      })
+  methods: {
+    ...mapActions('page', {
+      getPage: 'getPage'
     })
+  },
+  watch: {
+    routeParamId: function (newParamId) {
+      if (newParamId) {
+        this.getPage(newParamId)
+      }
+    }
+  },
+  prefetch: fetchInitialData,
+  created () {
+    if (!this.single || !this.single.slug || this.single.slug !== this.routeParamId) {
+      fetchInitialData(this.$store)
+    }
   }
 }
 </script>

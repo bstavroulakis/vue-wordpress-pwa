@@ -8,6 +8,8 @@ const config = require(path.resolve(__dirname, '../src/app.config.js'));
 const distFolder = 'dist/';
 const dirPath = path.resolve(__dirname,'../' + distFolder);
 
+const excludedFiles = ['([\\/|\\\\]server[\\/|\\\\].*)', '([\\/|\\\\]server\\.js)', '([\\/|\\\\]web\\.config)']
+var excludedFilesRegExp = new RegExp(excludedFiles.join("|"), "gi");
 var self = this;
 self.assetFiles = [];
 self.assetCacheHash = "";
@@ -27,25 +29,14 @@ const getAllAssets = () => {
     var assetFiles = [];
     recursive(dirPath, (err, files) => {
       files.forEach(file => {
+        var fileName = file.replace(dirPath, '')
+        if (fileName.match(excludedFilesRegExp)) {
+          return
+        }
         assetFiles.push(getUrlPath(file));
       })
       resolve(assetFiles);
     });
-  });
-}
-
-const getHashedFile = (fileNameRegex) => {
-  return new Promise((resolve, reject) => {
-    var localCacheFile = "";
-    fs.readdir(distFolder, (err, files) => {
-      files.forEach(file => {
-        var match = file.match(fileNameRegex);
-        if(match){
-          resolve(file);
-        }
-      });
-      if(localCacheFile === ""){reject();}
-    })
   });
 }
 
@@ -58,7 +49,7 @@ const generateSwConfigFile = () => {
     var swConfigFilename = 'sw_config_' + self.assetCacheHash + '.js';
     fs.outputFile( (dirPath + "/" + swConfigFilename), 'var config = ' +  JSON.stringify({
       assets: self.assetFiles,
-      paths:{api:config.wpDomain + 'wp-json', remote:config.wpDomain},
+      paths:{api:config.wpDomain + 'wp-json', remote:config.wpDomain, client: config.client},
       cacheNames:{assetCache:`vwpCacheAsset-${self.assetCacheHash}`, remoteCache:`vwpCacheRemote-${self.assetCacheHash}`}
     }), () => {
       resolve(swConfigFilename);
@@ -86,21 +77,26 @@ const serviceWorker = () => {
 }
 
 const appCache = () => {
-  getHashedFile(/local_.*?\.appcache$/).then((localCacheFile) => {
-    fs.readFile((dirPath + "/" +localCacheFile), "utf-8", function(err, data){
-      data = data.replace("{{cachedFiles}}", self.assetFiles.join('\n')).replace("{{assetCacheHash}}", self.assetCacheHash);
-      fs.writeFile((dirPath + "/" + localCacheFile), data, 'utf8');
-    });
+  fs.copySync(path.resolve(__dirname, '../index-appCache.html'), (dirPath + "/index-appCache.html"));
+  fs.copySync(path.resolve(__dirname, '../src/assets/local.appcache'), (dirPath + "/assets/local.appcache"));
+  fs.readFile((dirPath + "/assets/local.appcache"), "utf-8", function(err, data){
+    data = data.replace("{{cachedFiles}}", self.assetFiles.join('\n')).replace("{{assetCacheHash}}", self.assetCacheHash);
+    fs.writeFile((dirPath + "/assets/local.appcache"), data, 'utf8');
   });
 }
 
-const removeManifestHead = () => {
-  getHashedFile(/local_.*?\.appcache$/).then((localCacheFile) => {
-    fs.readFile((dirPath + '/index.html'), "utf-8", function(err, data){
-      data = data.replace(` manifest="${localCacheFile}"`, '');
-      fs.writeFile((dirPath + '/index.html'), data, 'utf8');
-    });
+const manifest = () => {
+  fs.copySync(path.resolve(__dirname, '../src/assets/manifest.json'), (dirPath + "/assets/manifest.json"));
+  fs.readFile((dirPath + "/assets/manifest.json"), "utf-8", function(err, data){
+    data = data.replace("${config.appBgColor}", config.appBgColor)
+    data = data.replace("${config.appDescription}", config.appDescription)
+    data = data.replace("${config.appIcon}", config.client + config.appIcon)
+    data = data.replace("${config.appTitle}", config.appTitle)
+    data = data.replace("${config.appTitleShort}", config.appTitleShort)
+    data = data.replace("${config.appThemeColor}", config.appThemeColor)
+    fs.writeFile((dirPath + "/assets/manifest.json"), data, 'utf8');
   });
+  console.log("Manifest Done")
 }
 
 const exec = () => {
@@ -109,7 +105,7 @@ const exec = () => {
   .then(() => {
     serviceWorker();
     appCache();
-    removeManifestHead();
+    manifest();
   })
 }
 

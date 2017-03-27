@@ -1,17 +1,17 @@
 {
-  "background_color": "${require('../app.config.js').appBgColor}",
-  "description": "${require('../app.config.js').appDescription}",
+  "background_color": "${config.appBgColor}",
+  "description": "${config.appDescription}",
   "display": "standalone",
   "icons": [
   {
-    "src": "${require('../' + require('../app.config.js').appIcon)}",
+    "src": "${config.appIcon}",
     "sizes": "192x192",
     "type": "image/png"
   }
   ],
-  "name": "${require('../app.config.js').appTitle}",
+  "name": "${config.appTitle}",
   "orientation": "portrait",
-  "short_name": "${require('../app.config.js').appTitleShort}",
+  "short_name": "${config.appTitleShort}",
   "start_url": "/",
-  "theme_color": "${require('../app.config.js').appThemeColor}"
+  "theme_color": "${config.appThemeColor}"
 }

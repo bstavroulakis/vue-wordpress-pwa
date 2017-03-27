@@ -3,13 +3,13 @@
     <h1>Learning Paths</h1>
     <div>What would you like to learn today?</div>
     <div class="columns"><div class="column"></div></div>
-    <div class="columns category-posts" v-if="loading">
+    <div class="columns category-posts" v-if="!paths || paths.length === 0">
       <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
       <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
       <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
     </div>
     <div class="columns">
-      <div class="column category-learning-path is-one-third" v-for="(learningPath, index) in subCategories">
+      <div class="column category-learning-path is-one-third" v-for="(learningPath, index) in paths">
         <div class="card">
           <div class="card-image">
             <figure class="image" v-if="learningPath.better_featured_image">
@@ -35,29 +35,22 @@
 
 <script>
 import { mapGetters } from 'vuex'
-let wordpressService;
+const fetchInitialData = (store) => {
+  store.state.learningPaths.paths = []
+  return store.dispatch(`learningPaths/getPaths`, {categoryId: 27})
+}
 export default {
-  name: 'ThemeCategoryLearningPaths',
-  data: () => {
-    return { 
-      subCategories: [],
-      loading: true
-    }
-  },
+  name: 'ThemePageCategoryLearningPaths',
   computed: {
-    ...mapGetters([
-      'routeMetaId'
+    ...mapGetters('learningPaths', [
+      'paths'
     ])
   },
-  created(){
-    var self = this;
-      require.ensure('../app.service.js', function(){
-        wordpressService = require('../app.service.js').default;
-        wordpressService.getCategoryChildren(self, self.routeMetaId).then((categories) => {
-          self.subCategories = categories;
-          self.loading = false;
-        })
-      });
+  prefetch: fetchInitialData,
+  created () {
+    if (!this.paths || (this.paths && this.paths.length === 0)) {
+      fetchInitialData(this.$store)
+    }
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div id="vwp-single">
-    <div v-if="single.content">
+    <div v-if="single && single.content">
 
       <router-link :to="'/category/' + single.pure_taxonomies.categories[0].slug + '/'" class="single-back button is-pulled-left">
         <span class="icon">
@@ -11,7 +11,7 @@
 
       <h1 v-html="single.title.rendered"></h1>
       <div class="single-content card">
-        <div class="is-pulled-left" v-if="single.tags.length > 0">
+        <div class="is-pulled-left" v-if="single.tags && single.tags.length > 0">
           <i class="icon-tags" aria-hidden="true"></i>
           <span class="tag" v-for="tag in single.pure_taxonomies.tags">
             {{tag.name}}
@@ -32,13 +32,12 @@
 
 <script>
 export default {
-  name: 'vwp-single',
   props: ['single']
 }
 </script>
 
 <style lang="scss">
-  @import '../theme/_variables';
+  @import '../_variables';
   #vwp-single{ 
     pre {
       white-space: pre-wrap;

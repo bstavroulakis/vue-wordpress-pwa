@@ -4,6 +4,7 @@ const path = require('path')
 const _exec = require('child_process').exec
 const sw = require('./build.serviceWorker');
 const fs = require('fs-extra');
+const staticAssets = require('./static-assets.json');
 
 const promisify = (ctx, func = ctx) => (...args) => {
   return new Promise((resolve, reject) => {
@@ -19,20 +20,31 @@ const run = (task) => {
   }, (err) => console.error(err.stack))
 }
 
-const webpackBuild = () => exec('cross-env NODE_ENV=production webpack --progress --hide-modules')
-const webConfig = () => fs.copySync(path.resolve(__dirname,'../web.config'), path.resolve(__dirname,'../dist/web.config'));
-const robots = () => fs.copySync(path.resolve(__dirname,'../src/assets/robots.txt'), path.resolve(__dirname,'../dist/robots.txt'));
-//const copyPolyfills = () => fs.copySync(path.resolve(__dirname,'../src/utils/polyfills.min.js'), path.resolve(__dirname,'../dist/utils/polyfills.min.js'));
+const clear = () => exec('rimraf ./dist')
+const webpackClient = () => exec('cross-env NODE_ENV=production webpack --config ./build/webpack.client.config.js --progress --hide-modules')
+const webpackServer = () => exec('cross-env NODE_ENV=production webpack --config ./build/webpack.server.config.js --progress --hide-modules')
+const copyStaticAssets = () => { 
+  return new Promise((resolve, reject) => {
+    for(var prop in staticAssets){
+      fs.copySync(path.resolve(__dirname, prop), path.resolve(__dirname, staticAssets[prop]));
+    }
+    resolve()
+  })
+}
 
-tasks.set('webpackBuild', webpackBuild);
+tasks.set('clear', clear);
+tasks.set('webpackClient', webpackClient);
+tasks.set('webpackServer', webpackServer);
+tasks.set('copyStaticAssets', copyStaticAssets);
 tasks.set('serviceWorker', sw.exec);
-tasks.set('webConfig', webConfig);
-tasks.set('robots', robots);
-//tasks.set('copyPolyfills', copyPolyfills);
+
 tasks.set('build', () =>
-  run('webpackBuild')
+  // run('serviceWorker')
+  run('clear')
+  .then(() => Promise.all([run('webpackClient')]))
+  .then(() => Promise.all([run('webpackServer')]))
+  .then(() => Promise.all([run('copyStaticAssets')]))
   .then(() => Promise.all([run('serviceWorker')]))
-  .then(() => Promise.all([run('webConfig'), run('robots')]))
 )
 
 run('build')

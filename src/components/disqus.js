@@ -8,16 +8,18 @@
       this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
   };
   */
-(function(id) {  // DON'T EDIT BELOW THIS LINE
+(function (id) {  // DON'T EDIT BELOW THIS LINE
+  let d = document
+  let s = d.createElement('script')
+  let dateNow = new Date()
+  if (d.getElementById(id)) { return }
+  s.src = 'https://bstavroulakis.disqus.com/embed.js'
+  s.id = id
+  s.setAttribute('data-timestamp', dateNow)
+  let appendDom = (d.head || d.body)
+  appendDom.appendChild(s)
+})('disqus-wjs')
 
+export {
 
-    var d = document, s = d.createElement('script');
-  if (d.getElementById(id)) return;
-    
-    s.src = 'https://bstavroulakis.disqus.com/embed.js';
-    s.id = id;
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-})("disqus-wjs");
-
-export {  };
+}

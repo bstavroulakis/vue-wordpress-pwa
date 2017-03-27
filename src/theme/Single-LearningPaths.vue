@@ -2,7 +2,7 @@
   <div>
     <div class="columns">
       <div class="column is-three-quarters">
-        <div v-if="getPrev(single.id)" class="is-pulled-left">
+        <div v-if="single && getPrev(single.id)" class="is-pulled-left">
           <router-link :to="'./' + getPrev(single.id)" class="button">
             <span class="icon">
               <i class="icon-left-big"></i>
@@ -10,7 +10,7 @@
             <span>Previous</span>
           </router-link>
         </div>
-        <div v-if="getNext(single.id)" class="is-pulled-right">
+        <div v-if="single && getNext(single.id)" class="is-pulled-right">
          <router-link :to="'./' + getNext(single.id)" class="button">
           <span class="icon">
             <i class="icon-right-big"></i>
@@ -19,11 +19,11 @@
         </router-link>
         </div>
         <div class="is-clearfix"></div>
-        <div v-if="loading">
+        <div v-if="!single">
             <h1>Loading...</h1>
             <div class="single-content fake-single-content card"></div>
         </div>
-        <vwp-single v-if="!loading" :single="single"></vwp-single>
+        <vwp-single :single="single"></vwp-single>
       </div>
       <div class="column is-one-quarter">
         <aside class="menu">
@@ -43,96 +43,72 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-let wordpressService;
+import { mapGetters, mapActions } from 'vuex'
+import VwpSingle from '../components/vwpSingle.vue'
 
+const fetchInitialData = (store) => {
+  return store.dispatch(`learningPaths/getPath`, {categorySlug: store.state.route.params.id, page: store.state.route.params.page})
+}
 export default {
   name: 'ThemeSingleLearningPaths',
-  components: { 
-    'vwp-single': require('../components/vwpSingle.vue'), 
+  components: {
+    'vwp-single': VwpSingle,
     'vwp-comment': require('../components/vwpComment.vue')
   },
   data: () => {
-    return { 
-      posts: [],
-      page: 1,
-      single: {},
-      categoryId:0,
-      loading: true
+    return {
+      firstLoad: false
     }
   },
   computed: {
     ...mapGetters([
-      'routeParams',
-      'routeParamPost'
+      'routeParamId',
+      'routeParamPage'
+    ]),
+    ...mapGetters('learningPaths', [
+      'posts',
+      'single'
     ])
   },
   watch: {
-    routeParamPost : function(newPost){
-      if(newPost){
-        this.updatePost(newPost);
+    posts: function (newPosts) {
+      if (!this.routeParamPage) {
+        this.$router.replace(this.posts[0].slug)
+      }
+    },
+    routeParamPage: function (newPage) {
+      if (this.single && this.single.slug !== newPage) {
+        this.getPost({page: newPage})
       }
     }
   },
   methods: {
-    getPrev: function(){
-      var self = this;
-      for(var i = 0; i < self.posts.length; i++){
-        if(i > 0 && self.posts[i].id == self.single.id){
-          return self.posts[i-1].slug;
+    getPrev: function () {
+      var self = this
+      for (var i = 0; i < self.posts.length; i++) {
+        if (i > 0 && self.posts[i].id === self.single.id) {
+          return self.posts[i - 1].slug
         }
       }
     },
-    getNext: function(){
-      var self = this;
-      var postLength = self.posts.length;
-      for(var i = 0; i < postLength; i++){
-        if(i < postLength - 1 && self.posts[i].id == self.single.id){
-          return self.posts[i+1].slug;
+    getNext: function () {
+      var self = this
+      var postLength = self.posts.length
+      for (var i = 0; i < postLength; i++) {
+        if (i < postLength - 1 && self.posts[i].id === self.single.id) {
+          return self.posts[i + 1].slug
         }
       }
     },
-    updateMenu: function(categoryId){
-      if(this.categoryId == categoryId){return;}
-      wordpressService.getPosts(this, categoryId, this.page , 50, 'asc').then((data) => {
-        this.posts = data.posts;
-        if(!this.routeParams.post){
-          require.ensure('../app.service.js', () => {
-            let router = require('../components/router');
-            router.default.replace(this.posts[0].slug);
-          });
-        }
-      })
-    },
-    updatePost: function(postId){
-      var self = this;
-      self.single = {};
-      self.loading = true;
-      wordpressService.getPost(this, null, postId).then((post) => {
-        self.loading = false;
-        if(post && post.length > 0){
-          self.single = post[0];
-          let categoryId = self.single.pure_taxonomies.categories.map(function(v){
-              if(v.slug == self.routeParams.category){
-                return v.term_id;
-              }
-          });
-          self.updateMenu(categoryId);
-        }
-      });
-    }
+    ...mapActions('learningPaths', {
+      getPost: 'getPost'
+    })
   },
-  created(){
-    require.ensure('../app.service.js', () => {
-      wordpressService = require('../app.service.js').default;
-      if(!this.routeParams.post){
-        wordpressService.getCategory(this, null, this.routeParams.category).then((data) => {
-          this.updateMenu(data[0].id);
-        })
-      }else {
-        this.updatePost(this.routeParams.post);
-      }
-    });
+  prefetch: fetchInitialData,
+  created () {
+    if (!this.routeParamPage || this.posts.length === 0 || !this.single || (this.single.slug !== this.routeParamPage)) {
+      fetchInitialData(this.$store)
+    }
   }
 }
 </script>

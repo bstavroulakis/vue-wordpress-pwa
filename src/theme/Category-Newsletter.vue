@@ -1,66 +1,53 @@
 <template>
-  <section id="vwp-category-newsletter">
+  <div>
     <app-newsletter id="vwp-category-app-newsletter"></app-newsletter>
     <div>
       <p>Full Stack Weekly is free weekly newsletter for full stack developers. Every Thursday. I do not share your email and keep it safe! No spam, promise!</p>
       <p>This newsletter is all of the links and material that raise my eyebrow each week as a full stack developer.</p>
     </div>
-    <div class="columns"></div><div class="column"></div></div>
-    <div class="columns" v-for="(item, index) in subCategories">
-      <div class="column is-fullwidth">
-        <h2>
-            <router-link :to="'/category/' + item.slug + '/'">{{item.name}}</router-link>
-        </h2>
-        <div class="columns"><div class="column"></div></div>
-        <vwp-subcategory class="columns category-posts is-fullwidth" hidePagination="hidePagination" newFlag="true" :category="item"></vwp-subcategory>
-        <div class="columns"><div class="column"></div></div>
-      </div>
-    </div>
-  </section>
+    <div class="columns"><div class="column"></div></div>
+    <vwp-subcategory hidePagination="true" newFlag="true"></vwp-subcategory>
+  </div>
 </template>
-
 <script>
-import { mapGetters } from 'vuex'
-let wordpressService;
+import AppNewsletter from './AppNewsletter.vue'
+import { mapGetters, mapActions } from 'vuex'
+import VwpSubcategory from '../components/vwpSubcategory.vue'
+const fetchInitialData = (store) => {
+  store.state.category.categories = []
+  return store.dispatch(`category/getCategory`, {parentId: 28})
+}
 export default {
-  name: 'ThemeCategoryNewsletter',
-  components: { 
-    'vwp-subcategory': require('../components/vwpSubcategory.vue'), 
-    'app-newsletter': require('./shared/AppNewsletter.vue') 
+  name: 'ThemePageCategoryNewsletter',
+  components: {
+    'app-newsletter': AppNewsletter,
+    'vwp-subcategory': VwpSubcategory
   },
-  data: () => {
-    return { 
-      categoryId: 0,
-      subCategories: []
-    }
-  },
-  methods:{
-    loadSubcategories (){
-      wordpressService.getCategoryChildren(this, this.categoryId).then((categories) => {
-          this.subCategories = categories;
-        })
-    }
+  methods: {
+    ...mapActions('category', {
+      getCategory: 'getCategory'
+    })
   },
   computed: {
     ...mapGetters([
-      'routeParamId',
-      'routeMetaId'
+      'routeParamId'
+    ]),
+    ...mapGetters('category', [
+      'categories'
     ])
   },
+  watch: {
+    routeParamId: function (newParamId) {
+      if (this.categories && this.categories.length <= 1) {
+        this.getCategory({categorySlug: newParamId})
+      }
+    }
+  },
+  prefetch: fetchInitialData,
   created () {
-    var self = this;
-    require.ensure('../app.service.js', function(){
-      wordpressService = require('../app.service.js').default;
-      if(self.routeMetaId){
-        self.categoryId = self.routeMetaId;
-        self.loadSubcategories();
-      }else{
-        wordpressService.getCategory(self, null, self.routeParamId).then((category) => {
-          self.categoryId = category[0].id;
-          self.loadSubcategories();
-        })
-      };
-    })
+    if (this.categories && this.categories.length <= 1) {
+      fetchInitialData(this.$store)
+    }
   }
 }
 </script>

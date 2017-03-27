@@ -3,7 +3,6 @@
 self.importScripts('/sw_config.js');
 
 var expectedCaches = [config.cacheNames.assetCache, config.cacheNames.remoteCache]
-var currentDomain = "";
 
 self.addEventListener('install', function(event) {
   self.skipWaiting();
@@ -30,7 +29,7 @@ self.addEventListener('activate', function(event) {
 self.addEventListener('fetch', function(event) {
   var requestUrl = new URL(event.request.url);
   var requestPath = requestUrl.pathname;
-  var fileName = requestPath.substring(requestPath.lastIndexOf('/')+1);
+  var fileName = requestPath.substring(requestPath.lastIndexOf('/') + 1);
   
   if(stringContains(requestUrl.href, config.paths.api)){
     //console.log("network only");
@@ -39,7 +38,7 @@ self.addEventListener('fetch', function(event) {
     //console.log("cache first:", requestUrl.href);
     event.respondWith(cacheFirstStrategy(event.request));
   }else if(stringContains(requestUrl.href, config.paths.remote) ||
-           stringContains(requestUrl.href, currentDomain)){
+           stringContains(requestUrl.href, config.paths.client)){
              //console.log("network first:", requestUrl.href, " current",currentDomain, "requestPath:", requestPath);
     event.respondWith(networkFirstStrategy(event.request));
   }else{
@@ -79,17 +78,5 @@ function getCacheName(request){
 function stringContains(str, search){
   return str.indexOf(search) !== -1
 }
-
-self.addEventListener('message', function(event){
-  if(event.data.action == 'setCurrentDomain'){
-    currentDomain = event.data.data;
-  }else if(event.data.action == 'cachePage'){
-    fetch(event.data.data).then(function(networkResponse){
-      caches.open(config.cacheNames.assetCache).then(function(cache) {
-        cache.put(event.data.data, networkResponse);
-      })
-    });
-  }
-});
 
 //"{{assetCacheHash}}"

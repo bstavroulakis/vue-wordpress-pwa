@@ -1,84 +1,47 @@
 <template>
-  
-  <div id="vwp-subcategory">
-    <div class="columns category-posts is-fullwidth" v-if="loading">
-      <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
-      <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
-      <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
-      <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
-      <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
-      <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
-    </div>
-    <div class="columns category-posts">
-      <div class="column is-one-third" v-for="(item, index) in posts">
-        <vwp-post-card :post="item" :newFlag="newFlag" :category="category"></vwp-post-card>
+  <div>
+    <div v-if="categories && categories.length > 0">
+      <div v-for="category in categories">
+        <h2>
+          {{category.name}}
+        </h2>
+        <div class="columns category-posts" v-if="!category.posts || category.posts.length === 0">
+          <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
+          <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
+          <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
+          <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
+          <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
+          <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
+        </div>
+        <div class="columns category-posts">
+          <div class="column is-one-third" v-for="(item, index) in category.posts">
+            <vwp-post-card :post="item" :newFlag="newFlag" :category="category"></vwp-post-card>
+          </div>
+        </div>
+        <div v-if="!hidePagination">
+          <div class="columns"><div class="column"></div></div>
+          <vwp-paging v-if="category.totalPages > 0" :totalPages="category.totalPages" :path="'/category/' + category.slug"></vwp-paging>
+        </div>
+        <div class="columns"><div class="column"></div></div>
       </div>
     </div>
-    <div v-if="!hidePagination">
-      <div class="columns"><div class="column"></div></div>
-      <vwp-paging v-if="totalPages > 0" :totalPages="totalPages" :path="'/category/' + category.slug"></vwp-paging>
-    </div>
-  
   </div>
-  
 </template>
 
 <script>
-let wordpressService;
 import { mapGetters } from 'vuex'
+import VwpPostCard from './vwpPostCard'
 export default {
   name: 'vwp-subcategory',
-  components: { 
-    'vwp-post-card': require('./vwpPostCard.vue'), 
+  components: {
+    'vwp-post-card': VwpPostCard,
     'vwp-paging': require('./vwpPaging.vue')
   },
-  props: ['category', 'hidePagination', 'newFlag'],
+  props: ['hidePagination', 'newFlag'],
   computed: {
-    ...mapGetters([
-      'blogPagingPage'
+    ...mapGetters('category', [
+      'categories'
     ])
-  },
-  data: () => {
-    return {
-      posts: [],
-      totalPages: 0,
-      loading: true
-    }
-  },
-  watch: {
-    blogPagingPage : function(newPageNum){
-      if(!newPageNum){
-        newPageNum = 1;
-      }
-      this.refreshPages(newPageNum, this.category.id);
-    },
-    category: function(newCategory){
-      if(newCategory && newCategory.id){
-        this.refreshPages(1, newCategory.id);
-      }
-    }
-  },
-  methods:{
-    refreshPages: function (newPageNum, categoryId){
-      if(!newPageNum){
-        newPageNum = 1;
-      }
-      newPageNum = parseInt(newPageNum);
-      this.posts = [];
-      this.totalPages = 0;
-      wordpressService.getPosts(this, categoryId, newPageNum, 6)
-      .then((result) => {
-        this.posts = result.posts;
-        this.totalPages = result.totalPages;
-        this.loading = false;
-      })
-    }
-  },
-  created (){
-    require.ensure('../app.service.js', () => {
-      wordpressService = require('../app.service.js').default;
-      this.refreshPages(this.blogPagingPage, this.category.id);
-    });
   }
 }
 </script>

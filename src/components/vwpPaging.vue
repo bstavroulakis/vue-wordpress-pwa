@@ -24,41 +24,41 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'blogPagingPage'
+      'routeParamPage'
     ])
   },
-  methods:{
-    refreshPages: function (page){
-      if(!page){
-        page = 1;
+  methods: {
+    refreshPages: function (page) {
+      if (!page) {
+        page = 1
       }
-      page = parseInt(page);
-      this.pages = [];
-      for(var i = 1; i <= this.totalPages; i++){
-        if(i == 1 || i == this.totalPages){
-          this.pages.push(i);
-        }else if((i >= page - this.neighboors && i <= page) || 
-          (i >= page && i <= page + this.neighboors)){
-          this.pages.push(i);
-        }else if((i == (page - this.neighboors - 1)) || 
-          (i == (page + this.neighboors + 1))){
-          this.pages.push('...');
+      page = parseInt(page)
+      this.pages = []
+      for (var i = 1; i <= this.totalPages; i++) {
+        if (i === 1 || i === parseInt(this.totalPages)) {
+          this.pages.push(i)
+        } else if ((i >= page - this.neighboors && i <= page) ||
+          (i >= page && i <= page + this.neighboors)) {
+          this.pages.push(i)
+        } else if ((i === (page - this.neighboors - 1)) ||
+          (i === (page + this.neighboors + 1))) {
+          this.pages.push('...')
         }
       }
     }
   },
-  created (){
-    this.page = 1;
-    if(this.blogPagingPage){
-      this.page = this.blogPagingPage
+  created () {
+    this.page = 1
+    if (this.routeParamPage) {
+      this.page = this.routeParamPage
     }
-    this.refreshPages(this.page);
+    this.refreshPages(this.page)
   }
 }
 </script>
 
 <style lang="scss">
-  @import '../theme/_variables';
+  @import '../_variables';
   #vwpPaging{
     padding: $size-3;
     margin-right: 0;

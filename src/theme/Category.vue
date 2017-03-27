@@ -1,88 +1,73 @@
 <template>
   <section id="ThemeCategory">
-    <div class="columns personal-card card"  v-if="routeParamId == 'blog'">
+    <div class="columns personal-card card" v-if="categories && categories.length === 1 && categories[0].slug === 'blog'">
       <div class="column personal-img"><img src="https://api.fullstackweekly.com/wp-content/uploads/2016/11/200x200.jpg" alt="Bill Stavroulakis" width="100"></div>
       <div class="column is-three-quarters personal-desc">
         Hi, I’m <a href="https://twitter.com/bstavroulakis" rel="noopener" target="_blank">Bill Stavroulakis</a>, many years ago my journey started on this thing called Web Development.<br/><br/>
         <span class="is-pulled-left">Over here you can find all of the interesting things I find on my way.&nbsp;</span>
         <span class="is-pulled-left">This website is part of the <a href="https://github.com/bstavroulakis/vue-wordpress-pwa">vue-wordpress-pwa</a> project.</span>
         <div class="github-star">
-          <iframe src="https://ghbtns.com/github-btn.html?user=bstavroulakis&repo=vue-wordpress-pwa&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
+          <iframe src="https://ghbtns.com/github-btn.html?user=bstavroulakis&amp;repo=vue-wordpress-pwa&amp;type=star&amp;count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
         </div>
         <div class="is-clearfix"></div>
       </div>
     </div>
-    <div class="columns" v-if="loading">
-      <div class="column">
-        <h2>
-            Loading...
-        </h2>
-        <div class="columns category-posts">
-          <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
-          <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
-          <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
-          <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
-          <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
-          <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="columns" v-if="!loading">
-      <div class="column" v-if="category.name">
-        <h2>
-            {{category.name}}
-        </h2>
-        <vwp-subcategory v-if="category" :category="category"></vwp-subcategory>
-      </div>
-    </div>
+    <vwp-subcategory></vwp-subcategory>
   </section>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import wordpressService from '../app.service.js';
+import { mapGetters, mapActions } from 'vuex'
+import VwpSubcategory from '../components/vwpSubcategory.vue'
+const fetchInitialData = (store) => {
+  let categories = store.state.category.categories
+  let page = store.state.category.page
+  if (((store.state.route.params.page && page !== store.state.route.params.page) ||
+  categories.length !== 1 ||
+  categories[0].slug !== store.state.route.params.id)) {
+    store.state.category.categories = []
+    return store.dispatch(`category/getCategory`, {categorySlug: store.state.route.params.id, page: store.state.route.params.page})
+  }
+}
 export default {
-  name: 'ThemeCategory',
-    components: { 
-    'vwp-subcategory': require('../components/vwpSubcategory.vue'), 
-    'app-newsletter': require('./shared/AppNewsletter.vue') 
+  name: 'ThemePageCategory',
+  components: {
+    'vwp-subcategory': VwpSubcategory
   },
   data: () => {
-    return { 
-      category: {},
-      loading: true
+    return {
+      firstRun: true
+    }
+  },
+  methods: {
+    ...mapActions('category', {
+      getCategory: 'getCategory'
+    })
+  },
+  watch: {
+    routeParamId: function (newParamId) {
+      if (newParamId) {
+        this.getCategory({categorySlug: newParamId})
+      }
+    },
+    routeParamPage: function (newParamPage) {
+      if (newParamPage) {
+        this.getCategory({page: newParamPage})
+      }
     }
   },
   computed: {
     ...mapGetters([
       'routeParamId',
-      'routeParams'
+      'routeParamPage'
+    ]),
+    ...mapGetters('category', [
+      'categories'
     ])
   },
-  watch: {
-    routeParamId : function(newCategorySlug){
-      this.updateCategory(newCategorySlug);
-    }
-  },
-  methods: {
-    updateCategory: function(categorySlug){
-      var self = this;
-      self.loading = true;
-      wordpressService.getCategory(self, null, categorySlug).then((category) => {
-        if(category && category.length > 0){
-          self.category = category[0];
-        }
-        self.loading = false;
-      })
-    }
-  },
+  prefetch: fetchInitialData,
   created () {
-    var categorySlug = this.routeParamId;
-      if(this.routeParams.category){
-        categorySlug = this.routeParams.category
-      }
-    this.updateCategory(categorySlug);
+    fetchInitialData(this.$store)
   }
 }
 </script>
