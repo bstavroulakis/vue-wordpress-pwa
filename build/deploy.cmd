@@ -11,7 +11,7 @@ for /d %%I in (%DEPLOYMENT_TARGET%\*) do (
 IF "%ERRORLEVEL%" NEQ "0" goto error
 
 :: xcopy %DEPLOYMENT_SOURCE%\* %DEPLOYMENT_TARGET% /Y /E
-%DEPLOYMENT_SOURCE%\build\7za.exe a -t7z %DEPLOYMENT_SOURCE%\deploy.7z %DEPLOYMENT_SOURCE%\* -mx0 -xr!node_modules
+%DEPLOYMENT_SOURCE%\build\7za.exe a -t7z %DEPLOYMENT_SOURCE%\deploy.7z %DEPLOYMENT_SOURCE%\* -mx0 -xr!node_modules -xr!.git
 IF "%ERRORLEVEL%" NEQ "0" goto error
 
 %DEPLOYMENT_SOURCE%\build\7za.exe -y x %DEPLOYMENT_SOURCE%\deploy.7z -o%DEPLOYMENT_TARGET%
