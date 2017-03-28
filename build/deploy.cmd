@@ -18,6 +18,7 @@ xcopy %DEPLOYMENT_SOURCE%\node_modules\express\* %DEPLOYMENT_TARGET%\node_module
 xcopy %DEPLOYMENT_SOURCE%\node_modules\serve-favicon\* %DEPLOYMENT_TARGET%\node_modules\serve-favicon /s /i
 xcopy %DEPLOYMENT_SOURCE%\node_modules\serialize-javascript\* %DEPLOYMENT_TARGET%\node_modules\serialize-javascript /s /i
 xcopy %DEPLOYMENT_SOURCE%\node_modules\vue-server-renderer\* %DEPLOYMENT_TARGET%\node_modules\vue-server-renderer /s /i
+xcopy %DEPLOYMENT_SOURCE%\node_modules\merge-descriptors\* %DEPLOYMENT_TARGET%\node_modules\merge-descriptors /s /i
 
 :: %DEPLOYMENT_SOURCE%\build\7za.exe a -t7z %DEPLOYMENT_SOURCE%\deploy.7z %DEPLOYMENT_SOURCE%\node_modules
 :: IF "%ERRORLEVEL%" NEQ "0" goto error
