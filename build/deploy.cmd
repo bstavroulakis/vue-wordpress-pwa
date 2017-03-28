@@ -12,7 +12,7 @@ IF "%ERRORLEVEL%" NEQ "0" goto error
 %DEPLOYMENT_SOURCE%\build\7za.exe a -t7z %DEPLOYMENT_SOURCE%\deploy.7z %DEPLOYMENT_SOURCE%\*  
 IF "%ERRORLEVEL%" NEQ "0" goto error
 
-%DEPLOYMENT_SOURCE%\build\7za.exe e %DEPLOYMENT_SOURCE%\deploy.7z %DEPLOYMENT_TARGET%
+%DEPLOYMENT_SOURCE%\build\7za.exe -y x %DEPLOYMENT_SOURCE%\deploy.7z -o%DEPLOYMENT_TARGET%
 IF "%ERRORLEVEL%" NEQ "0" goto error
 
 del /q %DEPLOYMENT_SOURCE%\deploy.7z
