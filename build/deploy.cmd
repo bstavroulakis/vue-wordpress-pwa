@@ -10,10 +10,10 @@ for /d %%I in (%DEPLOYMENT_TARGET%\*) do (
 )
 IF "%ERRORLEVEL%" NEQ "0" goto error
 
-xcopy %DEPLOYMENT_SOURCE%\dist\* %DEPLOYMENT_TARGET%\dist /Y /E
-xcopy %DEPLOYMENT_SOURCE%\index.html %DEPLOYMENT_TARGET%\index.html /Y /E
-xcopy %DEPLOYMENT_SOURCE%\web.config %DEPLOYMENT_TARGET%\web.config /Y /E
-xcopy %DEPLOYMENT_SOURCE%\server.js %DEPLOYMENT_TARGET%\server.js /Y /E
+xcopy %DEPLOYMENT_SOURCE%\dist\* %DEPLOYMENT_TARGET%\dist /s /i
+xcopy %DEPLOYMENT_SOURCE%\index.html %DEPLOYMENT_TARGET%\index.html*
+xcopy %DEPLOYMENT_SOURCE%\web.config %DEPLOYMENT_TARGET%\web.config*
+xcopy %DEPLOYMENT_SOURCE%\server.js %DEPLOYMENT_TARGET%\server.js*
 :: %DEPLOYMENT_SOURCE%\build\7za.exe a -t7z %DEPLOYMENT_SOURCE%\deploy.7z %DEPLOYMENT_SOURCE%\* -mx0 -xr!node_modules -xr!.git
 :: IF "%ERRORLEVEL%" NEQ "0" goto error
 
