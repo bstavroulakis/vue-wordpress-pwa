@@ -23,8 +23,8 @@ IF "%ERRORLEVEL%" NEQ "0" goto error
 del /q %DEPLOYMENT_SOURCE%\deploy.7z
 IF "%ERRORLEVEL%" NEQ "0" goto error
 
-call npm install --prefix %DEPLOYMENT_TARGET%/node_modules
-IF "%ERRORLEVEL%" NEQ "0" goto error
+:: call npm install --prefix %DEPLOYMENT_TARGET%/node_modules
+:: IF "%ERRORLEVEL%" NEQ "0" goto error
 
 goto end
 
