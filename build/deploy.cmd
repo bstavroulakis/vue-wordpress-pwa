@@ -9,7 +9,7 @@ for /d %%x in (%DEPLOYMENT_TARGET%\*) do @rd /s /q "%%x"
 IF "%ERRORLEVEL%" NEQ "0" goto error
 
 :: xcopy %DEPLOYMENT_SOURCE%\* %DEPLOYMENT_TARGET% /Y /E
-CScript  zip.vbs  %DEPLOYMENT_SOURCE%\*  %DEPLOYMENT_TARGET%\deploy.zip
+7za %DEPLOYMENT_SOURCE%\*  %DEPLOYMENT_TARGET%\deploy.zip
 IF "%ERRORLEVEL%" NEQ "0" goto error
 
 goto end
