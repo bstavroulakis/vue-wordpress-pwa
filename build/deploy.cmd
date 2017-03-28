@@ -5,7 +5,9 @@ call npm run build
 IF "%ERRORLEVEL%" NEQ "0" goto error
 
 del /q %DEPLOYMENT_TARGET%\*
-for /d %%x in (%DEPLOYMENT_TARGET%\*) do @rd /s /q "%%x"
+for /d %%I in (%DEPLOYMENT_TARGET%\*) do (
+    if /i not "%%~nxI" equ "node_modules" rmdir /q /s "%%~I"
+)
 IF "%ERRORLEVEL%" NEQ "0" goto error
 
 :: xcopy %DEPLOYMENT_SOURCE%\* %DEPLOYMENT_TARGET% /Y /E
