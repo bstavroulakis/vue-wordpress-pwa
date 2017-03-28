@@ -14,8 +14,6 @@ xcopy %DEPLOYMENT_SOURCE%\dist\* %DEPLOYMENT_TARGET%\dist /s /i
 xcopy %DEPLOYMENT_SOURCE%\index.html %DEPLOYMENT_TARGET%\index.html*
 xcopy %DEPLOYMENT_SOURCE%\web.config %DEPLOYMENT_TARGET%\web.config*
 xcopy %DEPLOYMENT_SOURCE%\server.js %DEPLOYMENT_TARGET%\server.js*
-xcopy %DEPLOYMENT_SOURCE%\node_modules\fs\* %DEPLOYMENT_TARGET%\node_modules\fs /s /i
-xcopy %DEPLOYMENT_SOURCE%\node_modules\path\* %DEPLOYMENT_TARGET%\node_modules\path /s /i
 xcopy %DEPLOYMENT_SOURCE%\node_modules\express\* %DEPLOYMENT_TARGET%\node_modules\express /s /i
 xcopy %DEPLOYMENT_SOURCE%\node_modules\serve-favicon\* %DEPLOYMENT_TARGET%\node_modules\serve-favicon /s /i
 xcopy %DEPLOYMENT_SOURCE%\node_modules\serialize-javascript\* %DEPLOYMENT_TARGET%\node_modules\serialize-javascript /s /i
