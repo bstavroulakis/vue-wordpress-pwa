@@ -1,7 +1,7 @@
 <template>
   <nav id="app-header" class="nav has-shadow">
     <div class="container">
-      <router-link to="/category/blog/" class="nav-item"><img src="http://fullstackweekly.azureedge.net/wp-content/uploads/2017/03/logo-horizontal.png" id="vwp-logo" alt="Full Stack Weekly" /></router-link>
+      <router-link to="/category/blog/" class="nav-item"><img src="https://fullstackweekly.azureedge.net/wp-content/uploads/2017/03/logo-horizontal.png" id="vwp-logo" alt="Full Stack Weekly" /></router-link>
       <span class="nav-toggle" v-on:click="toggleMenu">
         <span></span>
         <span></span>
