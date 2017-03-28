@@ -30,13 +30,11 @@ module.exports = {
       'theme': path.resolve(__dirname, './src/theme'),
     }
   },
-
   output: {
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/',
     filename: 'js/[name].js'
   },
-
   module: {
     rules: [
       {

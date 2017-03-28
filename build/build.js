@@ -31,12 +31,14 @@ const copyStaticAssets = () => {
     resolve()
   })
 }
+const purifyCSS = () => exec('purifycss ./dist/styles.css ./dist/js/app.js --min --info --out ./dist/styles.css')
 
 tasks.set('clear', clear);
 tasks.set('webpackClient', webpackClient);
 tasks.set('webpackServer', webpackServer);
 tasks.set('copyStaticAssets', copyStaticAssets);
 tasks.set('serviceWorker', sw.exec);
+tasks.set('purifyCSS', purifyCSS);
 
 tasks.set('build', () =>
   // run('serviceWorker')
@@ -45,6 +47,7 @@ tasks.set('build', () =>
   .then(() => Promise.all([run('webpackServer')]))
   .then(() => Promise.all([run('copyStaticAssets')]))
   .then(() => Promise.all([run('serviceWorker')]))
+  .then(() => Promise.all([run('purifyCSS')]))
 )
 
 run('build')

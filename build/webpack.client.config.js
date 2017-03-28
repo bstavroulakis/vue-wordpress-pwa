@@ -3,7 +3,6 @@ const base = require('./webpack.base.config')
 const webpack = require('webpack')
 // const vueConfig = require('./vue-loader.config')
 const appConfig = require('../src/app.config.js')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const config = Object.assign({}, base, {
