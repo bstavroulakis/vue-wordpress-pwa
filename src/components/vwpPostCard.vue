@@ -2,7 +2,7 @@
     <div id="vwp-post-card" :class="{'card':true,'new':isNew(post.date)}">
       <div class="card-image">
         <figure class="image" v-if="post.better_featured_image && post.better_featured_image.media_details.sizes.medium">
-          <img v-bind:src="post.better_featured_image.media_details.sizes.medium.source_url" v-bind:alt="post.better_featured_image.description">
+          <img v-bind:src="cdnUrl(post.better_featured_image.media_details.sizes.medium.source_url)" v-bind:alt="post.better_featured_image.description">
         </figure>
       </div>
       <div class="card-content">
@@ -29,6 +29,9 @@ export default {
   name: 'vwp-post-card',
   props: ['post', 'category', 'newFlag'],
   methods: {
+    cdnUrl: function (url) {
+      return url.replace('https://api.fullstackweekly.com', 'https://fullstackweekly.azureedge.net')
+    },
     isNew: function (postDateStr) {
       let postDate = new Date(postDateStr)
       postDate.setDate(postDate.getDate() + 6)

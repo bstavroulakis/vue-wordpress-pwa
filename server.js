@@ -29,7 +29,7 @@ const html = (() => {
 let renderer
 if (isProd) {
   // create server renderer from real fs
-  const bundlePath = resolve('./server/main.js')
+  const bundlePath = resolve('./dist/server/main.js')
   renderer = createRenderer(fs.readFileSync(bundlePath, 'utf-8'))
 } else {
   require('./build/dev-server')(app, bundle => {
@@ -92,7 +92,7 @@ app.get('*', (req, res) => {
   })
 })
 
-const port = process.env.PORT || (isProd) ? 80 : 3000
+const port = process.env.PORT || 3000
 app.listen(port, () => {
   console.log(`server started at http://localhost:${port}`)
 })
