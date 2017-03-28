@@ -6,11 +6,11 @@ IF "%ERRORLEVEL%" NEQ "0" goto error
 
 del /q %DEPLOYMENT_TARGET%\*
 for /d %%I in (%DEPLOYMENT_TARGET%\*) do (
-    if /i not "%%~nxI" equ "node_modules" rmdir /q /s "%%~I"
+    if /i not "%%~nxI" equ "node_modules" @rd /s /q "%%~I"
 )
 IF "%ERRORLEVEL%" NEQ "0" goto error
 
-xcopy %DEPLOYMENT_SOURCE%\dist %DEPLOYMENT_TARGET%\dist /Y /E
+xcopy %DEPLOYMENT_SOURCE%\dist\* %DEPLOYMENT_TARGET%\dist /Y /E
 xcopy %DEPLOYMENT_SOURCE%\index.html %DEPLOYMENT_TARGET%\index.html /Y /E
 xcopy %DEPLOYMENT_SOURCE%\web.config %DEPLOYMENT_TARGET%\web.config /Y /E
 xcopy %DEPLOYMENT_SOURCE%\server.js %DEPLOYMENT_TARGET%\server.js /Y /E
