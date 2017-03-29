@@ -2,11 +2,13 @@
 
 process.env.VUE_ENV = 'server'
 const isProd = !(process.env.NODE_ENV === 'development')
+const cdnClient = (isProd) ? 'https://fullstackweekly-client.azureedge.net' : ''
 
 const fs = require('fs')
 const path = require('path')
 const resolve = file => path.resolve(__dirname, file)
 const express = require('express')
+const compression = require('compression')
 const favicon = require('serve-favicon')
 const serialize = require('serialize-javascript')
 
@@ -14,9 +16,32 @@ const createBundleRenderer = require('vue-server-renderer').createBundleRenderer
 
 const app = express()
 
+var allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', 'fullstackweekly-client.azureedge.net');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+
+    next();
+}
+
+var cacheControl = function(req, res, next) {
+  if (isProd) {
+    res.header('Cache-Control', 'public, max-age=86400, no-cache') // one day
+  } else {
+    res.header('Cache-Control', 'no-cache, no-store, must-revalidate') // never
+  } 
+  next()
+}
+
+app.disable('x-powered-by')
+app.use(compression())
+app.use(cacheControl)
+app.use(allowCrossDomain)
+
 // parse index.html template
 const html = (() => {
-  const template = fs.readFileSync(resolve('./index.html'), 'utf-8')
+  let template = fs.readFileSync(resolve('./index.html'), 'utf-8')
+  template = template.replace(/{{ CDN }}/gmi, cdnClient)
   const i = template.indexOf('{{ APP }}')
   // styles are injected dynamically via vue-style-loader in development
   // const style = isProd ? '<link rel="stylesheet" href="/dist/styles.css">' : ''
