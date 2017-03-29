@@ -2,7 +2,7 @@
 
 process.env.VUE_ENV = 'server'
 const isProd = !(process.env.NODE_ENV === 'development')
-const cdnClient = (isProd) ? 'https://fullstackweekly-client.azureedge.net' : ''
+const cdnClient = (isProd) ? 'https://fullstackweekly-client.azureedge.net' : '/assets'
 
 const fs = require('fs')
 const path = require('path')
