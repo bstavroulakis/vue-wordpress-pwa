@@ -6,6 +6,12 @@ Live version: [https://www.fullstackweekly.com/](https://www.fullstackweekly.com
 
 ![alt tag](https://api.fullstackweekly.com/wp-content/uploads/2017/03/vue-wordpress-pwa.png)
 
+## Lighthouse Score
+
+![alt tag](https://api.fullstackweekly.com/wp-content/uploads/2017/03/lighthouse.png)
+
+## Description
+
 This is the code for the [FullStackWeekly](https://www.fullstackweekly.com/) website. You can use it as a starter pack for your WordPress site as well.
 
 Since WordPress can expose a REST API, this project uses Vue.js, Vue-router, Vuex, Vue-resource & Progressive Web App techniques to create an offline-first web client.
