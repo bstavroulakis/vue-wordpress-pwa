@@ -16,7 +16,7 @@ xcopy %DEPLOYMENT_SOURCE%\web.config %DEPLOYMENT_TARGET%\web.config*
 xcopy %DEPLOYMENT_SOURCE%\server.js %DEPLOYMENT_TARGET%\server.js*
 :: xcopy %DEPLOYMENT_SOURCE%\node_modules\* %DEPLOYMENT_TARGET%\node_modules /s /i
 
-call npm install --only=production --prefix %DEPLOYMENT_TARGET% -g
+call npm install --prefix %DEPLOYMENT_TARGET%\node_modules -g --only=production
 IF "%ERRORLEVEL%" NEQ "0" goto error
 
 goto end

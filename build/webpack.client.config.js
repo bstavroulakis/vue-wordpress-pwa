@@ -7,7 +7,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const config = Object.assign({}, base, {
   plugins: (base.plugins || []).concat([
-    new ExtractTextPlugin('styles.css'),
+    new ExtractTextPlugin('assets/styles.css'),
     // strip comments in Vue code
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
@@ -16,7 +16,7 @@ const config = Object.assign({}, base, {
     // extract vendor chunks for better caching
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      filename: 'js/[name].js'
+      filename: 'assets/js/[name].js'
     })
   ])
 })
