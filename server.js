@@ -20,6 +20,14 @@ var allowCrossDomain = function(req, res, next) {
     next();
 }
 
+function shouldCompress (req, res) {
+  if (req.headers['x-no-compression']) {
+    // don't compress responses with this request header
+    return false
+  }
+  return true
+}
+
 var cacheControl = function(req, res, next) {
   if (isProd) {
     res.header('Cache-Control', 'public, max-age=86400, no-cache') // one day
@@ -47,7 +55,7 @@ function createRenderer (bundle) {
 
 const app = express()
 app.disable('x-powered-by')
-app.use(compression())
+app.use(compression({threshold: 0, filter: shouldCompress}))
 app.use(strictTransportSecurity)
 app.use(cacheControl)
 app.use(allowCrossDomain)
