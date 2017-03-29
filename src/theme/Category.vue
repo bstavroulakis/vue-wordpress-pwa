@@ -1,7 +1,7 @@
 <template>
   <section id="ThemeCategory">
     <div class="columns personal-card card" v-if="categories && categories.length === 1 && categories[0].slug === 'blog'">
-      <div class="column personal-img"><img src="https://fullstackweekly.azureedge.net/wp-content/uploads/2016/11/200x200.jpg" alt="Bill Stavroulakis" width="100"></div>
+      <div class="column personal-img"><img src="https://fullstackweekly.azureedge.net/wp-content/uploads/2017/03/bill-100x100.jpg" alt="Bill Stavroulakis" width="100"></div>
       <div class="column is-three-quarters personal-desc">
         Hi, I’m <a href="https://twitter.com/bstavroulakis" rel="noopener" target="_blank">Bill Stavroulakis</a>, many years ago my journey started on this thing called Web Development.<br/><br/>
         <span class="is-pulled-left">Over here you can find all of the interesting things I find on my way.&nbsp;</span>
