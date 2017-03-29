@@ -31,7 +31,7 @@ const copyStaticAssets = () => {
     resolve()
   })
 }
-const purifyCSS = () => exec('purifycss ./dist/assets/styles.css ./dist/js/app.js --min --info --out ./dist/assets/styles.css')
+const purifyCSS = () => exec('purifycss ./dist/assets/styles.css ./dist/assets/js/app.js --min --info --out ./dist/assets/styles.css')
 
 tasks.set('clear', clear);
 tasks.set('webpackClient', webpackClient);
