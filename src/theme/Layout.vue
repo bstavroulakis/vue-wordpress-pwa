@@ -72,4 +72,8 @@ export default {
     flex-basis: 0;
     flex-shrink: 0;
   }
+  .alignleft{
+    float: left;
+    padding-right: 10px;
+  }
 </style>

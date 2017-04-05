@@ -8,7 +8,7 @@
       <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
       <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
     </div>
-    <div class="columns">
+    <div class="columns category-posts">
       <div class="column category-learning-path is-one-third" v-for="(learningPath, index) in paths">
         <div class="card">
           <div class="card-image">
