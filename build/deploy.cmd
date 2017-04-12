@@ -6,7 +6,7 @@ IF "%ERRORLEVEL%" NEQ "0" goto error
 
 :: del /q %DEPLOYMENT_TARGET%\*
 for /d %%D in (%DEPLOYMENT_TARGET%\*) do (
-    if /I not "%%~nxD"=="node_modules" rd /S /Q "%%~D"
+    if /I not "%%~nxD"=="node_modules" @rd /S /Q "%%~D"
     :: @rd /s /q "%%~I"
 )
 :: for /d %%i in (%DEPLOYMENT_TARGET%\*) do if /i not "%%~nxi"=="node_modules" del /s /q "%%i"
