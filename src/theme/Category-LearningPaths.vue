@@ -19,13 +19,13 @@
           <div class="card-content">
             <div class="content">
               <div class="post-title">
-                <h2><router-link :to="learningPath.slug + '/'" v-html="learningPath.name"></router-link></h2>
+                <h2><router-link :to="learningPath.firstPostSlug" v-html="learningPath.name"></router-link></h2>
               </div>
               <div v-html="learningPath.description"></div>
             </div>
           </div>
           <footer class="card-footer">
-            <router-link :to="learningPath.slug + '/'" class="card-footer-item">Let's Go</router-link>
+            <router-link :to="learningPath.firstPostSlug" class="card-footer-item">Let's Go</router-link>
           </footer>
         </div>
       </div>

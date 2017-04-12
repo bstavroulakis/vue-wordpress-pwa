@@ -6,7 +6,11 @@ IF "%ERRORLEVEL%" NEQ "0" goto error
 
 del /q %DEPLOYMENT_TARGET%\*
 for /d %%I in (%DEPLOYMENT_TARGET%\*) do (
-    @rd /s /q "%%~I"
+    set fileName=%%I
+    if "!fileName!"=="node_modules" (
+    ) else (
+        @rd /s /q "%%~I"
+    )
 )
 IF "%ERRORLEVEL%" NEQ "0" goto error
 
