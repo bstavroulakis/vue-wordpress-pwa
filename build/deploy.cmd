@@ -4,20 +4,18 @@ IF "%ERRORLEVEL%" NEQ "0" goto error
 call npm run build
 IF "%ERRORLEVEL%" NEQ "0" goto error
 
-:: del /q %DEPLOYMENT_TARGET%\*
-for /d %%D in (%DEPLOYMENT_TARGET%\*) do (
-    :: if /I not "%%~nxD"=="node_modules" del /S /Q "%%~D"
-    del /s /q "%%~D"
+for %%D in (%DEPLOYMENT_TARGET%\*) do (
+    if "%%~nxD" == "node_modules" (
+        del /S /Q "%%~D"
+        IF "%ERRORLEVEL%" NEQ "0" goto error
+    )
 )
-:: for /d %%i in (%DEPLOYMENT_TARGET%\*) do if /i not "%%~nxi"=="node_modules" del /s /q "%%i"
-IF "%ERRORLEVEL%" NEQ "0" goto error
 
-xcopy %DEPLOYMENT_SOURCE%\dist\* %DEPLOYMENT_TARGET%\dist /s /i
-xcopy %DEPLOYMENT_SOURCE%\index.html %DEPLOYMENT_TARGET%\index.html*
-xcopy %DEPLOYMENT_SOURCE%\web.config %DEPLOYMENT_TARGET%\web.config*
-xcopy %DEPLOYMENT_SOURCE%\server.js %DEPLOYMENT_TARGET%\server.js*
-xcopy %DEPLOYMENT_SOURCE%\package.json %DEPLOYMENT_TARGET%\package.json*
-:: xcopy %DEPLOYMENT_SOURCE%\node_modules\* %DEPLOYMENT_TARGET%\node_modules /s /i
+xcopy /d %DEPLOYMENT_SOURCE%\dist\* %DEPLOYMENT_TARGET%\dist /s /i
+xcopy /d %DEPLOYMENT_SOURCE%\index.html %DEPLOYMENT_TARGET%\index.html*
+xcopy /d %DEPLOYMENT_SOURCE%\web.config %DEPLOYMENT_TARGET%\web.config*
+xcopy /d %DEPLOYMENT_SOURCE%\server.js %DEPLOYMENT_TARGET%\server.js*
+xcopy /d %DEPLOYMENT_SOURCE%\package.json %DEPLOYMENT_TARGET%\package.json*
 
 call cd %DEPLOYMENT_TARGET% 
 call npm install --only=production
