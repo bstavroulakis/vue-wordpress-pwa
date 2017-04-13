@@ -1,9 +1,8 @@
 const path = require('path')
 const webpack = require('webpack')
 const base = require('./webpack.base.config')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-module.exports = Object.assign({}, base, {
+const config = Object.assign({}, base, {
   target: 'node',
   devtool: false,
   entry: './src/server-entry.js',
@@ -12,12 +11,13 @@ module.exports = Object.assign({}, base, {
     libraryTarget: 'commonjs2'
   }),
   externals: ['axios'],
-  plugins: [
-    new ExtractTextPlugin('assets/styles.css'),
+  plugins: (base.plugins || []).concat([
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
       'process.env.VUE_ENV': '"server"',
       BROWSER_BUILD: false
     })
-  ]
+  ])
 })
+
+module.exports = config
