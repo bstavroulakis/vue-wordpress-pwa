@@ -1,5 +1,5 @@
 const path = require('path')
-// const projectRoot = path.resolve(__dirname, '../')
+const webpack = require('webpack')
 const vueConfig = require('./vue-loader.config')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
@@ -14,7 +14,7 @@ vueConfig.loaders = {
   })
 }
 
-module.exports = {
+const config = {
   devtool: '#source-map',
   entry: {
     app: './src/client-entry.js',
@@ -33,7 +33,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/',
-    filename: 'assets/js/[name].js'
+    filename: (process.env.NODE_ENV === 'production') ? 'assets/js/[name].[hash].js' : 'assets/js/[name].js'
   },
   module: {
     rules: [
@@ -75,5 +75,26 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: []
 }
+
+if (process.env.NODE_ENV === 'production') {
+  config.plugins.push(
+    new ExtractTextPlugin('assets/styles.[hash].css'),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    })
+  )
+} else {
+  config.plugins.push(
+    new ExtractTextPlugin('assets/styles.css')
+  )
+}
+
+module.exports = config

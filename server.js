@@ -44,7 +44,18 @@ var strictTransportSecurity = function(req, res, next) {
 
 // parse index.html template
 const indexHTML = (() => {
-  let template = fs.readFileSync(resolve('./index.html'), 'utf-8')
+  let template = ''
+  if (isProd) {
+    template = fs.readFileSync(resolve('./dist/index.html'), 'utf-8')
+    template = template.replace(/{{ SCRIPTS }}/gmi, '')
+    template = template.replace('{{ STYLES }}', '')
+    template = template.replace('<link href="/assets/styles', '<link href="{{ CDN }}/assets/styles')
+    template = template.replace(/<script type="text\/javascript" src="\/assets/gmi, '<script type="text/javascript" src="{{ CDN }}/assets')
+  } else {
+    template = fs.readFileSync(resolve('./index.html'), 'utf-8')
+    template = template.replace('{{ STYLES }}', '<link rel="stylesheet" href="{{ CDN }}/styles.css">')
+    template = template.replace(/{{ SCRIPTS }}/gmi, '<script defer src="{{ CDN }}/js/vendor.js"></script><script defer src="{{ CDN }}/js/app.js"></script>')
+  }
   template = template.replace(/{{ CDN }}/gmi, cdnClient)
   return template
 })()

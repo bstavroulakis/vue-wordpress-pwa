@@ -6,7 +6,9 @@
     "type": "git",
     "url": "git+https://github.com/bstavroulakis/vue-wordpress-pwa"
   },
-  "engines" : { "npm" : "3.10.7" },
+  "engines": {
+    "npm": "3.10.7"
+  },
   "keywords": [
     "vue",
     "vuex",
@@ -70,6 +72,7 @@
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.8.4",
     "fs-extra": "^2.1.2",
+    "html-webpack-plugin": "^2.28.0",
     "karma": "^1.1.2",
     "karma-mocha": "^1.1.1",
     "karma-phantomjs-launcher": "^1.0.1",
