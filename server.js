@@ -49,8 +49,8 @@ const indexHTML = (() => {
     template = fs.readFileSync(resolve('./dist/index.html'), 'utf-8')
     template = template.replace(/{{ SCRIPTS }}/gmi, '')
     template = template.replace('{{ STYLES }}', '')
-    template = template.replace('<link href="/assets/styles', '<link href="{{ CDN }}/assets/styles')
-    template = template.replace(/<script type="text\/javascript" src="\/assets/gmi, '<script type="text/javascript" src="{{ CDN }}/assets')
+    template = template.replace('<link href="/assets/styles', '<link href="{{ CDN }}/styles')
+    template = template.replace(/<script type="text\/javascript" src="\/assets/gmi, '<script type="text/javascript" src="{{ CDN }}/')
   } else {
     template = fs.readFileSync(resolve('./index.html'), 'utf-8')
     template = template.replace('{{ STYLES }}', '<link rel="stylesheet" href="{{ CDN }}/styles.css">')
