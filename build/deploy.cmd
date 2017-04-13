@@ -4,11 +4,15 @@ IF "%ERRORLEVEL%" NEQ "0" goto error
 call npm run build
 IF "%ERRORLEVEL%" NEQ "0" goto error
 
-for %%D in (%DEPLOYMENT_TARGET%\*) do (
-    if "%%~nxD" == "node_modules" (
+for /d %%D in (%DEPLOYMENT_TARGET%\*) do (
+    if not "%%~nxD" == "node_modules" (
         del /S /Q "%%~D"
         IF "%ERRORLEVEL%" NEQ "0" goto error
     )
+)
+for %%D in (%DEPLOYMENT_TARGET%\*) do (
+    del /S /Q "%%~D"
+    IF "%ERRORLEVEL%" NEQ "0" goto error
 )
 
 xcopy /d %DEPLOYMENT_SOURCE%\dist\* %DEPLOYMENT_TARGET%\dist /s /i
