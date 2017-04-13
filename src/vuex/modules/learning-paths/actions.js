@@ -2,7 +2,32 @@ import wordpressService from '../../../app.service'
 const getPaths = ({commit, state}, params) => {
   return new Promise((resolve, reject) => {
     wordpressService.getCategoryChildren(params.categoryId).then((categories) => {
+      for (var j = 0; j < categories.length; j++) {
+        categories[j].firstPostSlug = ''
+      }
       commit('SUBCATEGORIES_UPDATED', categories)
+      var postPromises = []
+      for (var i = 0; i < categories.length; i++) {
+        postPromises.push(getFirstPost({commit, state}, {categoryId: categories[i].id}))
+      }
+      Promise.all(postPromises).then(() => {
+        console.log('IT HAS RESOLVED')
+        resolve()
+      })
+    }).catch(error => {
+      reject('ERROR:', error)
+    })
+  })
+}
+
+const getFirstPost = ({commit, state}, params) => {
+  return new Promise((resolve, reject) => {
+    wordpressService.getPosts(params.categoryId, 1, 1, 'asc').then((data) => {
+      for (var j = 0; j < state.paths.length; j++) {
+        if (state.paths[j].id === params.categoryId) {
+          state.paths[j].firstPostSlug = '/category/learning-paths/' + state.paths[j].slug + '/' + data.posts[0].slug
+        }
+      }
       resolve()
     }).catch(error => {
       reject('ERROR:', error)

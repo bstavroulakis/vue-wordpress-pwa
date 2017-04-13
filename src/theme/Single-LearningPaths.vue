@@ -23,7 +23,7 @@
             <h1>Loading...</h1>
             <div class="single-content fake-single-content card"></div>
         </div>
-        <vwp-single :single="single"></vwp-single>
+        <vwp-single :single="single" hideBack="true"></vwp-single>
       </div>
       <div class="column is-one-quarter">
         <aside class="menu">
