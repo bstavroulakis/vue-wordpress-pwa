@@ -23,7 +23,7 @@ const router = new VueRouter({
     { path: '/category/:categorySlug/:id', component: ThemePageSingle },
     { path: '/category/:id', component: ThemePageCategory, params: { page: 1 } },
     { path: '/:id', component: ThemePageSingle },
-    { path: '/', name: 'Home', redirect: '/category/blog' }
+    { path: '/', name: 'Home', redirect: '/category/blog/' }
   ]
 })
 

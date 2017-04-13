@@ -2,11 +2,11 @@
   <nav id="app-header" class="nav has-shadow">
     <div class="container">
       <router-link to="/category/blog/" class="nav-item"><img src="https://fullstackweekly.azureedge.net/wp-content/uploads/2017/03/logo-horizontal.png" id="vwp-logo" alt="Full Stack Weekly" /></router-link>
-      <span class="nav-toggle" v-on:click="toggleMenu">
+      <a class="nav-toggle" v-on:click="toggleMenu">
         <span></span>
         <span></span>
         <span></span>
-      </span>
+      </a>
       <div v-bind:class="{ 'nav-right nav-menu': true, 'is-active': isMenuActive }">
         <span v-on:click="closeMenu">
           <router-link  class="is-tab nav-item" to="/category/blog/">Personal Blog</router-link>
