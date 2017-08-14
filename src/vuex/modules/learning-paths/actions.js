@@ -11,11 +11,10 @@ const getPaths = ({commit, state}, params) => {
         postPromises.push(getFirstPost({commit, state}, {categoryId: categories[i].id}))
       }
       Promise.all(postPromises).then(() => {
-        console.log('IT HAS RESOLVED')
         resolve()
       })
     }).catch(error => {
-      reject('ERROR:', error)
+      reject(new Error(error))
     })
   })
 }
@@ -30,7 +29,7 @@ const getFirstPost = ({commit, state}, params) => {
       }
       resolve()
     }).catch(error => {
-      reject('ERROR:', error)
+      reject(new Error(error))
     })
   })
 }
@@ -47,7 +46,7 @@ const getPath = ({commit, state}, params) => {
         })
       })
     }).catch(error => {
-      reject('ERROR:', error)
+      reject(new Error(error))
     })
   })
 }
@@ -66,7 +65,7 @@ const getPost = ({commit, state}, params) => {
       state.single = postData
       resolve()
     }).catch(error => {
-      reject('ERROR:', error)
+      reject(new Error(error))
     })
   })
 }

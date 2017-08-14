@@ -45,6 +45,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import VwpSingle from '../components/vwpSingle.vue'
+import VwpComment from '../components/vwpComment.vue'
 
 const fetchInitialData = (store) => {
   return store.dispatch(`learningPaths/getPath`, {categorySlug: store.state.route.params.id, page: store.state.route.params.page})
@@ -53,7 +54,7 @@ export default {
   name: 'ThemeSingleLearningPaths',
   components: {
     'vwp-single': VwpSingle,
-    'vwp-comment': require('../components/vwpComment.vue')
+    'vwp-comment': VwpComment
   },
   data: () => {
     return {
