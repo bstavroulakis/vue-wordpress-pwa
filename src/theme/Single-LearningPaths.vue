@@ -44,8 +44,8 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import VwpSingle from '../components/vwpSingle.vue'
-import VwpComment from '../components/vwpComment.vue'
+import VwpSingle from 'components/vwpSingle.vue'
+import VwpComment from 'components/vwpComment.vue'
 
 const fetchInitialData = (store) => {
   return store.dispatch(`learningPaths/getPath`, {categorySlug: store.state.route.params.id, page: store.state.route.params.page})

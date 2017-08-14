@@ -32,7 +32,8 @@
     "dev": "rimraf ./dist && cross-env NODE_ENV=development node server",
     "build": "node build/build.js",
     "build:server": "cross-env NODE_ENV=production webpack --config ./build/webpack.server.config.js --progress --hide-modules",
-    "unit": "karma start ./test/unit/karma.conf.js --single-run"
+    "unit": "karma start ./test/unit/karma.conf.js --single-run",
+    "unit:watch": "karma start ./test/unit/karma.conf.js"
   },
   "optionalDependencies": {
     "fsevents": "*"

@@ -15,8 +15,8 @@
 <script>
 import AppHeader from './AppHeader.vue'
 import AppFooter from './AppFooter.vue'
-import vwpNotification from '../components/vwpNotification.vue'
-import gaAnalytics from '../components/gaAnalytics.vue'
+import vwpNotification from 'components/vwpNotification.vue'
+import gaAnalytics from 'components/gaAnalytics.vue'
 
 export default {
   name: 'app',
