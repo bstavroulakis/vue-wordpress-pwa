@@ -11,8 +11,8 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import VwpSingle from '../components/vwpSingle.vue'
-import VwpComment from '../components/vwpComment.vue'
+import VwpSingle from 'components/vwpSingle.vue'
+import VwpComment from 'components/vwpComment.vue'
 const fetchInitialData = (store) => {
   store.state.category.single = {}
   return store.dispatch(`category/getPost`, store.state.route.params.id)

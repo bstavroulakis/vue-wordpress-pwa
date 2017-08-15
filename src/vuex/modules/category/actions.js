@@ -29,7 +29,7 @@ const getCategoryPosts = ({commit, state}, params) => {
       commit('CATEGORY_POSTS_UPDATED', {categoryId: params.categoryId, posts: category.posts, totalPages: category.totalPages})
       resolve()
     }).catch(error => {
-      reject('ERROR:', error)
+      reject(new Error(error))
     })
   })
 }
@@ -38,7 +38,7 @@ const getPost = ({commit, state}, postSlug) => {
   return wordpressService.getPost(null, postSlug).then((post) => {
     commit('POST_UPDATED', post[0])
   }).catch(error => {
-    console.log('ERROR:', error)
+    console.log(error)
   })
 }
 

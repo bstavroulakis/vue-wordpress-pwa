@@ -10,8 +10,8 @@ export default {
     if (!inBrowser) {
       return
     }
-    require.ensure(['../components/disqus.js'], () => {
-      require('../components/disqus.js')
+    require.ensure(['components/disqus.js'], () => {
+      require('components/disqus.js')
       setTimeout(() => {
         try {
           if (window.DISQUS !== null && window.DISQUS !== undefined) {

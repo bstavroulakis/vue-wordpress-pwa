@@ -42,10 +42,11 @@
   </div>
 </template>
 <script>
+import AppNewsletter from './AppNewsletter.vue'
 let Config = require('../app.config.js')
 export default {
   name: 'app-footer',
-  components: { 'app-newsletter': require('./AppNewsletter.vue') },
+  components: { 'app-newsletter': AppNewsletter },
   data: () => {
     return {
       wpDomain: ''

@@ -15,10 +15,10 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import VwpSubcategory from '../components/vwpSubcategory.vue'
+import VwpSubcategory from 'components/vwpSubcategory.vue'
 const fetchInitialData = (store) => {
   let categories = store.state.category.categories
-  let page = store.state.category.page
+  let page = store.state.category.page || 1
   if (((store.state.route.params.page && page !== store.state.route.params.page) ||
   categories.length !== 1 ||
   categories[0].slug !== store.state.route.params.id)) {

@@ -31,11 +31,12 @@
 <script>
 import { mapGetters } from 'vuex'
 import VwpPostCard from './vwpPostCard'
+import VwpPaging from './vwpPaging.vue'
 export default {
   name: 'vwp-subcategory',
   components: {
     'vwp-post-card': VwpPostCard,
-    'vwp-paging': require('./vwpPaging.vue')
+    'vwp-paging': VwpPaging
   },
   props: ['hidePagination', 'newFlag'],
   computed: {

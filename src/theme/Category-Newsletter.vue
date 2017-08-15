@@ -12,7 +12,7 @@
 <script>
 import AppNewsletter from './AppNewsletter.vue'
 import { mapGetters, mapActions } from 'vuex'
-import VwpSubcategory from '../components/vwpSubcategory.vue'
+import VwpSubcategory from 'components/vwpSubcategory.vue'
 const fetchInitialData = (store) => {
   store.state.category.categories = []
   return store.dispatch(`category/getCategory`, {parentId: 28})
