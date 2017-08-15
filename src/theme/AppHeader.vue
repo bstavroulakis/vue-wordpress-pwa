@@ -79,7 +79,6 @@ export default {
      max-height:3rem;
   }
   #app-header .nav-menu > span > a{
-    line-height: 3rem;
     vertical-align: middle;
   }
   .nav-toggle{

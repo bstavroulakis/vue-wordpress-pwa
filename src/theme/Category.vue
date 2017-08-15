@@ -16,17 +16,13 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import VwpSubcategory from 'components/vwpSubcategory.vue'
-const fetchInitialData = (store) => {
-  let categories = store.state.category.categories
-  let page = store.state.category.page || 1
-  if (((store.state.route.params.page && page !== store.state.route.params.page) ||
-  categories.length !== 1 ||
-  categories[0].slug !== store.state.route.params.id)) {
-    store.state.category.categories = []
-    return store.dispatch(`category/getCategory`, {categorySlug: store.state.route.params.id, page: store.state.route.params.page})
-  }
+const fetchInitialData = (store, route) => {
+  return store.dispatch(`category/getCategory`, {categorySlug: route.params.id, page: route.params.page})
 }
 export default {
+  asyncData (store, route) {
+    return fetchInitialData(store, route)
+  },
   name: 'ThemePageCategory',
   components: {
     'vwp-subcategory': VwpSubcategory
@@ -39,18 +35,14 @@ export default {
   methods: {
     ...mapActions('category', {
       getCategory: 'getCategory'
-    })
+    }),
+    loadPosts () {
+      fetchInitialData(this.$store, this.$route)
+    }
   },
   watch: {
-    routeParamId: function (newParamId) {
-      if (newParamId) {
-        this.getCategory({categorySlug: newParamId})
-      }
-    },
-    routeParamPage: function (newParamPage) {
-      if (newParamPage) {
-        this.getCategory({page: newParamPage})
-      }
+    '$route' (to, from) {
+      this.loadPosts()
     }
   },
   computed: {
@@ -64,7 +56,7 @@ export default {
   },
   prefetch: fetchInitialData,
   created () {
-    fetchInitialData(this.$store)
+    this.loadPosts()
   }
 }
 </script>
