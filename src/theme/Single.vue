@@ -13,9 +13,9 @@
 import { mapGetters, mapActions } from 'vuex'
 import VwpSingle from 'components/vwpSingle.vue'
 import VwpComment from 'components/vwpComment.vue'
-const fetchInitialData = (store) => {
+const fetchInitialData = (store, route) => {
   store.state.category.single = {}
-  return store.dispatch(`category/getPost`, store.state.route.params.id)
+  return store.dispatch(`category/getPost`, route.params.id)
 }
 export default {
   name: 'SingleComponent',
@@ -46,7 +46,7 @@ export default {
   prefetch: fetchInitialData,
   created () {
     if (!this.single || !this.single.slug || (this.single.slug !== this.routeParamId)) {
-      fetchInitialData(this.$store)
+      fetchInitialData(this.$store, this.$route)
     }
   }
 }

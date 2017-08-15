@@ -1,18 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
 const vueConfig = require('./vue-loader.config')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-
-vueConfig.loaders = {
-  css: ExtractTextPlugin.extract({
-    use: 'css-loader',
-    fallback: 'vue-style-loader'
-  }),
-  'scss': ExtractTextPlugin.extract({
-    use: 'css-loader!sass-loader',
-    fallback: 'vue-style-loader'
-  })
-}
 
 const config = {
   devtool: '#source-map',
@@ -52,7 +40,10 @@ const config = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: vueConfig
+        options: {
+          css: 'css-loader',
+          'scss': 'css-loader|sass-loader'
+        }
       },
       {
         test: /\.js$/,
@@ -77,24 +68,6 @@ const config = {
     ]
   },
   plugins: []
-}
-
-if (process.env.NODE_ENV === 'production') {
-  config.plugins.push(
-    new ExtractTextPlugin('assets/styles.[hash].css'),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    })
-  )
-} else {
-  config.plugins.push(
-    new ExtractTextPlugin('assets/styles.css')
-  )
 }
 
 module.exports = config

@@ -7,7 +7,7 @@ export default context => {
   const s = Date.now()
   return Promise.all(router.getMatchedComponents().map(component => {
     if (component.prefetch) {
-      return component.prefetch(store)
+      return component.prefetch(store, router.currentRoute)
     }
   })).then(() => {
     console.log(`data pre-fetch: ${Date.now() - s}ms`)
