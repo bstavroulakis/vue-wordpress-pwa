@@ -68,13 +68,8 @@ export default {
     ])
   },
   watch: {
-    posts: function (newPosts) {
-      if (!this.routeParamPage) {
-        this.$router.replace(this.posts[0].slug)
-      }
-    },
     '$route' (to, from) {
-      this.loadDate()
+      this.loadData()
     }
   },
   methods: {
@@ -104,9 +99,7 @@ export default {
   },
   prefetch: fetchInitialData,
   created () {
-    if (!this.routeParamPage || this.posts.length === 0 || !this.single || (this.single.slug !== this.routeParamPage)) {
-      fetchInitialData(this.$store, this.$route)
-    }
+    fetchInitialData(this.$store, this.$route)
   }
 }
 </script>

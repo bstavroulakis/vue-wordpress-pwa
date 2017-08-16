@@ -34,7 +34,7 @@ export default {
   },
   watch: {
     '$route' (to, from) {
-      this.loadDate()
+      this.loadData()
     }
   },
   prefetch: fetchInitialData,

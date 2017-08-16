@@ -17,6 +17,7 @@
 import { mapGetters, mapActions } from 'vuex'
 import VwpSubcategory from 'components/vwpSubcategory.vue'
 const fetchInitialData = (store, route) => {
+  route.params.page = route.params.page || 1
   return store.dispatch(`category/getCategory`, {categorySlug: route.params.id, page: route.params.page})
 }
 export default {
