@@ -22,7 +22,9 @@
         <div class="card-content">
           <div v-html="single.content.rendered"></div>
           <p class="is-clearfix"></p>
-          <a :href="single.rest_api_enabler.Link" target="_blank">{{single.rest_api_enabler.Link}}</a>
+          <div v-if="single.rest_api_enabler && single.rest_api_enabler.Link">
+            <a :href="single.rest_api_enabler.Link" target="_blank">{{single.rest_api_enabler.Link}}</a>
+          </div>
         </div>
       </div>
     </div>
