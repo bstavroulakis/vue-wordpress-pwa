@@ -14,15 +14,12 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-const fetchInitialData = (store) => {
+const fetchInitialData = (store, route) => {
   store.state.page.single = {}
-  return store.dispatch(`page/getPage`, store.state.route.params.id)
+  return store.dispatch(`page/getPage`, route.params.id)
 }
 export default {
   computed: {
-    ...mapGetters([
-      'routeParamId'
-    ]),
     ...mapGetters('page', [
       'single'
     ])
@@ -30,19 +27,20 @@ export default {
   methods: {
     ...mapActions('page', {
       getPage: 'getPage'
-    })
+    }),
+    loadData () {
+      fetchInitialData(this.$store, this.$route)
+    }
   },
   watch: {
-    routeParamId: function (newParamId) {
-      if (newParamId) {
-        this.getPage(newParamId)
-      }
+    '$route' (to, from) {
+      this.loadDate()
     }
   },
   prefetch: fetchInitialData,
   created () {
-    if (!this.single || !this.single.slug || this.single.slug !== this.routeParamId) {
-      fetchInitialData(this.$store)
+    if (!this.single || !this.single.slug || this.single.slug) {
+      fetchInitialData(this.$store, this.$route)
     }
   }
 }

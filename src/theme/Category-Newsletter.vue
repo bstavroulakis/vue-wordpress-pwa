@@ -26,22 +26,20 @@ export default {
   methods: {
     ...mapActions('category', {
       getCategory: 'getCategory'
-    })
+    }),
+    loadData () {
+      fetchInitialData(this.$store, this.$route)
+    }
+  },
+  watch: {
+    '$route' (to, from) {
+      this.loadData()
+    }
   },
   computed: {
-    ...mapGetters([
-      'routeParamId'
-    ]),
     ...mapGetters('category', [
       'categories'
     ])
-  },
-  watch: {
-    routeParamId: function (newParamId) {
-      if (this.categories && this.categories.length <= 1) {
-        this.getCategory({categorySlug: newParamId})
-      }
-    }
   },
   prefetch: fetchInitialData,
   created () {
