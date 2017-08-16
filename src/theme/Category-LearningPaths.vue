@@ -35,7 +35,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-const fetchInitialData = (store) => {
+const fetchInitialData = (store, route) => {
   store.state.learningPaths.paths = []
   return store.dispatch(`learningPaths/getPaths`, {categoryId: 27})
 }
@@ -46,11 +46,19 @@ export default {
       'paths'
     ])
   },
+  watch: {
+    '$route' (to, from) {
+      this.loadData()
+    }
+  },
+  methods: {
+    loadData () {
+      fetchInitialData(this.$store, this.$route)
+    }
+  },
   prefetch: fetchInitialData,
   created () {
-    if (!this.paths || (this.paths && this.paths.length === 0)) {
-      fetchInitialData(this.$store)
-    }
+    fetchInitialData(this.$store, this.$route)
   }
 }
 </script>

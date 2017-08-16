@@ -12,7 +12,6 @@
 </template> 
 
 <script>
-import { mapGetters } from 'vuex'
 export default {
   props: ['totalPages', 'path'],
   data: () => {
@@ -21,11 +20,6 @@ export default {
       neighboors: 2,
       page: 1
     }
-  },
-  computed: {
-    ...mapGetters([
-      'routeParamPage'
-    ])
   },
   methods: {
     refreshPages: function (page) {
@@ -49,8 +43,8 @@ export default {
   },
   created () {
     this.page = 1
-    if (this.routeParamPage) {
-      this.page = this.routeParamPage
+    if (this.$route.params && this.$route.params.page) {
+      this.page = this.$route.params.page
     }
     this.refreshPages(this.page)
   }
