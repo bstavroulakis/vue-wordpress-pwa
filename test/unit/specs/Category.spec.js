@@ -21,9 +21,10 @@ describe('Category.vue', () => {
     }).$mount()
 
     setTimeout(() => {
-      console.log(vm)
+      console.log(vm.$el)
+      console.log(store.module)
       // expect(vm.$el.querySelector('.category-posts').querySelectorAll('.column').length).to.equal(6)
       done()
-    }, 1300)
+    }, 1500)
   })
 })

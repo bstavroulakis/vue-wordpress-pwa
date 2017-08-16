@@ -47,8 +47,8 @@ import { mapGetters, mapActions } from 'vuex'
 import VwpSingle from 'components/vwpSingle.vue'
 import VwpComment from 'components/vwpComment.vue'
 
-const fetchInitialData = (store) => {
-  return store.dispatch(`learningPaths/getPath`, {categorySlug: store.state.route.params.id, page: store.state.route.params.page})
+const fetchInitialData = (store, route) => {
+  return store.dispatch(`learningPaths/getPath`, {categorySlug: route.params.id, page: route.params.page})
 }
 export default {
   name: 'ThemeSingleLearningPaths',
@@ -62,10 +62,6 @@ export default {
     }
   },
   computed: {
-    ...mapGetters([
-      'routeParamId',
-      'routeParamPage'
-    ]),
     ...mapGetters('learningPaths', [
       'posts',
       'single'
@@ -77,10 +73,8 @@ export default {
         this.$router.replace(this.posts[0].slug)
       }
     },
-    routeParamPage: function (newPage) {
-      if (this.single && this.single.slug !== newPage) {
-        this.getPost({page: newPage})
-      }
+    '$route' (to, from) {
+      this.loadDate()
     }
   },
   methods: {
@@ -103,12 +97,15 @@ export default {
     },
     ...mapActions('learningPaths', {
       getPost: 'getPost'
-    })
+    }),
+    loadData () {
+      fetchInitialData(this.$store, this.$route)
+    }
   },
   prefetch: fetchInitialData,
   created () {
     if (!this.routeParamPage || this.posts.length === 0 || !this.single || (this.single.slug !== this.routeParamPage)) {
-      fetchInitialData(this.$store)
+      fetchInitialData(this.$store, this.$route)
     }
   }
 }

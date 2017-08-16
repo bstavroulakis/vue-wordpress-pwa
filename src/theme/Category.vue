@@ -1,5 +1,5 @@
 <template>
-  <section id="ThemeCategory">
+  <section>
     <div class="columns personal-card card" v-if="categories && categories.length === 1 && categories[0].slug === 'blog'">
       <div class="column personal-img"><img src="https://fullstackweekly.azureedge.net/wp-content/uploads/2017/03/bill-100x100.jpg" alt="Bill Stavroulakis" width="100"></div>
       <div class="column is-three-quarters personal-desc">
@@ -20,9 +20,6 @@ const fetchInitialData = (store, route) => {
   return store.dispatch(`category/getCategory`, {categorySlug: route.params.id, page: route.params.page})
 }
 export default {
-  asyncData (store, route) {
-    return fetchInitialData(store, route)
-  },
   name: 'ThemePageCategory',
   components: {
     'vwp-subcategory': VwpSubcategory
@@ -46,10 +43,6 @@ export default {
     }
   },
   computed: {
-    ...mapGetters([
-      'routeParamId',
-      'routeParamPage'
-    ]),
     ...mapGetters('category', [
       'categories'
     ])

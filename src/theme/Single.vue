@@ -34,18 +34,19 @@ export default {
   methods: {
     ...mapActions('category', {
       getPost: 'getPost'
-    })
+    }),
+    loadData () {
+      fetchInitialData(this.$store, this.$route)
+    }
   },
   watch: {
-    routeParamId: function (newParamId) {
-      if (newParamId) {
-        this.getPost(newParamId)
-      }
+    '$route' (to, from) {
+      this.loadData()
     }
   },
   prefetch: fetchInitialData,
   created () {
-    if (!this.single || !this.single.slug || (this.single.slug !== this.routeParamId)) {
+    if (!this.single || !this.single.slug || (this.single.slug)) {
       fetchInitialData(this.$store, this.$route)
     }
   }
