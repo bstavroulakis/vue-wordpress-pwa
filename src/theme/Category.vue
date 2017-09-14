@@ -75,7 +75,4 @@ export default {
   .category-posts{
     flex-wrap:wrap;
   }
-  .hero-body{
-    padding-top: 0;
-  }
 </style>
