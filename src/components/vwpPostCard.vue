@@ -5,12 +5,14 @@
           <img v-bind:src="cdnUrl(post.better_featured_image.media_details.sizes.medium.source_url)" v-bind:alt="post.better_featured_image.description">
         </figure>
       </div>
-      <div class="card-content">
+      <div class="card-content" v-if="post && post.title">
         <div class="content">
           <div v-if="isNew(post.date)" class="is-new">new</div>
           <div class="post-title">
             <div v-if="post.slug && categorySlug">
-              <router-link :to="'/category/' + categorySlug + '/' + post.slug"><span v-html="post.title.rendered"></span></router-link>
+              <a v-on:click="gotoPost(post)">
+                <span v-html="post.title.rendered"></span>
+              </a>
             </div>
           </div>
           <p class="is-clearfix"></p>
@@ -31,6 +33,11 @@ export default {
   name: 'vwp-post-card',
   props: ['post', 'categorySlug', 'newFlag'],
   methods: {
+    gotoPost: function (post) {
+      if (this.categorySlug && post && post.slug) {
+        this.$router.push({ path: '/category/' + this.categorySlug + '/' + post.slug })
+      }
+    },
     cdnUrl: function (url) {
       return url.replace('https://api.fullstackweekly.com', 'https://fullstackweekly.azureedge.net')
     },
