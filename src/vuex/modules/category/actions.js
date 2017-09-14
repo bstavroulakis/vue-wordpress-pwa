@@ -4,17 +4,26 @@ const getCategory = ({commit, state, dispatch}, params) => {
     if (!params.categorySlug && !params.parentId) {
       params.categorySlug = state.categories[0].slug
     }
-    wordpressService.getCategory(null, params.categorySlug, params.parentId).then((categories) => {
-      commit('CATEGORY_UPDATED', categories)
+    wordpressService.getCategory(null, params.categorySlug, params.parentId).then((responseCategories) => {
       var postPromises = []
       if (!params.page) {
         params.page = 1
       }
       state.page = params.page
-      for (var i = 0; i < categories.length; i++) {
-        postPromises.push(getCategoryPosts({commit, state}, {categoryId: categories[i].id, page: params.page}))
+
+      for (var i = 0; i < responseCategories.length; i++) {
+        const responseCategory = responseCategories[i]
+        const category = {
+          id: responseCategory.id,
+          name: responseCategory.name,
+          title: responseCategory.name,
+          slug: responseCategory.slug,
+          better_featured_image: responseCategory.better_featured_image
+        }
+        postPromises.push(getCategoryPosts({commit, state}, {category, page: params.page}))
       }
-      Promise.all(postPromises).then(() => {
+      Promise.all(postPromises).then(resolveCategories => {
+        state.categories = resolveCategories
         resolve()
       })
     }).catch(error => {
@@ -25,9 +34,10 @@ const getCategory = ({commit, state, dispatch}, params) => {
 
 const getCategoryPosts = ({commit, state}, params) => {
   return new Promise((resolve, reject) => {
-    wordpressService.getPosts(params.categoryId, params.page, 6).then((category) => {
-      commit('CATEGORY_POSTS_UPDATED', {categoryId: params.categoryId, posts: category.posts, totalPages: category.totalPages})
-      resolve()
+    wordpressService.getPosts(params.category.id, params.page, 6).then((category) => {
+      params.category.posts = category.posts
+      params.category.totalPages = category.totalPages
+      resolve(params.category)
     }).catch(error => {
       reject(new Error(error))
     })
