@@ -36,7 +36,6 @@
 <script>
 import { mapGetters } from 'vuex'
 const fetchInitialData = (store, route) => {
-  store.state.learningPaths.paths = []
   return store.dispatch(`learningPaths/getPaths`, {categoryId: 27})
 }
 export default {

@@ -13,7 +13,7 @@
       <div class="single-content card">
         <div class="is-pulled-left" v-if="single.tags && single.tags.length > 0">
           <i class="icon-tags" aria-hidden="true"></i>
-          <span class="tag" v-for="tag in single.pure_taxonomies.tags">
+          <span class="tag" v-for="tag in single.pure_taxonomies.tags" v-bind:key="tag.id">
             {{tag.name}}
           </span>
         </div>

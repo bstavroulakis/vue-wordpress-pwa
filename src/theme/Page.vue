@@ -15,7 +15,6 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 const fetchInitialData = (store, route) => {
-  store.state.page.single = {}
   return store.dispatch(`page/getPage`, route.params.id)
 }
 export default {

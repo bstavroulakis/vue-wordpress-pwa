@@ -6,15 +6,15 @@
       <p>This newsletter is all of the links and material that raise my eyebrow each week as a full stack developer.</p>
     </div>
     <div class="columns"><div class="column"></div></div>
-    <vwp-subcategory hidePagination="true" newFlag="true"></vwp-subcategory>
+    <vwp-subcategory :categories="categories" hidePagination="true" newFlag="true"></vwp-subcategory>
   </div>
 </template>
 <script>
 import AppNewsletter from './AppNewsletter.vue'
 import { mapGetters, mapActions } from 'vuex'
 import VwpSubcategory from 'components/vwpSubcategory.vue'
-const fetchInitialData = (store) => {
-  store.state.category.categories = []
+const fetchInitialData = (store, route) => {
+  route.params.page = route.params.page || 1
   return store.dispatch(`category/getCategory`, {parentId: 28})
 }
 export default {
@@ -43,9 +43,7 @@ export default {
   },
   prefetch: fetchInitialData,
   created () {
-    if (this.categories && this.categories.length <= 1) {
-      fetchInitialData(this.$store)
-    }
+    this.loadData()
   }
 }
 </script>

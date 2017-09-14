@@ -2,8 +2,10 @@
   <div id="vwpPaging">
     <div class="paging-wrapper">
       <div class="columns paging-wrapper-inner">
-        <div v-for="(item, index) in pages" class="column paging-link">
-          <router-link v-if="(item != '...')"  v-bind:class="{ 'is-active': item == page }" :to="path + '/page/' + item + '/'">{{item}}</router-link>
+        <div v-for="(item, index) in pages" class="column paging-link" v-bind:key="item">
+          <router-link v-if="(item != '...')"  
+            v-bind:class="{ 'is-active': ((page == null && item === 1) || (item === page)) }" 
+            :to="path + '/page/' + item + '/'">{{item}}</router-link>
           <div v-if="(item == '...')">{{item}}</div>
         </div>
       </div>
@@ -19,6 +21,12 @@ export default {
       pages: [],
       neighboors: 2,
       page: 1
+    }
+  },
+  watch: {
+    '$route' (to, from) {
+      this.page = to.params.page
+      this.refreshPages(this.page)
     }
   },
   methods: {

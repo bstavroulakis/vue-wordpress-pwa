@@ -9,17 +9,19 @@
         <div class="content">
           <div v-if="isNew(post.date)" class="is-new">new</div>
           <div class="post-title">
-            <router-link :to="'/category/' + category.slug + '/' + post.slug" v-html="post.title.rendered"></router-link>
+            <div v-if="post.slug && categorySlug">
+              <router-link :to="'/category/' + categorySlug + '/' + post.slug"><span v-html="post.title.rendered"></span></router-link>
+            </div>
           </div>
           <p class="is-clearfix"></p>
           <div v-html="post.excerpt.rendered"></div>
-          <span v-for="tag in post.tags">#{{tag}}</span>
+          <span v-for="tag in post.tags" v-bind:key="tag.id">>#{{tag}}</span>
           <br>
           <small>{{post.date}}</small>
         </div>
       </div>
       <footer class="card-footer">
-        <router-link :to="'/category/' + category.slug + '/' + post.slug" class="card-footer-item">Read More</router-link>
+        <router-link :to="'/category/' + categorySlug + '/' + post.slug" class="card-footer-item">Read More</router-link>
       </footer>
     </div>
 </template>
@@ -27,7 +29,7 @@
 <script>
 export default {
   name: 'vwp-post-card',
-  props: ['post', 'category', 'newFlag'],
+  props: ['post', 'categorySlug', 'newFlag'],
   methods: {
     cdnUrl: function (url) {
       return url.replace('https://api.fullstackweekly.com', 'https://fullstackweekly.azureedge.net')

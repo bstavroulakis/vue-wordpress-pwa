@@ -1,15 +1,18 @@
 <template>
   <section>
-    <div class="columns personal-card card" v-if="categories && categories.length === 1 && categories[0].slug === 'blog'">
-      <div class="column personal-img"><img src="https://fullstackweekly.azureedge.net/wp-content/uploads/2017/03/bill-100x100.jpg" alt="Bill Stavroulakis" width="100"></div>
-      <div class="column is-three-quarters personal-desc">
-        Hi, I’m <a href="https://twitter.com/bstavroulakis" rel="noopener" target="_blank">Bill Stavroulakis</a>, many years ago my journey started on this thing called Web Development.<br/><br/>
-        <span class="is-pulled-left">Over here you can find all of the interesting things I find on my way.&nbsp;</span>
-        <span class="is-pulled-left">This website is part of the <a href="https://github.com/bstavroulakis/vue-wordpress-pwa">vue-wordpress-pwa</a> project.</span>
-        <div class="is-clearfix"></div>
+    <div class="card personal-card" v-if="categories && categories.length === 1 && categories[0].slug === 'blog'">
+      <div class="columns">
+        <div class="column personal-img"><img src="https://fullstackweekly.azureedge.net/wp-content/uploads/2017/03/bill-100x100.jpg" alt="Bill Stavroulakis" width="100"></div>
+        <div class="column is-three-quarters personal-desc">
+          Hi, I’m <a href="https://twitter.com/bstavroulakis" rel="noopener" target="_blank">Bill Stavroulakis</a>, many years ago my journey started on this thing called Web Development.<br/><br/>
+          <span class="is-pulled-left">Over here you can find all of the interesting things I find on my way.&nbsp;</span>
+          <span class="is-pulled-left">This website is part of the <a href="https://github.com/bstavroulakis/vue-wordpress-pwa">vue-wordpress-pwa</a> project.</span>
+          <div class="is-clearfix"></div>
+        </div>
       </div>
     </div>
-    <vwp-subcategory></vwp-subcategory>
+    <div class="clearfix"></div>
+    <vwp-subcategory :categories="categories" ></vwp-subcategory>
   </section>
 </template>
 
@@ -56,30 +59,23 @@ export default {
 </script>
 
 <style lang="scss">
-  #ThemeCategory{
-    .personal-card{
-      background-color: #ffffff;
-      margin-right: 0;
-      margin-left: 0;
-      .github-star{
-        float:left;
-        margin-left:10px;
-        margin-top:3px;
-      }
-      .personal-img{
-        text-align: center;
-        align-self: center;
-        margin-bottom:0;
-      }
-      .personal-desc{
-        align-self: center;
-      }
-    }
-    .category-posts{
-      flex-wrap:wrap;
-    }
-   .hero-body{
-      padding-top: 0;
-    }
+  .personal-card{
+    display: flex;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  .personal-img{
+    text-align: center;
+    align-self: center;
+    margin-bottom:0;
+  }
+  .personal-desc{
+    align-self: center;
+  }
+  .category-posts{
+    flex-wrap:wrap;
+  }
+  .hero-body{
+    padding-top: 0;
   }
 </style>

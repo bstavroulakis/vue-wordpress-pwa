@@ -1,3 +1,5 @@
+import Vue from 'vue'
+
 import wordpressService from '../../../app.service'
 const getPaths = ({commit, state}, params) => {
   return new Promise((resolve, reject) => {
@@ -24,7 +26,7 @@ const getFirstPost = ({commit, state}, params) => {
     wordpressService.getPosts(params.categoryId, 1, 1, 'asc').then((data) => {
       for (var j = 0; j < state.paths.length; j++) {
         if (state.paths[j].id === params.categoryId) {
-          state.paths[j].firstPostSlug = '/category/learning-paths/' + state.paths[j].slug + '/' + data.posts[0].slug
+          Vue.set(state.paths[j], 'firstPostSlug', '/category/learning-paths/' + state.paths[j].slug + '/' + data.posts[0].slug)
         }
       }
       resolve()
@@ -35,8 +37,6 @@ const getFirstPost = ({commit, state}, params) => {
 }
 
 const getPath = ({commit, state}, params) => {
-  state.paths = null
-  state.single = null
   return new Promise((resolve, reject) => {
     wordpressService.getCategory(null, params.categorySlug, null).then((categories) => {
       wordpressService.getPosts(categories[0].id, 1, 50, 'asc').then((data) => {
