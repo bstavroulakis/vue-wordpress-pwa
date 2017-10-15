@@ -1,31 +1,36 @@
 import wordpressService from '../../../app.service'
+
+const getCategoryPromises = ({commit, state}, responseCategories, page) => {
+  var postPromises = []
+  for (var i = 0; i < responseCategories.length; i++) {
+    const responseCategory = responseCategories[i]
+    const category = {
+      id: responseCategory.id,
+      name: responseCategory.name,
+      title: responseCategory.name,
+      slug: responseCategory.slug,
+      better_featured_image: responseCategory.better_featured_image
+    }
+    postPromises.push(getCategoryPosts({commit, state}, {category, page}))
+  }
+
+  return postPromises
+}
+
 const getCategory = ({commit, state, dispatch}, params) => {
-  if (typeof window !== 'undefined') {
+  if (!params.page) {
+    params.page = 1
+  }
+
+  if (typeof window !== 'undefined' && state.single && state.single.slug !== params.page) {
     commit('RESET_CATEGORIES')
   }
 
   return new Promise((resolve, reject) => {
-    if (!params.categorySlug && !params.parentId) {
-      params.categorySlug = state.categories[0].slug
-    }
     wordpressService.getCategory(null, params.categorySlug, params.parentId).then((responseCategories) => {
-      var postPromises = []
-      if (!params.page) {
-        params.page = 1
-      }
       state.page = params.page
 
-      for (var i = 0; i < responseCategories.length; i++) {
-        const responseCategory = responseCategories[i]
-        const category = {
-          id: responseCategory.id,
-          name: responseCategory.name,
-          title: responseCategory.name,
-          slug: responseCategory.slug,
-          better_featured_image: responseCategory.better_featured_image
-        }
-        postPromises.push(getCategoryPosts({commit, state}, {category, page: params.page}))
-      }
+      const postPromises = getCategoryPromises({commit, state}, responseCategories, params.page)
       Promise.all(postPromises).then(resolveCategories => {
         state.categories = resolveCategories
         resolve()
