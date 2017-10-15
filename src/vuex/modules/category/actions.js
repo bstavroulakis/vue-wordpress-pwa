@@ -22,10 +22,11 @@ const getCategory = ({commit, state, dispatch}, params) => {
     params.page = 1
   }
 
-  if (typeof window !== 'undefined') {
-    state.categories = []
-    state.single = {}
-  }
+  // TODO: Reset categories, single while loading new ones
+  // if (typeof window !== 'undefined') {
+  //  state.categories = []
+  //  state.single = {}
+  // }
 
   return new Promise((resolve, reject) => {
     wordpressService.getCategory(null, params.categorySlug, params.parentId).then((responseCategories) => {
