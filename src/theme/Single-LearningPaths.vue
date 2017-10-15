@@ -38,14 +38,12 @@
         </aside>
       </div>
     </div>
-    <vwp-comment></vwp-comment>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import VwpSingle from 'components/vwpSingle.vue'
-import VwpComment from 'components/vwpComment.vue'
 
 const fetchInitialData = (store, route) => {
   return store.dispatch(`learningPaths/getPath`, {categorySlug: route.params.id, page: route.params.page})
@@ -53,13 +51,7 @@ const fetchInitialData = (store, route) => {
 export default {
   name: 'ThemeSingleLearningPaths',
   components: {
-    'vwp-single': VwpSingle,
-    'vwp-comment': VwpComment
-  },
-  data: () => {
-    return {
-      firstLoad: false
-    }
+    'vwp-single': VwpSingle
   },
   computed: {
     ...mapGetters('learningPaths', [

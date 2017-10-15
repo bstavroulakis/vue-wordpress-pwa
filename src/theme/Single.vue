@@ -5,22 +5,19 @@
         <div class="single-content card fake-single-content"></div>
     </div>
     <vwp-single :single="single"></vwp-single>
-    <vwp-comment></vwp-comment>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import VwpSingle from 'components/vwpSingle.vue'
-import VwpComment from 'components/vwpComment.vue'
 const fetchInitialData = (store, route) => {
   return store.dispatch(`category/getPost`, route.params.id)
 }
 export default {
   name: 'SingleComponent',
   components: {
-    'vwp-single': VwpSingle,
-    'vwp-comment': VwpComment
+    'vwp-single': VwpSingle
   },
   computed: {
     ...mapGetters([
