@@ -39,6 +39,7 @@ const getFirstPost = ({commit, state}, params) => {
 const getPath = ({commit, state}, params) => {
   if (typeof window !== 'undefined') {
     state.posts = []
+    state.single = {}
   }
 
   return new Promise((resolve, reject) => {
