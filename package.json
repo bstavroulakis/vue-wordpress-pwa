@@ -83,7 +83,7 @@
     "karma-spec-reporter": "0.0.31",
     "karma-webpack": "2.0.5",
     "md5": "2.2.1",
-    "mocha": "3.5.3",
+    "mocha": "4.0.1",
     "node-sass": "4.5.3",
     "phantomjs-prebuilt": "2.1.15",
     "purifycss-webpack": "0.7.0",
