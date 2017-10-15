@@ -12,6 +12,11 @@
       </div>
     </div>
     <div class="clearfix"></div>
+    <div class="columns category-posts" v-if="!categories || categories.length === 0">
+      <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
+      <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
+      <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
+    </div>
     <vwp-subcategory :categories="categories" ></vwp-subcategory>
   </section>
 </template>

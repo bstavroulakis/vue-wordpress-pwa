@@ -6,6 +6,11 @@
       <p>This newsletter is all of the links and material that raise my eyebrow each week as a full stack developer.</p>
     </div>
     <div class="columns"><div class="column"></div></div>
+    <div class="columns category-posts" v-if="!categories || categories.length === 0">
+      <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
+      <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
+      <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
+    </div>
     <vwp-subcategory :categories="categories" hidePagination="true" newFlag="true"></vwp-subcategory>
   </div>
 </template>

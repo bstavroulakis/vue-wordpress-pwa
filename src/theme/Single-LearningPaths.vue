@@ -19,7 +19,7 @@
         </router-link>
         </div>
         <div class="is-clearfix"></div>
-        <div v-if="!single">
+        <div v-if="!single || !single.slug">
             <h1>Loading...</h1>
             <div class="single-content fake-single-content card"></div>
         </div>

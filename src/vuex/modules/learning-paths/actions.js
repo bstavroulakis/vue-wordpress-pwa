@@ -37,7 +37,7 @@ const getFirstPost = ({commit, state}, params) => {
 }
 
 const getPath = ({commit, state}, params) => {
-  if (typeof window !== 'undefined') {
+  if (typeof window !== 'undefined' && state.single && state.single.slug !== params.page) {
     state.posts = []
     state.single = {}
   }
@@ -57,7 +57,7 @@ const getPath = ({commit, state}, params) => {
 }
 
 const getPost = ({commit, state}, params) => {
-  if (typeof window !== 'undefined') {
+  if (typeof window !== 'undefined' && state.single && state.single.slug !== params.page) {
     state.single = {}
   }
 
