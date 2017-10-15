@@ -1,36 +1,57 @@
 <template>
-  <nav id="app-header" class="nav has-shadow">
-    <div class="container">
-      <router-link to="/category/blog/" class="nav-item"><img src="https://fullstackweekly.azureedge.net/wp-content/uploads/2017/03/logo-horizontal.png" id="vwp-logo" alt="Full Stack Weekly" /></router-link>
-      <a class="nav-toggle" v-on:click="toggleMenu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </a>
-      <div v-bind:class="{ 'nav-right nav-menu': true, 'is-active': isMenuActive }">
+<nav class="navbar">
+  <div class="navbar-brand">
+    <router-link to="/category/blog/" class="navbar-item">
+      <img src="https://fullstackweekly.azureedge.net/wp-content/uploads/2017/03/logo-horizontal.png"
+      id="vwp-logo" alt="Full Stack Weekly" exact/></router-link>
+
+    <div class="navbar-burger burger" data-target="navMenuColorprimary-example" v-on:click="toggleMenu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <div v-bind:class="{ 'navbar-menu': true, 'is-active': isMenuActive }">
+    <div class="navbar-start">
+    </div>
+
+    <div v-bind:class="{ 'navbar-end': true, 'is-active': isMenuActive }">
+      <div class="navbar-item">
         <span v-on:click="closeMenu">
-          <router-link  class="is-tab nav-item" to="/category/blog/">Personal Blog</router-link>
+          <router-link class="is-tab nav-item" to="/category/blog/">Personal Blog</router-link>
         </span>
+      </div>
+      <div class="navbar-item">
         <span v-on:click="closeMenu">
           <router-link  class="is-tab nav-item" to="/category/learning-paths/">Learning Paths</router-link>
         </span>
+      </div>
+      <div class="navbar-item">
         <span v-on:click="closeMenu">
           <router-link  class="is-tab nav-item" to="/category/newsletter/">Newsletter</router-link>
         </span>
+      </div>
+      <div class="navbar-item">
         <span v-on:click="closeMenu">
           <router-link  class="is-tab nav-item" to="/page/about-bill/">About</router-link>
         </span>
-        <div class="nav-item">
+      </div>
+      <div class="navbar-item">
+        <div class="field is-grouped">
+          <p class="control">
           <a class="button" target="_blank" rel="noopener" href="https://twitter.com/bstavroulakis">
             <span class="icon">
               <i class="icon-twitter"></i>
             </span>
             <span>Bill Stavroulakis</span>
           </a>
+          </p>
         </div>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
 </template>
 <script>
 // import { mapGetters, mapActions } from 'vuex'
