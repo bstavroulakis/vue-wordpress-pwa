@@ -22,10 +22,6 @@ const getCategory = ({commit, state, dispatch}, params) => {
     params.page = 1
   }
 
-  if (typeof window !== 'undefined' && state.single && state.single.slug !== params.page) {
-    commit('RESET_CATEGORIES')
-  }
-
   return new Promise((resolve, reject) => {
     wordpressService.getCategory(null, params.categorySlug, params.parentId).then((responseCategories) => {
       state.page = params.page
