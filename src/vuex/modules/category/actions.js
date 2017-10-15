@@ -22,6 +22,11 @@ const getCategory = ({commit, state, dispatch}, params) => {
     params.page = 1
   }
 
+  if (typeof window !== 'undefined') {
+    state.categories = []
+    state.single = {}
+  }
+
   return new Promise((resolve, reject) => {
     wordpressService.getCategory(null, params.categorySlug, params.parentId).then((responseCategories) => {
       state.page = params.page
@@ -57,13 +62,8 @@ const getPost = ({commit, state}, postSlug) => {
   })
 }
 
-const resetCategories = ({commit, state}) => {
-  commit('RESET_CATEGORIES')
-}
-
 export {
   getCategory,
   getCategoryPosts,
-  getPost,
-  resetCategories
+  getPost
 }
