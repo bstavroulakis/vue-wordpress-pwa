@@ -91,7 +91,7 @@
     "rimraf": "2.6.2",
     "sass-loader": "6.0.6",
     "serve-favicon": "2.4.5",
-    "sinon": "3.3.0",
+    "sinon": "4.0.1",
     "sinon-chai": "2.14.0",
     "url-loader": "0.5.9",
     "vue-loader": "13.3.0",
