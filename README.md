@@ -4,7 +4,7 @@
 
 Live version: [https://www.fullstackweekly.com/](https://www.fullstackweekly.com/)
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/singapore/renovate/master/license) [![Build Status](https://travis-ci.org/bstavroulakis/vue-wordpress-pwa.svg?branch=master)](https://travis-ci.org/bstavroulakis/vue-wordpress-pwa) https://david-dm.org/bstavroulakis/vue-wordpress-pwa.svg
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/singapore/renovate/master/license) [![Build Status](https://travis-ci.org/bstavroulakis/vue-wordpress-pwa.svg?branch=master)](https://travis-ci.org/bstavroulakis/vue-wordpress-pwa) [![David](https://david-dm.org/bstavroulakis/vue-wordpress-pwa.svg)](https://david-dm.org/bstavroulakis/vue-wordpress-pwa)
 
 ![alt tag](https://api.fullstackweekly.com/wp-content/uploads/2017/03/vue-wordpress-pwa.png)
 
