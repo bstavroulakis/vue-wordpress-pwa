@@ -28,10 +28,10 @@ export default {
   components: {
     'vwp-subcategory': VwpSubcategory
   },
-  data: () => {
-    return {
-      firstRun: true
-    }
+  computed: {
+    ...mapGetters('category', [
+      'categories'
+    ])
   },
   methods: {
     ...mapActions('category', {
@@ -46,11 +46,6 @@ export default {
       this.loadPosts()
     }
   },
-  computed: {
-    ...mapGetters('category', [
-      'categories'
-    ])
-  },
   prefetch: fetchInitialData,
   created () {
     this.loadPosts()
@@ -58,7 +53,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .personal-card{
     display: flex;
     padding: 10px;

@@ -4,6 +4,8 @@
 
 Live version: [https://www.fullstackweekly.com/](https://www.fullstackweekly.com/)
 
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/singapore/renovate/master/license)
+
 ![alt tag](https://api.fullstackweekly.com/wp-content/uploads/2017/03/vue-wordpress-pwa.png)
 
 ## Lighthouse Score
@@ -92,7 +94,7 @@ and as the path select your forked Github project.
 
 Your site should be running on the path you created (https://[fullstackweekly].azurewebsites.net)!
 
-It should work offline as well and with every commit it will deploy the changes to Azure. 
+It should work offline as well and with every commit it will deploy the changes to Azure.
 Once the user refreshes the site he will receive the new cached version `immediately`.
 
 License

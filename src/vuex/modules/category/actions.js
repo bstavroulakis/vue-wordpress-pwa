@@ -1,5 +1,9 @@
 import wordpressService from '../../../app.service'
 const getCategory = ({commit, state, dispatch}, params) => {
+  if (typeof window !== 'undefined') {
+    commit('RESET_CATEGORIES')
+  }
+
   return new Promise((resolve, reject) => {
     if (!params.categorySlug && !params.parentId) {
       params.categorySlug = state.categories[0].slug
@@ -52,8 +56,13 @@ const getPost = ({commit, state}, postSlug) => {
   })
 }
 
+const resetCategories = ({commit, state}) => {
+  commit('RESET_CATEGORIES')
+}
+
 export {
   getCategory,
   getCategoryPosts,
-  getPost
+  getPost,
+  resetCategories
 }

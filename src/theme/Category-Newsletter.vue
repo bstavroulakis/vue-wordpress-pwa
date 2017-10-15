@@ -23,6 +23,11 @@ export default {
     'app-newsletter': AppNewsletter,
     'vwp-subcategory': VwpSubcategory
   },
+  computed: {
+    ...mapGetters('category', [
+      'categories'
+    ])
+  },
   methods: {
     ...mapActions('category', {
       getCategory: 'getCategory'
@@ -35,11 +40,6 @@ export default {
     '$route' (to, from) {
       this.loadData()
     }
-  },
-  computed: {
-    ...mapGetters('category', [
-      'categories'
-    ])
   },
   prefetch: fetchInitialData,
   created () {

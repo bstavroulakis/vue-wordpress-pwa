@@ -45,19 +45,19 @@ export default {
       'paths'
     ])
   },
-  watch: {
-    '$route' (to, from) {
-      this.loadData()
-    }
-  },
   methods: {
     loadData () {
       fetchInitialData(this.$store, this.$route)
     }
   },
+  watch: {
+    '$route' (to, from) {
+      this.loadData()
+    }
+  },
   prefetch: fetchInitialData,
   created () {
-    fetchInitialData(this.$store, this.$route)
+    this.loadData()
   }
 }
 </script>

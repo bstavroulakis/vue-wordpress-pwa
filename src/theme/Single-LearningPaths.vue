@@ -67,11 +67,6 @@ export default {
       'single'
     ])
   },
-  watch: {
-    '$route' (to, from) {
-      this.loadData()
-    }
-  },
   methods: {
     getPrev: function () {
       var self = this
@@ -97,9 +92,14 @@ export default {
       fetchInitialData(this.$store, this.$route)
     }
   },
+  watch: {
+    '$route' (to, from) {
+      this.getPost({page: to.params.page})
+    }
+  },
   prefetch: fetchInitialData,
   created () {
-    fetchInitialData(this.$store, this.$route)
+    this.loadData()
   }
 }
 </script>

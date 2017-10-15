@@ -38,9 +38,7 @@ export default {
   },
   prefetch: fetchInitialData,
   created () {
-    if (!this.single || !this.single.slug || this.single.slug) {
-      fetchInitialData(this.$store, this.$route)
-    }
+    this.loadData()
   }
 }
 </script>

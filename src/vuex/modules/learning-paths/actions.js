@@ -37,6 +37,10 @@ const getFirstPost = ({commit, state}, params) => {
 }
 
 const getPath = ({commit, state}, params) => {
+  if (typeof window !== 'undefined') {
+    state.posts = []
+  }
+
   return new Promise((resolve, reject) => {
     wordpressService.getCategory(null, params.categorySlug, null).then((categories) => {
       wordpressService.getPosts(categories[0].id, 1, 50, 'asc').then((data) => {
@@ -52,7 +56,10 @@ const getPath = ({commit, state}, params) => {
 }
 
 const getPost = ({commit, state}, params) => {
-  state.single = null
+  if (typeof window !== 'undefined') {
+    state.single = {}
+  }
+
   return new Promise((resolve, reject) => {
     let postId = state.posts[0].id
     for (var i = 0; i < state.posts.length; i++) {
