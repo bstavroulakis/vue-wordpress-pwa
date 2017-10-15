@@ -52,7 +52,7 @@
     "vue-router": "^2.8.1",
     "vue-server-renderer": "^2.5.2",
     "vuex": "^2.5.0",
-    "vuex-router-sync": "^4.3.2"
+    "vuex-router-sync": "^5.0.0"
   },
   "devDependencies": {
     "babel-core": "6.26.0",
