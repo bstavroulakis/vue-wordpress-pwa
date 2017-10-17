@@ -12,12 +12,12 @@ const favicon = require('serve-favicon')
 const serialize = require('serialize-javascript')
 const createBundleRenderer = require('vue-server-renderer').createBundleRenderer
 
-var allowCrossDomain = function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', 'fullstackweekly-client.azureedge.net');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
+var allowCrossDomain = function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', 'fullstackweekly-client.azureedge.net')
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
+  res.header('Access-Control-Allow-Headers', 'Content-Type')
 
-    next();
+  next()
 }
 
 function shouldCompress (req, res) {
@@ -28,16 +28,16 @@ function shouldCompress (req, res) {
   return true
 }
 
-var cacheControl = function(req, res, next) {
+var cacheControl = function (req, res, next) {
   if (isProd) {
     res.header('Cache-Control', 'public, max-age=86400, no-cache') // one day
   } else {
     res.header('Cache-Control', 'no-cache, no-store, must-revalidate') // never
-  } 
+  }
   next()
 }
 
-var strictTransportSecurity = function(req, res, next) {
+var strictTransportSecurity = function (req, res, next) {
   res.header('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload')
   next()
 }
@@ -49,11 +49,11 @@ const indexHTML = (() => {
     template = fs.readFileSync(resolve('./dist/index.html'), 'utf-8')
     template = template.replace(/{{ SCRIPTS }}/gmi, '')
     template = template.replace('{{ STYLES }}', '')
-    template = template.replace('<link href="/assets/styles', '<link href="{{ CDN }}/styles')
+    template = template.replace('<link href="/assets/styles', '<link rel="stylesheet" href="{{ CDN }}/styles media="all" ')
     template = template.replace(/<script type="text\/javascript" src="\/assets/gmi, '<script type="text/javascript" src="{{ CDN }}/')
   } else {
     template = fs.readFileSync(resolve('./index.html'), 'utf-8')
-    template = template.replace('{{ STYLES }}', '<link rel="stylesheet" href="{{ CDN }}/styles.css">')
+    template = template.replace('{{ STYLES }}', '<link rel="stylesheet" href="{{ CDN }}/styles.css" media="all">')
     template = template.replace(/{{ SCRIPTS }}/gmi, '<script defer src="{{ CDN }}/js/vendor.js"></script><script defer src="{{ CDN }}/js/app.js"></script>')
   }
   template = template.replace(/{{ CDN }}/gmi, cdnClient)
@@ -75,7 +75,7 @@ if (isProd) {
   app.use('/', express.static(resolve('./dist')))
   app.use(favicon(path.resolve(__dirname, './dist/favicon.ico')))
 } else {
-  app.use('/dist', express.static(resolve('./dist'))) 
+  app.use('/dist', express.static(resolve('./dist')))
   app.use(favicon(path.resolve(__dirname, 'src/assets/favicon.ico')))
 }
 
@@ -95,20 +95,19 @@ app.get('*', (req, res) => {
     return res.end('waiting for compilation... refresh in a moment.')
   }
 
-  var s = Date.now()
   const context = { url: req.url }
   renderer.renderToString(context, (err, html) => {
     if (err) {
-      console.log('Error rendering to string: ');
-      console.log(err);
-      console.log(err.message);
-      return res.status(200).send('Server Error');
+      console.log('Error rendering to string: ')
+      console.log(err)
+      console.log(err.message)
+      return res.status(200).send('Server Error')
     }
-    html = indexHTML.replace('{{ APP }}', html);
-    html = html.replace('{{ STATE }}', `<script>window.__INITIAL_STATE__=${serialize(context.initialState, { isJSON: true })}</script>`);
-    res.setHeader('Content-Length', Buffer.byteLength(html));
-    res.write(html);
-    res.end();
+    html = indexHTML.replace('{{ APP }}', html)
+    html = html.replace('{{ STATE }}', `<script>window.__INITIAL_STATE__=${serialize(context.initialState, { isJSON: true })}</script>`)
+    res.setHeader('Content-Length', Buffer.byteLength(html))
+    res.write(html)
+    res.end()
   })
 })
 

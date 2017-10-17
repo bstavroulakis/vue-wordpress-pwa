@@ -1,8 +1,15 @@
 <template>
-    <div id="vwp-post-card" :class="{'card':true,'new':isNew(post.date)}">
+    <div :class="{'vwp-post-card': true, 'card':true, 'new':isNew(post.date)}">
       <div class="card-image">
         <figure class="image" v-if="post.better_featured_image && post.better_featured_image.media_details.sizes.medium">
-          <img v-bind:src="cdnUrl(post.better_featured_image.media_details.sizes.medium.source_url)" v-bind:alt="post.better_featured_image.description">
+          <clazy-load v-bind:src="cdnUrl(post.better_featured_image.media_details.sizes.medium.source_url)">
+            <img v-bind:alt="post.better_featured_image.description"
+              v-bind:src="cdnUrl(post.better_featured_image.media_details.sizes.medium.source_url)"
+             slot="image">
+            <div slot="placeholder">
+              ...
+            </div>
+          </clazy-load>
         </figure>
       </div>
       <div class="card-content" v-if="post && post.title">
@@ -29,6 +36,7 @@
 </template>
 
 <script>
+import Config from '../app.config.js'
 export default {
   name: 'vwp-post-card',
   props: ['post', 'categorySlug', 'newFlag'],
@@ -39,7 +47,7 @@ export default {
       }
     },
     cdnUrl: function (url) {
-      return url.replace('https://api.fullstackweekly.com', 'https://fullstackweekly.azureedge.net')
+      return url.replace('https://api.fullstackweekly.com/', Config.wpDomain)
     },
     isNew: function (postDateStr) {
       let postDate = new Date(postDateStr)
@@ -53,7 +61,7 @@ export default {
 
 <style lang="scss">
   @import '../_variables';
-  #vwp-post-card{
+  .vwp-post-card{
     min-height: 350px;
     padding-bottom: 40px;
     height:100%;

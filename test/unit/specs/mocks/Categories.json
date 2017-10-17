@@ -1,0 +1,392 @@
+[
+  {
+    "id": 26,
+    "name": "Blog",
+    "title": "Blog",
+    "slug": "blog",
+    "posts": [
+      {
+        "id": 1177,
+        "date": "2017-10-12T04:52:30",
+        "slug": "single-page-applications-with-vue-js-pluralsight-course",
+        "title": {
+          "rendered": "Single Page Applications with Vue.js | Pluralsight Course"
+        },
+        "excerpt": {
+          "rendered": "\\u003Cp\\u003ECheck out my new course on Pluralsight with the title &#8220;Single Page Applications with Vue.js&#8220;. Here is the course description: &#8220;How can you create a full-blown application with one of the most popular JavaScript frameworks, Vue.js? In this course, Single Page Applications with Vue.js, you&#8217;ll learn how to setup the environment and build processes necessary [&hellip;]\\u003C\\u002Fp\\u003E\n",
+          "protected": false
+        },
+        "better_featured_image": {
+          "id": 1178,
+          "alt_text": "",
+          "caption": "",
+          "description": "",
+          "media_type": "image",
+          "media_details": {
+            "width": 606,
+            "height": 542,
+            "file": "2017\\u002F10\\u002FScreen-Shot-2017-10-11-at-7.50.35-PM.png",
+            "sizes": {
+              "thumbnail": {
+                "file": "Screen-Shot-2017-10-11-at-7.50.35-PM-150x150.png",
+                "width": 150,
+                "height": 150,
+                "mime-type": "image\\u002Fpng",
+                "source_url": "https:\\u002F\\u002Fapi.fullstackweekly.com\\u002Fwp-content\\u002Fuploads\\u002F2017\\u002F10\\u002FScreen-Shot-2017-10-11-at-7.50.35-PM-150x150.png"
+              },
+              "medium": {
+                "file": "Screen-Shot-2017-10-11-at-7.50.35-PM-300x268.png",
+                "width": 300,
+                "height": 268,
+                "mime-type": "image\\u002Fpng",
+                "source_url": "https:\\u002F\\u002Fapi.fullstackweekly.com\\u002Fwp-content\\u002Fuploads\\u002F2017\\u002F10\\u002FScreen-Shot-2017-10-11-at-7.50.35-PM-300x268.png"
+              }
+            },
+            "image_meta": {
+              "aperture": "0",
+              "credit": "",
+              "camera": "",
+              "caption": "",
+              "created_timestamp": "0",
+              "copyright": "",
+              "focal_length": "0",
+              "iso": "0",
+              "shutter_speed": "0",
+              "title": "",
+              "orientation": "0",
+              "keywords": []
+            }
+          },
+          "post": 1177,
+          "source_url": "https:\\u002F\\u002Fapi.fullstackweekly.com\\u002Fwp-content\\u002Fuploads\\u002F2017\\u002F10\\u002FScreen-Shot-2017-10-11-at-7.50.35-PM.png"
+        }
+      },
+      {
+        "id": 1076,
+        "date": "2017-07-10T20:36:41",
+        "slug": "javascript-meetup-hamburg-getting-started-with-progressive-web-apps",
+        "title": {
+          "rendered": "JavaScript Meetup Hamburg &#8211; Getting Started with Progressive Web Apps"
+        },
+        "excerpt": {
+          "rendered": "\\u003Cp\\u003ESee you this Wednesday at Hamburg&#8217;s JavaScript Meetup! I will be presenting a lighting talk on &#8220;Getting Started with Progressive Web Apps&#8221;. Watch the full talk on Youtube JavaScript Meetup Wednesday, Jul 12, 2017, 7:00 PM Mesosphere GmbHSandtorkai 50 Hamburg, DE 97 JavaScripters Went Here it is: a Midsummer night&#8217;s meetup. We&#8217;ll have (at least) [&hellip;]\\u003C\\u002Fp\\u003E\n",
+          "protected": false
+        },
+        "better_featured_image": {
+          "id": 1077,
+          "alt_text": "",
+          "caption": "",
+          "description": "",
+          "media_type": "image",
+          "media_details": {
+            "width": "1042",
+            "height": "580",
+            "file": "2017\\u002F07\\u002Fpwa.jpg",
+            "sizes": {
+              "thumbnail": {
+                "file": "pwa-150x150.jpg",
+                "width": "150",
+                "height": "150",
+                "mime-type": "image\\u002Fjpeg",
+                "source_url": "https:\\u002F\\u002Fapi.fullstackweekly.com\\u002Fwp-content\\u002Fuploads\\u002F2017\\u002F07\\u002Fpwa-150x150.jpg"
+              },
+              "medium": {
+                "file": "pwa-300x167.jpg",
+                "width": "300",
+                "height": "167",
+                "mime-type": "image\\u002Fjpeg",
+                "source_url": "https:\\u002F\\u002Fapi.fullstackweekly.com\\u002Fwp-content\\u002Fuploads\\u002F2017\\u002F07\\u002Fpwa-300x167.jpg"
+              },
+              "medium_large": {
+                "file": "pwa-768x427.jpg",
+                "width": "768",
+                "height": "427",
+                "mime-type": "image\\u002Fjpeg",
+                "source_url": "https:\\u002F\\u002Fapi.fullstackweekly.com\\u002Fwp-content\\u002Fuploads\\u002F2017\\u002F07\\u002Fpwa-768x427.jpg"
+              },
+              "large": {
+                "file": "pwa-1024x570.jpg",
+                "width": "1024",
+                "height": "570",
+                "mime-type": "image\\u002Fjpeg",
+                "source_url": "https:\\u002F\\u002Fapi.fullstackweekly.com\\u002Fwp-content\\u002Fuploads\\u002F2017\\u002F07\\u002Fpwa-1024x570.jpg"
+              }
+            },
+            "image_meta": {
+              "aperture": "0",
+              "credit": "bstav",
+              "camera": "",
+              "caption": "",
+              "created_timestamp": "0",
+              "copyright": "",
+              "focal_length": "0",
+              "iso": "0",
+              "shutter_speed": "0",
+              "title": "",
+              "orientation": "0"
+            }
+          },
+          "post": 1076,
+          "source_url": "https:\\u002F\\u002Fapi.fullstackweekly.com\\u002Fwp-content\\u002Fuploads\\u002F2017\\u002F07\\u002Fpwa.jpg"
+        }
+      },
+      {
+        "id": 1003,
+        "date": "2017-05-29T00:12:02",
+        "slug": "google-io-2017",
+        "title": {
+          "rendered": "Google I\\u002FO 2017"
+        },
+        "excerpt": {
+          "rendered": "\\u003Cp\\u003EGoogle I\\u002FO 2017 was amazing. A lot of sessions\\u002F updates on Progressive Web Apps and Polymer.js 2.0. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;\\u003C\\u002Fp\\u003E\n",
+          "protected": false
+        },
+        "better_featured_image": {
+          "id": 1004,
+          "alt_text": "Google",
+          "caption": "",
+          "description": "",
+          "media_type": "image",
+          "media_details": {
+            "width": "800",
+            "height": "600",
+            "file": "2017\\u002F05\\u002F00.jpg",
+            "sizes": {
+              "thumbnail": {
+                "file": "00-150x150.jpg",
+                "width": "150",
+                "height": "150",
+                "mime-type": "image\\u002Fjpeg",
+                "source_url": "https:\\u002F\\u002Fapi.fullstackweekly.com\\u002Fwp-content\\u002Fuploads\\u002F2017\\u002F05\\u002F00-150x150.jpg"
+              },
+              "medium": {
+                "file": "00-300x225.jpg",
+                "width": "300",
+                "height": "225",
+                "mime-type": "image\\u002Fjpeg",
+                "source_url": "https:\\u002F\\u002Fapi.fullstackweekly.com\\u002Fwp-content\\u002Fuploads\\u002F2017\\u002F05\\u002F00-300x225.jpg"
+              },
+              "medium_large": {
+                "file": "00-768x576.jpg",
+                "width": "768",
+                "height": "576",
+                "mime-type": "image\\u002Fjpeg",
+                "source_url": "https:\\u002F\\u002Fapi.fullstackweekly.com\\u002Fwp-content\\u002Fuploads\\u002F2017\\u002F05\\u002F00-768x576.jpg"
+              }
+            },
+            "image_meta": {
+              "aperture": "0",
+              "credit": "",
+              "camera": "Redmi 3",
+              "caption": "",
+              "created_timestamp": "1495136397",
+              "copyright": "",
+              "focal_length": "4.22",
+              "iso": "100",
+              "shutter_speed": "0.0045248868778281",
+              "title": "",
+              "orientation": "1"
+            }
+          },
+          "post": 1003,
+          "source_url": "https:\\u002F\\u002Fapi.fullstackweekly.com\\u002Fwp-content\\u002Fuploads\\u002F2017\\u002F05\\u002F00.jpg"
+        }
+      },
+      {
+        "id": 914,
+        "date": "2017-05-07T22:51:47",
+        "slug": "accessibility-hackathon-2017",
+        "title": {
+          "rendered": "Accessibility Hackathon 2017"
+        },
+        "excerpt": {
+          "rendered": "\\u003Cp\\u003EDuring this weekend I had the great opportunity to participate as a speaker and mentor at the Accessibility Hackathon at the Eugenides Foundation. High-school and university students came together with the various communities representing disabilities of every kind and created Accessible Apps. Accessibility Hackathon Logo Web Accessibility Accessibility Speech Braille Accessibility Standards Teams Preparing their Projects [&hellip;]\\u003C\\u002Fp\\u003E\n",
+          "protected": false
+        },
+        "better_featured_image": {
+          "id": 919,
+          "alt_text": "",
+          "caption": "",
+          "description": "",
+          "media_type": "image",
+          "media_details": {
+            "width": "800",
+            "height": "600",
+            "file": "2017\\u002F05\\u002F00-Logo.jpg",
+            "sizes": {
+              "thumbnail": {
+                "file": "00-Logo-150x150.jpg",
+                "width": "150",
+                "height": "150",
+                "mime-type": "image\\u002Fjpeg",
+                "source_url": "https:\\u002F\\u002Fapi.fullstackweekly.com\\u002Fwp-content\\u002Fuploads\\u002F2017\\u002F05\\u002F00-Logo-150x150.jpg"
+              },
+              "medium": {
+                "file": "00-Logo-300x225.jpg",
+                "width": "300",
+                "height": "225",
+                "mime-type": "image\\u002Fjpeg",
+                "source_url": "https:\\u002F\\u002Fapi.fullstackweekly.com\\u002Fwp-content\\u002Fuploads\\u002F2017\\u002F05\\u002F00-Logo-300x225.jpg"
+              },
+              "medium_large": {
+                "file": "00-Logo-768x576.jpg",
+                "width": "768",
+                "height": "576",
+                "mime-type": "image\\u002Fjpeg",
+                "source_url": "https:\\u002F\\u002Fapi.fullstackweekly.com\\u002Fwp-content\\u002Fuploads\\u002F2017\\u002F05\\u002F00-Logo-768x576.jpg"
+              }
+            },
+            "image_meta": {
+              "aperture": "0",
+              "credit": "",
+              "camera": "Redmi 3",
+              "caption": "",
+              "created_timestamp": "1494069923",
+              "copyright": "",
+              "focal_length": "4.22",
+              "iso": "104",
+              "shutter_speed": "0.041666666666667",
+              "title": "",
+              "orientation": "1"
+            }
+          },
+          "post": 914,
+          "source_url": "https:\\u002F\\u002Fapi.fullstackweekly.com\\u002Fwp-content\\u002Fuploads\\u002F2017\\u002F05\\u002F00-Logo.jpg"
+        }
+      },
+      {
+        "id": 776,
+        "date": "2017-04-09T20:09:17",
+        "slug": "mvp-community-connection-cee-2017",
+        "title": {
+          "rendered": "MVP Community Connection CEE 2017"
+        },
+        "excerpt": {
+          "rendered": "\\u003Cp\\u003EWhat a privilege was it to attend the MVP Community Connection CEE 2017. A very informative event helping the community to network and share their expertise. Flight to Belgrade Serbia from Athens &nbsp; Keynote &nbsp; 5 Years MVP! &nbsp; The Power of the MVP\\u002FRD Community Talk &nbsp; Lego Serious Play Workshop: Community Leadership &nbsp; What [&hellip;]\\u003C\\u002Fp\\u003E\n",
+          "protected": false
+        },
+        "better_featured_image": {
+          "id": 799,
+          "alt_text": "",
+          "caption": "",
+          "description": "",
+          "media_type": "image",
+          "media_details": {
+            "width": "1024",
+            "height": "768",
+            "file": "2017\\u002F04\\u002FIMG_20170407_095055-1024x768-1.jpg",
+            "sizes": {
+              "thumbnail": {
+                "file": "IMG_20170407_095055-1024x768-1-150x150.jpg",
+                "width": "150",
+                "height": "150",
+                "mime-type": "image\\u002Fjpeg",
+                "source_url": "https:\\u002F\\u002Fapi.fullstackweekly.com\\u002Fwp-content\\u002Fuploads\\u002F2017\\u002F04\\u002FIMG_20170407_095055-1024x768-1-150x150.jpg"
+              },
+              "medium": {
+                "file": "IMG_20170407_095055-1024x768-1-300x225.jpg",
+                "width": "300",
+                "height": "225",
+                "mime-type": "image\\u002Fjpeg",
+                "source_url": "https:\\u002F\\u002Fapi.fullstackweekly.com\\u002Fwp-content\\u002Fuploads\\u002F2017\\u002F04\\u002FIMG_20170407_095055-1024x768-1-300x225.jpg"
+              },
+              "medium_large": {
+                "file": "IMG_20170407_095055-1024x768-1-768x576.jpg",
+                "width": "768",
+                "height": "576",
+                "mime-type": "image\\u002Fjpeg",
+                "source_url": "https:\\u002F\\u002Fapi.fullstackweekly.com\\u002Fwp-content\\u002Fuploads\\u002F2017\\u002F04\\u002FIMG_20170407_095055-1024x768-1-768x576.jpg"
+              },
+              "large": {
+                "file": "IMG_20170407_095055-1024x768-1-1024x768.jpg",
+                "width": "1024",
+                "height": "768",
+                "mime-type": "image\\u002Fjpeg",
+                "source_url": "https:\\u002F\\u002Fapi.fullstackweekly.com\\u002Fwp-content\\u002Fuploads\\u002F2017\\u002F04\\u002FIMG_20170407_095055-1024x768-1-1024x768.jpg"
+              }
+            },
+            "image_meta": {
+              "aperture": "0",
+              "credit": "",
+              "camera": "",
+              "caption": "",
+              "created_timestamp": "0",
+              "copyright": "",
+              "focal_length": "0",
+              "iso": "0",
+              "shutter_speed": "0",
+              "title": "",
+              "orientation": "0"
+            }
+          },
+          "post": 776,
+          "source_url": "https:\\u002F\\u002Fapi.fullstackweekly.com\\u002Fwp-content\\u002Fuploads\\u002F2017\\u002F04\\u002FIMG_20170407_095055-1024x768-1.jpg"
+        }
+      },
+      {
+        "id": 479,
+        "date": "2017-01-30T02:22:33",
+        "slug": "gdg-thessaloniki-devfest-4",
+        "title": {
+          "rendered": "GDG Thessaloniki &#8211; Devfest #4"
+        },
+        "excerpt": {
+          "rendered": "\\u003Cp\\u003EIt was an amazing experience to talk at the GDG Thessaloniki &#8211; Devfest #4. I had the opportunity to present Progressive Web Apps and meet with the community of Thessaloniki. I hope to see you all at the GDG Athens event!\\u003C\\u002Fp\\u003E\n",
+          "protected": false
+        },
+        "better_featured_image": {
+          "id": 548,
+          "alt_text": "",
+          "caption": "",
+          "description": "",
+          "media_type": "image",
+          "media_details": {
+            "width": 960,
+            "height": 636,
+            "file": "2017\\u002F01\\u002F16265362_1259936327385814_336388734701793651_n-1.jpg",
+            "sizes": {
+              "thumbnail": {
+                "file": "16265362_1259936327385814_336388734701793651_n-1-150x150.jpg",
+                "width": 150,
+                "height": 150,
+                "mime-type": "image\\u002Fjpeg",
+                "source_url": "https:\\u002F\\u002Fapi.fullstackweekly.com\\u002Fwp-content\\u002Fuploads\\u002F2017\\u002F01\\u002F16265362_1259936327385814_336388734701793651_n-1-150x150.jpg"
+              },
+              "medium": {
+                "file": "16265362_1259936327385814_336388734701793651_n-1-300x199.jpg",
+                "width": 300,
+                "height": 199,
+                "mime-type": "image\\u002Fjpeg",
+                "source_url": "https:\\u002F\\u002Fapi.fullstackweekly.com\\u002Fwp-content\\u002Fuploads\\u002F2017\\u002F01\\u002F16265362_1259936327385814_336388734701793651_n-1-300x199.jpg"
+              },
+              "medium_large": {
+                "file": "16265362_1259936327385814_336388734701793651_n-1-768x509.jpg",
+                "width": 768,
+                "height": 509,
+                "mime-type": "image\\u002Fjpeg",
+                "source_url": "https:\\u002F\\u002Fapi.fullstackweekly.com\\u002Fwp-content\\u002Fuploads\\u002F2017\\u002F01\\u002F16265362_1259936327385814_336388734701793651_n-1-768x509.jpg"
+              }
+            },
+            "image_meta": {
+              "aperture": "0",
+              "credit": "",
+              "camera": "",
+              "caption": "",
+              "created_timestamp": "0",
+              "copyright": "",
+              "focal_length": "0",
+              "iso": "0",
+              "shutter_speed": "0",
+              "title": "",
+              "orientation": "0",
+              "keywords": []
+            }
+          },
+          "post": 479,
+          "source_url": "https:\\u002F\\u002Fapi.fullstackweekly.com\\u002Fwp-content\\u002Fuploads\\u002F2017\\u002F01\\u002F16265362_1259936327385814_336388734701793651_n-1.jpg"
+        }
+      }
+    ],
+    "totalPages": "8"
+  }
+]

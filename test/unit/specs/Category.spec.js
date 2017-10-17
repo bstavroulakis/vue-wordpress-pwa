@@ -1,12 +1,15 @@
 import 'es6-promise/auto'
 import Vue from 'vue'
-import store from '../../../src/vuex/store'
+import store from './vuex'
 import VueRouter from 'vue-router'
 import Category from '../../../src/theme/Category.vue'
+require('intersection-observer-polyfill/dist/IntersectionObserver.global')
+const VueClazyLoad = require('vue-clazy-load')
 
 describe('Category.vue', () => {
-  it('should load front-end links', (done) => {
+  it('loads front-end links', (done) => {
     Vue.use(VueRouter)
+    Vue.use(VueClazyLoad)
     const router = new VueRouter({
       routes: [
         { path: '/', component: Category, params: { page: 1, id: 'blog' } }
@@ -20,11 +23,11 @@ describe('Category.vue', () => {
       render: h => h('router-view')
     }).$mount()
 
-    setTimeout(() => {
-      console.log(vm.$el)
-      console.log(store.module)
-      // expect(vm.$el.querySelector('.category-posts').querySelectorAll('.column').length).to.equal(6)
-      done()
-    }, 1500)
+    store.watch(
+      (state) => {
+        expect(vm.$el.querySelectorAll('.category-posts-loaded .column').length).to.equal(6)
+        done()
+      }
+    )
   })
 })

@@ -1,5 +1,5 @@
 <template>
-  <div id="vwp-single">
+  <div class="vwp-single">
     <div v-if="single && single.content">
       <div v-show="!hideBack">
         <router-link :to="'/category/' + single.pure_taxonomies.categories[0].slug + '/'" class="single-back button is-pulled-left">
@@ -40,7 +40,7 @@ export default {
 
 <style lang="scss">
   @import '../_variables';
-  #vwp-single{ 
+  .vwp-single{
     pre {
       white-space: pre-wrap;
       white-space: -moz-pre-wrap;

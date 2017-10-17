@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 import VwpSubcategory from 'components/vwpSubcategory.vue'
 const fetchInitialData = (store, route) => {
   route.params.page = route.params.page || 1
@@ -42,9 +42,6 @@ export default {
     ])
   },
   methods: {
-    ...mapActions('category', {
-      getCategory: 'getCategory'
-    }),
     loadPosts () {
       fetchInitialData(this.$store, this.$route)
     }
@@ -61,7 +58,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .personal-card{
     display: flex;
     padding: 10px;

@@ -1,4 +1,5 @@
 import wordpressService from '../../../app.service'
+import defaultState from './defaultState'
 
 const getCategoryPromises = ({commit, state}, responseCategories, page) => {
   var postPromises = []
@@ -22,11 +23,16 @@ const getCategory = ({commit, state, dispatch}, params) => {
     params.page = 1
   }
 
-  // TODO: Reset categories, single while loading new ones
-  // if (typeof window !== 'undefined') {
-  //  state.categories = []
-  //  state.single = {}
-  // }
+  if (state.categories &&
+    state.categories.length > 0 &&
+    state.categories[0].slug === params.categorySlug &&
+    state.page === params.page) {
+    return
+  }
+
+  if (state) {
+    Object.assign(state, {}, defaultState)
+  }
 
   return new Promise((resolve, reject) => {
     wordpressService.getCategory(null, params.categorySlug, params.parentId).then((responseCategories) => {
@@ -56,6 +62,15 @@ const getCategoryPosts = ({commit, state}, params) => {
 }
 
 const getPost = ({commit, state}, postSlug) => {
+  if (state.single &&
+    state.single.slug === postSlug) {
+    return
+  }
+
+  if (state) {
+    Object.assign(state, {}, defaultState)
+  }
+
   return wordpressService.getPost(null, postSlug).then((post) => {
     commit('POST_UPDATED', post[0])
   }).catch(error => {

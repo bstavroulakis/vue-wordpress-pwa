@@ -7,35 +7,15 @@
         <p>
           <strong>Full Stack Weekly</strong> by <a target="_blank" rel="noopener" href="https://twitter.com/bstavroulakis">Bill Stavroulakis</a>.
         </p>
-        <p>
-          <div>
-            <a class="left margin_right"  rel="noopener" target="_blank" href="https://www.facebook.com/bstavroulakis">
-              <img alt="Facebook" style="height:40px;" :src="wpDomain + 'wp-content/uploads/2017/02/fbBtn.png'" />
-            </a>
-            <a class="left margin_right" rel="noopener" target="_blank" href="https://plus.google.com/u/0/+BillStavroulakis">
-              <img alt="Google Plus" style="height:40px;" :src="wpDomain + 'wp-content/uploads/2017/02/gPlusBtn.png'" />
-            </a>
-            <a class="left margin_right" rel="noopener" target="_blank" href="https://www.linkedin.com/in/bstavroulakis">
-              <img alt="LinkedIn" style="height:40px;" :src="wpDomain + 'wp-content/uploads/2017/02/linBtn.png'" />
-            </a>
-            <a class="left" rel="noopener" target="_blank" href="https://github.com/bstavroulakis">
-              <img alt="Github" style="height:40px;" :src="wpDomain + 'wp-content/uploads/2017/02/githubBtn.png'" />
-            </a>
-            <a class="left"  rel="noopener" target="_blank" href="https://stackoverflow.com/users/501402/billaraw">
-              <img alt="Stack Overflow" class="margin_right" style="height:40px;" :src="wpDomain + 'wp-content/uploads/2017/02/stackoverflow.png'" />
-            </a>
-            <a class="left margin_right" rel="noopener" target="_blank" href="https://twitter.com/bstavroulakis">
-              <img alt="Twitter" style="height:40px;" :src="wpDomain + 'wp-content/uploads/2017/02/twitteBtn.png'" />
-            </a>
-            <a class="left margin_right"  rel="noopener" target="_blank" href="https://www.youtube.com/user/bstavroulakis">
-              <img alt="Youtube" style="height:40px;" :src="wpDomain + 'wp-content/uploads/2017/02/youtubeBtn.png'" />
-            </a>
-            <a class="left" rel="noopener" href="mailto:bstavroulakis@gmail.com" >
-              <img alt="Mail" style="height:40px;" :src="wpDomain + 'wp-content/uploads/2017/02/emailBtn.png'" />
-            </a>
-            <div class="clearfix"></div>
-          </div>
-        </p>
+        <div class="display-inline">
+          <clazy-load class="alignleft" v-for="item in socialLinks" :key="item.alt" :src="item.src">
+            <img :alt="item.alt" :src="item.src" style="height:40px;" slot="image">
+            <div slot="placeholder">
+              ...
+            </div>
+          </clazy-load>
+          <div class="clearfix"></div>
+        </div>
       </div>
     </div>
     </footer>
@@ -49,11 +29,49 @@ export default {
   components: { 'app-newsletter': AppNewsletter },
   data: () => {
     return {
-      wpDomain: ''
+      socialLinks: [
+        {
+          alt: 'Facebook',
+          href: 'https://www.facebook.com/bstavroulakis',
+          src: `${Config.wpDomain}wp-content/uploads/2017/02/fbBtn.png`
+        },
+        {
+          alt: 'Google Plus',
+          href: 'https://plus.google.com/u/0/+BillStavroulakis',
+          src: `${Config.wpDomain}wp-content/uploads/2017/02/gPlusBtn.png`
+        },
+        {
+          alt: 'LinkedIn',
+          href: 'https://www.linkedin.com/in/bstavroulakis',
+          src: `${Config.wpDomain}wp-content/uploads/2017/02/linBtn.png`
+        },
+        {
+          alt: 'Github',
+          href: 'https://github.com/bstavroulakis',
+          src: `${Config.wpDomain}wp-content/uploads/2017/02/githubBtn.png`
+        },
+        {
+          alt: 'Stack Overflow',
+          href: 'https://stackoverflow.com/users/501402/billaraw',
+          src: `${Config.wpDomain}wp-content/uploads/2017/02/stackoverflow.png`
+        },
+        {
+          alt: 'Twitter',
+          href: 'https://twitter.com/bstavroulakis',
+          src: `${Config.wpDomain}wp-content/uploads/2017/02/twitteBtn.png`
+        },
+        {
+          alt: 'Youtube',
+          href: 'https://www.youtube.com/user/bstavroulakis',
+          src: `${Config.wpDomain}wp-content/uploads/2017/02/youtubeBtn.png`
+        },
+        {
+          alt: 'Mail',
+          href: 'mailto:bstavroulakis@gmail.com',
+          src: `${Config.wpDomain}wp-content/uploads/2017/02/emailBtn.png`
+        }
+      ]
     }
-  },
-  created () {
-    this.wpDomain = Config.wpDomain
   }
 }
 </script>
