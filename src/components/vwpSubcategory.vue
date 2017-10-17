@@ -14,7 +14,7 @@
         <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
         <div class="column is-one-third"><div class="card fake-card"><div class="card-content">&nbsp;</div></div></div>
       </div>
-      <div class="columns category-posts">
+      <div class="columns category-posts category-posts-loaded">
         <div class="column is-one-third" v-for="(item, index) in category.posts" v-bind:key="item.id">
           <vwp-post-card :post="item" :newFlag="newFlag" :categorySlug="category.slug"></vwp-post-card>
         </div>

@@ -7,7 +7,6 @@
       </div>
     </section>
     <app-footer></app-footer>
-    <vwp-notification></vwp-notification>
     <ga-analytics ua="UA-31484897-2"></ga-analytics>
   </div>
 </template>
@@ -15,7 +14,6 @@
 <script>
 import AppHeader from './AppHeader.vue'
 import AppFooter from './AppFooter.vue'
-import vwpNotification from 'components/vwpNotification.vue'
 import gaAnalytics from 'components/gaAnalytics.vue'
 
 export default {
@@ -23,7 +21,6 @@ export default {
   components: {
     'app-header': AppHeader,
     'app-footer': AppFooter,
-    'vwp-notification': vwpNotification,
     'ga-analytics': gaAnalytics
   }
 }
@@ -51,6 +48,9 @@ export default {
   }
   .is-fullwidth{
     width: 100%;
+  }
+  .display-inline{
+    display: inline-block;
   }
   .control {
     position: relative;

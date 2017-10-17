@@ -1,17 +1,17 @@
 <template>
-  <div id="vwpPaging">
+  <div class="vwp-paging">
     <div class="paging-wrapper">
       <div class="columns paging-wrapper-inner">
         <div v-for="(item, index) in pages" class="column paging-link" v-bind:key="item">
-          <router-link v-if="(item != '...')"  
-            v-bind:class="{ 'is-active': ((page == null && item === 1) || (item === page)) }" 
+          <router-link v-if="(item != '...')"
+            v-bind:class="{ 'is-active': ((page == null && item === 1) || (item === page)) }"
             :to="path + '/page/' + item + '/'">{{item}}</router-link>
           <div v-if="(item == '...')">{{item}}</div>
         </div>
       </div>
     </div>
   </div>
-</template> 
+</template>
 
 <script>
 export default {
@@ -61,7 +61,7 @@ export default {
 
 <style lang="scss">
   @import '../_variables';
-  #vwpPaging{
+  .vwp-paging{
     padding: $size-3;
     margin-right: 0;
     margin-left: 0;

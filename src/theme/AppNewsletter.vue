@@ -13,7 +13,9 @@
               <div id="mc_embed_signup_scroll">
                 <div class="control is-grouped">
                   <div class="control has-icon is-expanded">
-                    <input type="email" value="" name="EMAIL" class="input is-flat required email" id="mce-EMAIL" placeholder="email address" required="" aria-required="true">
+                    <label>
+                      <input type="email" value="" name="EMAIL" class="input is-flat required email" id="mce-EMAIL" placeholder="email address" required="" aria-required="true">
+                    </label>
                     <span class="icon is-small">
                       <i class="icon-mail-alt"></i>
                     </span>

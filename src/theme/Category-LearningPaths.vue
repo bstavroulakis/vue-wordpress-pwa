@@ -13,7 +13,14 @@
         <div class="card">
           <div class="card-image">
             <figure class="image" v-if="learningPath.better_featured_image">
-              <img v-bind:src="learningPath.better_featured_image.source_url" v-bind:alt="learningPath.better_featured_image.description">
+              <clazy-load v-bind:src="learningPath.better_featured_image.source_url">
+                <img v-bind:alt="learningPath.better_featured_image.description"
+                  v-bind:src="learningPath.better_featured_image.source_url"
+                slot="image">
+                <div slot="placeholder">
+                  ...
+                </div>
+              </clazy-load>
             </figure>
           </div>
           <div class="card-content">
