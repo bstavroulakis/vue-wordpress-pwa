@@ -5,10 +5,7 @@
 Live version: [https://www.fullstackweekly.com/](https://www.fullstackweekly.com/)
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/singapore/renovate/master/license) [![Build Status](https://travis-ci.org/bstavroulakis/vue-wordpress-pwa.svg?branch=master)](https://travis-ci.org/bstavroulakis/vue-wordpress-pwa) [![David](https://david-dm.org/bstavroulakis/vue-wordpress-pwa.svg)](https://david-dm.org/bstavroulakis/vue-wordpress-pwa)
-[![Lighthouse Accessibility Badge](https://api.fullstackweekly.com/services/lighthouse-score/Lighthouse_Accessibility.svg)](https://www.fullstackweekly.com/category/blog/)
-[![Lighthouse Best Practices Badge](https://api.fullstackweekly.com/services/lighthouse-score/Lighthouse_Best_Practices.svg)](https://www.fullstackweekly.com/category/blog/)
-[![Lighthouse Progressive Web App Badge](https://api.fullstackweekly.com/services/lighthouse-score/Lighthouse_Progressive_Web_App.svg)](https://www.fullstackweekly.com/category/blog/)
-[![Lighthouse Performance Badge](https://api.fullstackweekly.com/services/lighthouse-score/Lighthouse_Performance.svg)](https://www.fullstackweekly.com/category/blog/)
+[![Lighthouse Accessibility Badge](https://api.fullstackweekly.com/services/lighthouse-score/Lighthouse_Accessibility.svg)](https://www.fullstackweekly.com/category/blog/) [![Lighthouse Best Practices Badge](https://api.fullstackweekly.com/services/lighthouse-score/Lighthouse_Best_Practices.svg)](https://www.fullstackweekly.com/category/blog/) [![Lighthouse Progressive Web App Badge](https://api.fullstackweekly.com/services/lighthouse-score/Lighthouse_Progressive_Web_App.svg)](https://www.fullstackweekly.com/category/blog/) [![Lighthouse Performance Badge](https://api.fullstackweekly.com/services/lighthouse-score/Lighthouse_Performance.svg)](https://www.fullstackweekly.com/category/blog/)
 
 ![alt tag](https://api.fullstackweekly.com/wp-content/uploads/2017/03/vue-wordpress-pwa.png)
 
