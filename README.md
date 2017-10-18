@@ -9,10 +9,6 @@ Live version: [https://www.fullstackweekly.com/](https://www.fullstackweekly.com
 
 ![alt tag](https://api.fullstackweekly.com/wp-content/uploads/2017/03/vue-wordpress-pwa.png)
 
-## Lighthouse Score
-
-![alt tag](https://api.fullstackweekly.com/wp-content/uploads/2017/03/lighthouse.png)
-
 ## Description
 
 This is the code for the [FullStackWeekly](https://www.fullstackweekly.com/) website. You can use it as a starter pack for your WordPress site as well.
@@ -39,8 +35,6 @@ Make sure that [Node v7](https://nodejs.org/en/download/releases/) is installed.
 - Progressive Web App enabled with [service workers](https://developers.google.com/web/fundamentals/getting-started/primers/service-workers)
 - Offline capable with [service workers, app cache](https://developers.google.com/web/fundamentals/getting-started/primers/service-workers)
 - CSS with [Sass](http://sass-lang.com/)
-- Router via [Vue-router](https://github.com/vuejs/vue-router)
-- Web requests via [Vue-resource](https://github.com/pagekit/vue-resource)
 
 ### Instructions
 
@@ -51,7 +45,6 @@ First, install the WordPress plugins to enhance its REST API
 - REST API Enabler
 - WP REST API - filter fields
 - WP REST API - Pure Taxonomies
-- WP REST API Menus
 - WP-CORS
 
 Then, clone the repo or create a fork
