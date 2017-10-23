@@ -55,7 +55,7 @@ function networkFirstStrategy (request) {
   return fetchRequestAndCache(request).catch(function (response) {
     return caches.match(request).then(function (cacheResponse) {
       console.log('not found in cache or network')
-      return cacheResponse || caches.match('/')
+      return cacheResponse
     })
   })
 }
