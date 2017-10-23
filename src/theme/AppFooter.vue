@@ -9,7 +9,9 @@
         </p>
         <div class="display-inline">
           <clazy-load class="alignleft" v-for="item in socialLinks" :key="item.alt" :src="item.src">
-            <img :alt="item.alt" :src="item.src" style="height:40px;" slot="image">
+            <a :href="item.href" target="_blank">
+              <img :alt="item.alt" :src="item.src" style="height:40px;" slot="image">
+            </a>
             <div slot="placeholder">
               ...
             </div>
