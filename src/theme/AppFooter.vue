@@ -8,14 +8,14 @@
           <strong>Full Stack Weekly</strong> by <a target="_blank" rel="noopener" href="https://twitter.com/bstavroulakis">Bill Stavroulakis</a>.
         </p>
         <div class="display-inline">
-          <clazy-load class="alignleft" v-for="item in socialLinks" :key="item.alt" :src="item.src">
-            <a :href="item.href" target="_blank">
-              <img :alt="item.alt" :src="item.src" style="height:40px;" slot="image">
+            <a :href="item.href" target="_blank" v-for="item in socialLinks">
+              <clazy-load class="alignleft" :key="item.alt" :src="item.src">
+                <img :alt="item.alt" :src="item.src" style="height:40px;" slot="image">
+                <div slot="placeholder">
+                  ...
+                </div>
+              </clazy-load>
             </a>
-            <div slot="placeholder">
-              ...
-            </div>
-          </clazy-load>
           <div class="clearfix"></div>
         </div>
       </div>
