@@ -46,6 +46,8 @@ const indexHTML = (() => {
   let template = ''
   if (isProd) {
     template = fs.readFileSync(resolve('./dist/index.html'), 'utf-8')
+    template = template.replace('<link rel="stylesheet" href="/assets/styles.css" media="all">', '')
+    template = template.replace('<script defer src="/assets/js/vendor.js"></script><script defer src="/assets/js/app.js"></script>', '')
   } else {
     template = fs.readFileSync(resolve('./index.html'), 'utf-8')
   }
