@@ -48,7 +48,7 @@ const generateSwConfigFile = () => {
   return new Promise((resolve, reject) => {
     var swConfigFilename = 'sw_config_' + self.assetCacheHash + '.js';
     fs.outputFile( (dirPath + "/" + swConfigFilename), 'var config = ' +  JSON.stringify({
-      assets: self.assetFiles,
+      assets: self.assetFiles.concat('/'),
       paths:{api:config.wpDomain + 'wp-json', remote:config.wpDomain, client: config.client},
       cacheNames:{assetCache:`vwpCacheAsset-${self.assetCacheHash}`, remoteCache:`vwpCacheRemote-${self.assetCacheHash}`}
     }), () => {
