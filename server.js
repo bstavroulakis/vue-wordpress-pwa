@@ -2,7 +2,6 @@
 
 process.env.VUE_ENV = 'server'
 const isProd = !(process.env.NODE_ENV === 'development')
-const cdnClient = (isProd) ? 'https://fullstackweekly-client.azureedge.net' : '/assets'
 const fs = require('fs')
 const path = require('path')
 const resolve = file => path.resolve(__dirname, file)
@@ -47,16 +46,9 @@ const indexHTML = (() => {
   let template = ''
   if (isProd) {
     template = fs.readFileSync(resolve('./dist/index.html'), 'utf-8')
-    template = template.replace(/{{ SCRIPTS }}/gmi, '')
-    template = template.replace('{{ STYLES }}', '')
-    template = template.replace('<link href="/assets/styles', '<link rel="stylesheet" href="{{ CDN }}/styles media="all" ')
-    template = template.replace(/<script type="text\/javascript" src="\/assets/gmi, '<script type="text/javascript" src="{{ CDN }}/')
   } else {
     template = fs.readFileSync(resolve('./index.html'), 'utf-8')
-    template = template.replace('{{ STYLES }}', '<link rel="stylesheet" href="{{ CDN }}/styles.css" media="all">')
-    template = template.replace(/{{ SCRIPTS }}/gmi, '<script defer src="{{ CDN }}/js/vendor.js"></script><script defer src="{{ CDN }}/js/app.js"></script>')
   }
-  template = template.replace(/{{ CDN }}/gmi, cdnClient)
   return template
 })()
 
@@ -76,6 +68,8 @@ if (isProd) {
   app.use(favicon(path.resolve(__dirname, './dist/favicon.ico')))
 } else {
   app.use('/dist', express.static(resolve('./dist')))
+  app.use('/service-worker.js', express.static(resolve('./src/service-worker.js')))
+  app.use('/sw_config.js', express.static(resolve('./src/assets/sw-config.js')))
   app.use(favicon(path.resolve(__dirname, 'src/assets/favicon.ico')))
 }
 
@@ -103,8 +97,8 @@ app.get('*', (req, res) => {
       console.log(err.message)
       return res.status(200).send('Server Error')
     }
-    html = indexHTML.replace('{{ APP }}', html)
-    html = html.replace('{{ STATE }}', `<script>window.__INITIAL_STATE__=${serialize(context.initialState, { isJSON: true })}</script>`)
+    html = indexHTML.replace('<div id="app"></div>', html)
+    html = html.replace('<meta name="vue-state" />', `<script>window.__INITIAL_STATE__=${serialize(context.initialState, { isJSON: true })}</script>`)
     res.setHeader('Content-Length', Buffer.byteLength(html))
     res.write(html)
     res.end()

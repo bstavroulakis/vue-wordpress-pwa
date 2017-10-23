@@ -13,15 +13,16 @@
     <meta name="apple-mobile-web-app-title" content="Full Stack Weekly">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#287ab1">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ CDN }}/app-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/app-icon.png">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimal-ui">
     <link rel="manifest" href="/assets/manifest.json" />
-    {{ STYLES }}
-    {{ STATE }}
+    <link rel="stylesheet" href="/assets/styles.css" media="all">
+    <meta name="vue-state" />
   </head>
   <body>
-    {{ APP }}
-    {{ SCRIPTS }}
+    <div id="app"></div>
+    <script defer src="/assets/js/vendor.js"></script>
+    <script defer src="/assets/js/app.js"></script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
