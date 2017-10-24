@@ -10,7 +10,7 @@ var config = {
     "/assets/styles.css",
     "/assets/js/app.js",
     "/assets/js/vendor.js",
-    "/"
+    "/offline-redirect/"
   ],
   "paths": {
     "api": "https://fullstackweekly.azureedge.net/wp-json",

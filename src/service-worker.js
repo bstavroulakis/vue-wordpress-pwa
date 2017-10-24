@@ -30,14 +30,14 @@ self.addEventListener('fetch', function (event) {
   var requestUrl = new URL(event.request.url)
   var requestPath = requestUrl.pathname
 
-  if (stringContains(requestUrl.href, config.paths.api)) {
+  if (stringContains(event.request.url, config.paths.api)) {
     // console.log("network only");
     event.respondWith(fetch(event.request))
   } else if (config.assets.indexOf(requestPath) > -1) {
     // console.log("cache first:", requestUrl.href);
     event.respondWith(cacheFirstStrategy(event.request))
-  } else if (stringContains(requestUrl.href, config.paths.remote) ||
-           stringContains(requestUrl.href, config.paths.client)) {
+  } else if (stringContains(event.request.url, config.paths.remote) ||
+           stringContains(event.request.url, config.paths.client)) {
     // console.log("network first:", requestUrl.href, " current",currentDomain, "requestPath:", requestPath);
     event.respondWith(networkFirstStrategy(event.request))
   } else {
@@ -54,8 +54,15 @@ function cacheFirstStrategy (request) {
 function networkFirstStrategy (request) {
   return fetchRequestAndCache(request).catch(function (response) {
     return caches.match(request).then(function (cacheResponse) {
-      console.log('not found in cache or network')
-      return cacheResponse || caches.match('/')
+      if (!cacheResponse) {
+        var requestUrl = new URL(request.url)
+        var requestPath = requestUrl.pathname
+
+        if (stringContains(request.url, config.paths.client)) {
+          return caches.match('/offline-redirect/#' + requestPath)
+        }
+      }
+      return cacheResponse
     })
   })
 }

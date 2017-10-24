@@ -5,6 +5,7 @@ import ThemePagePage from '../theme/Page.vue'
 import ThemePageCategoryNewsletter from '../theme/Category-Newsletter.vue'
 import ThemePageCategoryLearningPaths from '../theme/Category-LearningPaths.vue'
 import ThemePageSingleLearningPaths from '../theme/Single-LearningPaths.vue'
+import OfflineRedirect from '../theme/OfflineRedirect.vue'
 import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
@@ -22,6 +23,7 @@ const router = new VueRouter({
     { path: '/category/:id/page/:page', component: ThemePageCategory },
     { path: '/category/:categorySlug/:id', component: ThemePageSingle },
     { path: '/category/:id', component: ThemePageCategory, params: { page: 1 } },
+    { path: '/offline-redirect', component: OfflineRedirect },
     { path: '/:id', component: ThemePageSingle },
     { path: '/', name: 'Home', redirect: '/category/blog/' }
   ]
