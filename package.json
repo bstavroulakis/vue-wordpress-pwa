@@ -87,7 +87,7 @@
     "md5": "2.2.1",
     "mocha": "4.0.1",
     "node-sass": "4.5.3",
-    "phantomjs-prebuilt": "2.1.15",
+    "phantomjs-prebuilt": "2.1.16",
     "purify-css": "1.2.6",
     "purifycss": "1.2.6",
     "purifycss-webpack": "0.7.0",
