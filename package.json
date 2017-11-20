@@ -86,7 +86,7 @@
     "karma-webpack": "2.0.5",
     "md5": "2.2.1",
     "mocha": "4.0.1",
-    "node-sass": "4.5.3",
+    "node-sass": "4.7.2",
     "phantomjs-prebuilt": "2.1.16",
     "purify-css": "1.2.6",
     "purifycss": "1.2.6",
