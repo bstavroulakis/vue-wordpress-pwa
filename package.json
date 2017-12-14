@@ -99,7 +99,7 @@
     "sinon-chai": "2.14.0",
     "url-loader": "0.6.2",
     "vue-loader": "13.4.0",
-    "vue-template-compiler": "2.5.2",
+    "vue-template-compiler": "2.5.11",
     "webpack": "3.8.1",
     "webpack-dev-middleware": "1.12.0",
     "webpack-hot-middleware": "2.20.0"
