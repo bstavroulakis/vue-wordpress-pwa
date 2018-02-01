@@ -2,7 +2,7 @@
 <nav class="navbar">
   <div class="navbar-brand">
     <router-link to="/category/blog/" class="navbar-item">
-      <img src="https://fullstackweekly.azureedge.net/wp-content/uploads/2017/03/logo-horizontal.png"
+      <img src="https://api.fullstackweekly.com/wp-content/uploads/2017/03/logo-horizontal.png"
       id="vwp-logo" alt="Full Stack Weekly" exact/></router-link>
 
     <div class="navbar-burger burger" data-target="navMenuColorprimary-example" v-on:click="toggleMenu">

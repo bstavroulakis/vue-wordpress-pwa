@@ -3,7 +3,7 @@
     <div class="card personal-card" v-if="categories && categories.length === 1 && categories[0].slug === 'blog'">
       <div class="columns">
         <div class="column personal-img">
-          <img src="https://fullstackweekly.azureedge.net/wp-content/uploads/2017/03/bill-100x100.jpg"
+          <img src="https://api.fullstackweekly.com/wp-content/uploads/2017/03/bill-100x100.jpg"
           alt="Bill Stavroulakis" width="100" />
         </div>
         <div class="column is-three-quarters personal-desc">
