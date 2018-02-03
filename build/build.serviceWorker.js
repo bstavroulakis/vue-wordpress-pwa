@@ -109,6 +109,10 @@ const cleanIndex = () => {
       '<link href="/assets/styles.css" rel="stylesheet">',
       ""
     );
+    data = data.replace(
+      '<link media="all" rel="stylesheet" href="/assets/styles.css" media="all">',
+      ""
+    );
     data = data.replace(/type="text\/javascript"/gim, 'defer type="text/javascript"');
     data = data.replace(/rel="stylesheet"/gim, 'media="all" rel="stylesheet"');
     fs.writeFile((dirPath + "/index.html"), data, 'utf8');
