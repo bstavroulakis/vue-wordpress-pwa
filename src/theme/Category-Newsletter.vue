@@ -47,7 +47,7 @@ export default {
     }
   },
   prefetch: fetchInitialData,
-  created () {
+  mounted () {
     this.loadData()
   }
 }
