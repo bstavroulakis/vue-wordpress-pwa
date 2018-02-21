@@ -94,7 +94,7 @@
     "purify-css": "1.2.6",
     "purifycss": "1.2.6",
     "purifycss-webpack": "0.7.0",
-    "recursive-readdir": "2.2.1",
+    "recursive-readdir": "2.2.2",
     "rimraf": "2.6.2",
     "sass-loader": "6.0.6",
     "serve-favicon": "2.4.5",
