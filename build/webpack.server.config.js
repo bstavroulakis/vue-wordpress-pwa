@@ -1,9 +1,10 @@
 const path = require('path')
 const webpack = require('webpack')
 const base = require('./webpack.base.config')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const config = Object.assign({}, base, {
+  mode: process.env.NODE_ENV,
   target: 'node',
   devtool: false,
   entry: './src/server-entry.js',
@@ -23,19 +24,15 @@ const config = Object.assign({}, base, {
 
 if (process.env.NODE_ENV === 'production') {
   config.plugins.push(
-    new ExtractTextPlugin('assets/styles.[hash].css'),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
+    new MiniCssExtractPlugin({
+      filename: 'assets/styles.[hash].css'
     })
   )
 } else {
   config.plugins.push(
-    new ExtractTextPlugin('assets/styles.css')
+    new MiniCssExtractPlugin({
+      filename: 'assets/styles.css'
+    })
   )
 }
 
