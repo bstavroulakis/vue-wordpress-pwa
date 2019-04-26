@@ -23,7 +23,7 @@ Live version: [https://www.fullstackweekly.com/](https://www.fullstackweekly.com
 
 ### Prerequisites
 
-Make sure that [Node v7](https://nodejs.org/en/download/releases/) is installed.
+Make sure that [Node v11](https://nodejs.org/en/download/releases/) is installed.
 
 ## Features
 
@@ -41,11 +41,9 @@ Make sure that [Node v7](https://nodejs.org/en/download/releases/) is installed.
 First, install the WordPress plugins to enhance its REST API
 
 - Better REST API Featured Images
-- Category Order
 - REST API Enabler
 - WP REST API - filter fields
 - WP REST API - Pure Taxonomies
-- WP-CORS
 
 Then, clone the repo or create a fork
 
