@@ -29,11 +29,6 @@
       </div>
       <div class="navbar-item">
         <span v-on:click="closeMenu">
-          <router-link  class="is-tab nav-item" to="/category/newsletter/">Newsletter</router-link>
-        </span>
-      </div>
-      <div class="navbar-item">
-        <span v-on:click="closeMenu">
           <router-link  class="is-tab nav-item" to="/page/about-bill/">About</router-link>
         </span>
       </div>
@@ -54,10 +49,6 @@
 </nav>
 </template>
 <script>
-// import { mapGetters, mapActions } from 'vuex'
-/* const fetchInitialData = store => {
-  return store.dispatch(`menu/getMenu`)
-} */
 export default {
   name: 'app-header',
   data: () => {
@@ -67,16 +58,7 @@ export default {
       blogItems: []
     }
   },
-  // prefetch: fetchInitialData,
-  /* computed: {
-    ...mapGetters('menu', {
-      blogItems: 'menuItems'
-    })
-  }, */
   methods: {
-    /* ...mapActions('menu', {
-      getMenu: 'getMenu'
-    }), */
     toggleMenu () {
       this.isMenuActive = !this.isMenuActive
     },
@@ -88,9 +70,6 @@ export default {
       var domain = url.split('/')[0]
       return url.replace(domain, '')
     }
-  },
-  mounted () {
-    // fetchInitialData(this.$store)
   }
 }
 </script>

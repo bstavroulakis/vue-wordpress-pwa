@@ -1,6 +1,5 @@
 <template>
   <div>
-    <app-newsletter class="hero is-primary"></app-newsletter>
     <footer class="footer">
     <div class="container">
       <div class="content has-text-centered">
