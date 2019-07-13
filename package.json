@@ -47,7 +47,7 @@
     "vue": "2.6.10",
     "vue-clazy-load": "0.4.2",
     "vue-resource": "1.5.1",
-    "vue-router": "3.0.6",
+    "vue-router": "3.0.7",
     "vue-server-renderer": "2.6.10",
     "vue-style-loader": "^4.1.2",
     "vuex": "3.1.0",
