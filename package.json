@@ -85,7 +85,7 @@
     "sass-loader": "7.1.0",
     "serve-favicon": "2.5.0",
     "url-loader": "1.1.2",
-    "vue-loader": "15.7.0",
+    "vue-loader": "15.7.2",
     "vue-template-compiler": "2.6.10",
     "webpack": "4.30.0",
     "webpack-cli": "^3.3.1",
