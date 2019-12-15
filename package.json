@@ -38,7 +38,7 @@
     "axios": "0.18.0",
     "bulma": "0.7.4",
     "compression": "1.7.4",
-    "cross-env": "5.2.0",
+    "cross-env": "6.0.3",
     "express": "4.16.4",
     "intersection-observer-polyfill": "0.1.0",
     "localforage": "1.7.3",
