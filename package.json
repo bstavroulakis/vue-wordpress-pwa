@@ -41,7 +41,7 @@
     "cross-env": "5.2.0",
     "express": "4.16.4",
     "intersection-observer-polyfill": "0.1.0",
-    "localforage": "1.7.3",
+    "localforage": "1.9.0",
     "lru-cache": "5.1.1",
     "serialize-javascript": "1.7.0",
     "vue": "2.6.10",
