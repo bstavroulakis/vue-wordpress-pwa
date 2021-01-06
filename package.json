@@ -35,7 +35,7 @@
     "fsevents": "*"
   },
   "dependencies": {
-    "axios": "0.18.0",
+    "axios": "0.21.1",
     "bulma": "0.7.4",
     "compression": "1.7.4",
     "cross-env": "5.2.0",
