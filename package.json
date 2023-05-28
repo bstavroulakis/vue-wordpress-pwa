@@ -43,7 +43,7 @@
     "intersection-observer-polyfill": "0.1.0",
     "localforage": "1.7.3",
     "lru-cache": "5.1.1",
-    "serialize-javascript": "1.7.0",
+    "serialize-javascript": "3.1.0",
     "vue": "2.6.10",
     "vue-clazy-load": "0.4.2",
     "vue-resource": "1.5.1",
